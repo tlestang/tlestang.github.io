@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}">
+  <head>
+    {% block head %}
+    <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/rdark.css" />
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}" />
+    <link rel="stylesheet" type="text/css" href="static/homepage.css" />
+    {% endblock head %}
+  </head>
+
+  <body id="index" class="home">
+    {% block content %}
+    <section id="content">
+      <div id="picture_and_name">
+	<div>
+	  <img src="images/profil_disk.jpeg" alt="Italian Trulli">
+	</div>
+	<div id="name">
+	  Thibault Lestang
+	  <div id="icons">
+	    <a href="mailto:thibault.lestang@cs.ox.ac.uk">
+	      <img src="static/icons/mail.svg" alt="email" width="24" height="24">
+	    </a>
+	    <a href="https://github.com/tlestang">
+	      <img src="static/icons/github.svg" alt="github" width="24" height="24">
+	    </a>
+	  </div>
+	</div>
+      </div>
+      <div>
+	<p>
+	  Hi there, I'm a Research Software Engineer at the University Of Oxford, UK.
+	  I collaborate on various scientific software projects with researchers across Oxford, bringing software engineering expertise to academic research projects.
+	</p>
+	<p>
+	  I'm working to raise the profile of research software in academia, both locally at Oxford and globally. I'm not alone! I'm surrounded by great colleagues at the <a href="https://www.rse.ox.ac.uk/">Oxford Research Software Engineering group</a>, and an amazing <a href="https://researchsoftware.org/">RSE community</a> both at the national and international levels. If you're in Oxford, check out our (free) regular <a href="https://www.rse.ox.ac.uk/training/">training courses</a>, where we teach research staff and graduate students the software engineering required to make their research more reproducible, efficient and open. I'm also a fellow of <a href="https://ox.ukrn.org/">Reproducible Research Oxford</a> and I recently initiated the <a href="https://github.com/OxfordCodeReviewNet/forum">Oxford Code Review Network</a>, that makes it easy for local researchers to get in touch with colleagues across the University to carry out code reviews. We need more of these!
+	</p>
+	<p>
+	  I hold a PhD in Physics from Ecole Normale Superieure de Lyon (2018), during which I investigated the application of rare event sampling algorithms to the simulation of extreme events in turbulent flows around objects. You can learn more about that research <a href="https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/numerical-study-of-extreme-mechanical-force-exerted-by-a-turbulent-flow-on-a-bluff-body-by-direct-and-rareevent-sampling-techniques/AF7125593B78B17A8CA9958E0985D55B">here</a>.
+	</p>
+      </div>
+    </section>
+    {% endblock %}
+  </body>
+ 
+</html>
