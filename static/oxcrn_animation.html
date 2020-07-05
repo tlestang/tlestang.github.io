@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Canvas</title>
+    <style>
+     body {
+         margin: 0;
+         overflow: hidden;
+     }
+    </style>
+  </head>
+  <body>
+    <canvas class="myCanvas">
+      <p>Add suitable fallback here.</p>
+    </canvas>
+
+    <script>
+
+     const canvas = document.querySelector('.myCanvas');
+     const width = canvas.width = window.innerWidth;
+     const height = canvas.height = window.innerHeight;
+     const ctx = canvas.getContext('2d');
+
+     // function to generate random number
+
+     function random(min, max) {
+       const num = Math.floor(Math.random() * (max - min + 1)) + min;
+       return num;
+     }
+
+     let researchers_img = [];
+     let code_review_img = [];
+     let loadedImgCount = 0;
+     var onLoadFunction = function () {
+       loadedImgCount++;
+     };
+     function load_images_researchers(src) {
+       var img = new Image();
+       img.onload = onLoadFunction;
+       img.src = src;
+       researchers_img.push(img)
+     };
+     function load_images_review(src) {
+       var img = new Image();
+       img.onload = onLoadFunction;
+       img.src = src;
+       code_review_img.push(img)
+     };
+     function load_oxford_image(src) {
+       var img = new Image();
+       img.onload = onLoadFunction;
+       img.src = src;
+       return img;
+     };
+
+     img_src = ["scientist_female.png",
+		"scientist_male.png",
+		"programmer_male.png",
+		"programmer_female.png",
+		"math_female.png"];
+     review_img_src = ["code_review_1.png",
+		       "code_review_2.png",
+		       "code_review_3.png"];
+
+     img_src.forEach(load_images_researchers)
+     review_img_src.forEach(load_images_review)
+     oxford_img = load_oxford_image("oxford-skylines_height_100px.png")
+
+     // define Ball constructor
+
+     function Ball(x0, y0, velX, velY, color, size, img) {
+       this.x0 = x0;
+       this.y0 = y0;
+       this.velX = velX;
+       this.velY = velY;
+       this.color = color;
+       this.size = size;
+       this.targetX = this.x0;
+       this.targetY = this.y0;
+       this.x = this.x0;
+       this.y = this.y0;
+       this.time_when_stopped = null;
+       this.img = img;
+     };
+
+     // define ball draw method
+
+     Ball.prototype.draw = function() {
+       ctx.drawImage(this.img, this.x- this.img.width/2, this.y- this.img.height/2);
+     };
+
+     // define ball update method
+
+     Ball.prototype.update = function() {
+       this.x += 10 * this.velX;
+       this.y += 10 * this.velY;
+
+       // Compute velocity
+
+       var diff_x = this.targetX - this.x;
+       var diff_y = this.targetY - this.y;
+       var vectorNorm = Math.sqrt(diff_x * diff_x + diff_y * diff_y)
+
+       var isAtRest;
+       if (vectorNorm < 15) {
+	 isAtRest = true;
+	 this.velX = this.velY = 0;
+	 this.x = this.targetX;
+	 this.y = this.targetY;
+       } else {
+	 isAtRest = false;
+	 this.velX = diff_x/vectorNorm;
+	 this.velY = diff_y/vectorNorm;
+       };
+       // Log review event (when ball reaches barycenter)
+
+       if (isAtRest && ((this.x != this.x0) || (this.y != this.y0))) {
+	 if (!this.time_when_stopped) {
+	   this.time_when_stopped = new Date();
+	 };
+       };
+     };
+
+     // define array to store balls and populate it
+
+     let balls = [];
+     let R = 400;
+     let n_balls = 20;
+     for (var i=0;i<n_balls;i++) {
+       var theta = 2 * Math.PI * ((i+1)/n_balls)
+       var X = R*Math.cos(theta)
+       var Y = R*Math.sin(theta)
+       var img = researchers_img[random(0,img_src.length-1)];
+       let ball = new Ball(X, Y, 0., 0., "rgb(0,0,0)", 40, img);
+       balls.push(ball);
+     };
+
+     // Define ReviewGroup constructor
+
+     function ReviewGroup(members, img) {
+       this.members = members;
+       this.size = members.length;
+       this.img = img;
+       this.review_time = null;
+       this.isAtReview = false;
+
+       // Compute barycenter and set target
+
+       var x_bary = 0;
+       var y_bary = 0;
+       for (var i=0;i<this.size;i++) {
+	 x_bary += members[i].x;
+	 y_bary += members[i].y;
+       };
+       x_bary /= this.size;
+       y_bary /= this.size;
+
+       for (var i=0; i<this.size;i++) {
+	 members[i].targetX = x_bary;
+	 members[i].targetY = y_bary;
+       };
+     };
+
+     // Define ReviewGroup update method
+
+     ReviewGroup.prototype.update = function () {
+
+       var stopping_times = [];
+       for (var i=0;i<this.size;i++){
+	 this.members[i].update();
+
+	 if (this.members[i].time_when_stopped) {
+	   stopping_times.push(this.members[i].time_when_stopped);
+	 };
+       };
+
+       if (stopping_times.length === this.size) {
+	 this.review_time = stopping_times[this.size-1];
+	 this.isAtReview = true;
+       };
+
+       if (this.review_time) {
+	 var current_time = new Date();
+	 var time_elapsed = current_time - this.review_time
+	 if (time_elapsed > 2000) {
+	   for (var i=0;i<this.size;i++) {
+	     this.members[i].targetX = this.members[i].x0;
+	     this.members[i].targetY = this.members[i].y0;
+	   };
+	   this.isAtReview = false;
+	 };
+       };
+     };
+
+     // Define ReviewGroup draw method
+
+     ReviewGroup.prototype.draw = function () {
+       if (this.isAtReview) {
+	 var x = this.members[0].targetX;
+	 var y = this.members[0].targetY;
+	 size = this.members[0].size;
+	 ctx.drawImage(this.img, x - this.img.width/2, y - this.img.height/2);
+       } else {
+	 for (var i=0;i<this.size;i++) {
+	   this.members[i].draw();
+	 };
+       };
+     };
+
+     // Define ReviewGroup isFinished method
+
+     ReviewGroup.prototype.isFinished = function () {
+       var counter = 0;
+       for (var i=0;i<this.size;i++) {
+	 var x = this.members[i].x;
+	 var y = this.members[i].y;
+	 var x0 = this.members[i].x0;
+	 var y0 = this.members[i].y0;
+	 var velocity =
+	   this.members[i].velX * this.members[i].velX +
+	   this.members[i].velY * this.members[i].velY
+
+	 var isAtRest = (velocity ? false : true);
+	 var isAtInitialPos = ((x === x0) && (y == y0) ? true : false)
+
+	 if (isAtInitialPos && isAtRest) {
+	   counter++;
+	 };
+       };
+       return (counter === this.size);
+     };
+
+     // Defin ReviewGroup free method
+
+     ReviewGroup.prototype.free = function () {
+       for (var i=0;i<this.size;i++) {
+	 this.members[i].color = 'rgb(0,0,0)';
+	 this.members[i].time_when_stopped = null;
+       };
+       balls = balls.concat(this.members);
+     };
+
+     function selectBalls(groupSize) {
+       // Pick groupSize distinct balls at random and make a ReviewGroup
+
+       let balls_selected = [];
+       for (var i=0;i<groupSize;i++) {
+	 idx = random(0,balls.length-1);
+	 balls_selected.push(balls.splice(idx,1)[0])
+       };
+       return balls_selected;
+     };
+
+     ctx.fillStyle = 'rgb(255,255,255)';
+     ctx.fillRect(0,0,width,height);
+
+
+     ctx.translate(width/2, height/2)
+
+     // Create initial review group
+
+     let ReviewGroups = [];
+     var groupSize = random(2,3);
+     var RG = new ReviewGroup(selectBalls(groupSize),
+			      code_review_img[random(0,review_img_src.length-1)])
+     ReviewGroups.push(RG);
+     let last_review_time = new Date();
+
+     // define loop that keeps drawing the scene constantly
+
+     function loop() {
+       ctx.fillStyle = 'rgba(255,255,255)'
+       ctx.fillRect(-width/2,-height/2,width,height);
+
+       // Draw ball in the center representing Oxford
+
+       Oxford_ball = new Ball(0, 0, 0., 0., "#002147", 30, oxford_img);
+       Oxford_ball.draw();
+
+       var time = new Date();
+       var time_elapsed = time - last_review_time;
+       if (time_elapsed > 1000) {
+	 var groupSize = random(2,3);
+	 var RG = new ReviewGroup(selectBalls(groupSize),
+				  code_review_img[random(0,review_img_src.length-1)])
+	 ReviewGroups.push(RG);
+	 last_review_time = new Date();
+       };
+
+       // Draws smaller balls representing researchers
+
+       for(let i = 0; i < balls.length; i++) {
+	 balls[i].draw();
+       };
+
+       for (var i=0; i<ReviewGroups.length;i++) {
+	 ReviewGroups[i].update();
+	 ReviewGroups[i].draw();
+
+	 if (ReviewGroups[i].isFinished()) {
+	   var RG = ReviewGroups.splice(i,1)[0]
+	   RG.free();
+	 };
+       };
+
+       requestAnimationFrame(loop);
+     }
+
+     function launch() {
+       if (loadedImgCount === 9){
+	 loop();
+       } else {
+	 setTimeout(launch, 100)
+       };
+     }
+
+     launch();
+    </script>
+  </body>
+</html>
