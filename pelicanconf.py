@@ -36,7 +36,7 @@ DEFAULT_PAGINATION = False
 
 THEME = "./themes/basic"
 
-ARTICLE_EXCLUDES = ['templates']
+ARTICLE_EXCLUDES = ['templates', 'static']
 TEMPLATE_PAGES = {
     'templates/homepage.html': 'index.html',
 }
