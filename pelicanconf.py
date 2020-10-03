@@ -36,8 +36,13 @@ DEFAULT_PAGINATION = False
 
 THEME = "./themes/basic"
 
+# Both "templates" and "static" directories contain
+# .hmtl file(s) ("homepage.html" "oxcrn_animation.html",
+# respectively). by default Pelican will consider them as
+# articles, but actually don't want them to be processes as such.
 ARTICLE_EXCLUDES = ['templates', 'static']
-TEMPLATE_PAGES = {
-    'templates/homepage.html': 'index.html',
-}
+# "static/oxcrn_animation.html" should just be copied to the
+# output/ dir.
 STATIC_PATHS = ['images', 'static']
+
+
