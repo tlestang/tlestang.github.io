@@ -44,5 +44,6 @@ ARTICLE_EXCLUDES = ['templates', 'static']
 # "static/oxcrn_animation.html" should just be copied to the
 # output/ dir.
 STATIC_PATHS = ['images', 'static']
-
+INDEX_SAVE_AS = "blog/index.html"
+ARTICLE_PATHS = ["blog"]
 
