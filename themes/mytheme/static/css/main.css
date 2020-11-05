@@ -1,3 +1,16 @@
+@font-face {
+    font-family: 'freesans';
+    src: url('/static/fonts/freesans-webfont.woff2') format('woff2'),
+         url('/static/fonts/freesans-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+    font-family: 'freesans', sans-serif;
+}
+
 #content {
     margin-left: 30%;
     margin-right: 30%;
