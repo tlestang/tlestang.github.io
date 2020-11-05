@@ -1,7 +1,7 @@
 #content {
     margin-left: 30%;
     margin-right: 30%;
-}   
+}
 
 #menu li {
     display: inline;
@@ -9,4 +9,15 @@
 
 p {
     width: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
 }

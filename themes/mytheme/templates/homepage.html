@@ -12,9 +12,8 @@
 
   <body id="index" class="home">
       <header id="banner" class="body">
-          <p><a href="{{ SITEURL }}/">{{ SITENAME }}{% if SITESUBTITLE %} <strong>{{ SITESUBTITLE }}</strong>{% endif %}</a></p>
+          <a href="{{ SITEURL }}/">{{ SITENAME }}{% if SITESUBTITLE %} <strong>{{ SITESUBTITLE }}</strong>{% endif %}</a>
 	  <nav id="menu"><ul>
-	      <li>
 		  <li>
 		      <a href="{{ SITEURL }}/pages/projects.html">Projects</a>
 		  </li>
@@ -23,6 +22,7 @@
 		  </li>
           </ul></nav><!-- /#menu -->
       </header><!-- /#banner -->
+      <hr style="padding: 0">
       {% block content %}
       <section id="content">
  	  <div id="picture_and_name">
@@ -45,5 +45,5 @@
     </section>
     {% endblock %}
   </body>
-  
+
 </html>
