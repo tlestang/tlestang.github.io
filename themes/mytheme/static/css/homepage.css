@@ -1,8 +1,7 @@
-section {
-    width: 60%;
-    margin: auto;
-    align-items: center;
+header {
+    display: flex;
 }
+
 #picture_and_name {
     display: flex;
     align-items: center;

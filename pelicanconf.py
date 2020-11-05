@@ -34,7 +34,7 @@ DEFAULT_PAGINATION = False
 # Uncomment following line if you want document-relative URLs when developing
 #RELATIVE_URLS = True
 
-THEME = "./themes/basic"
+THEME = "./themes/mytheme"
 
 # Both "templates" and "static" directories contain
 # .hmtl file(s) ("homepage.html" "oxcrn_animation.html",

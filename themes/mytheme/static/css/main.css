@@ -1,0 +1,12 @@
+#content {
+    margin-left: 30%;
+    margin-right: 30%;
+}   
+
+#menu li {
+    display: inline;
+}
+
+p {
+    width: auto;
+}

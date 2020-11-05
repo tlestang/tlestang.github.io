@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}">
+  <head>
+    {% block head %}
+    <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="{{ SITEURL }}/theme/css/rdark.css" />
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}" />
+    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/homepage.css" />
+    {% endblock head %}
+  </head>
+
+  <body id="index" class="home">
+      <header id="banner" class="body">
+          <p><a href="{{ SITEURL }}/">{{ SITENAME }}{% if SITESUBTITLE %} <strong>{{ SITESUBTITLE }}</strong>{% endif %}</a></p>
+	  <nav id="menu"><ul>
+	      <li>
+		  <li>
+		      <a href="{{ SITEURL }}/pages/projects.html">Projects</a>
+		  </li>
+		  <li>
+		      <a href="{{ SITEURL }}/blog">Blog</a>
+		  </li>
+          </ul></nav><!-- /#menu -->
+      </header><!-- /#banner -->
+      {% block content %}
+      <section id="content">
+ 	  <div id="picture_and_name">
+	      <div>
+		  <img src="images/profil_disk.jpeg" alt="Italian Trulli">
+	      </div>
+	      <div id="name">
+		  <span style="font-size: 200%"> Thibault Lestang</span>
+		  <div id="icons">
+		      <a href="mailto:thibault.lestang@cs.ox.ac.uk">
+			  <img src="static/icons/mail.svg" alt="email" width="24" height="24">
+		      </a>
+		      <a href="https://github.com/tlestang">
+		    <img src="static/icons/github.svg" alt="github" width="24" height="24">
+		</a>
+	    </div>
+	</div>
+      </div>
+      {{ page.content }}
+    </section>
+    {% endblock %}
+  </body>
+  
+</html>
