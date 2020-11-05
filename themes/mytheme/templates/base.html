@@ -1,6 +1,36 @@
-{% extends "!simple/base.html" %}
-{%- block head %}
-{{ super() }}
-<link rel="stylesheet" href="{{ SITEURL }}/theme/css/rdark.css" />
-<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}" />
-{% endblock -%}
+<!DOCTYPE html>
+<html lang="{% block html_lang %}{{ DEFAULT_LANG }}{% endblock html_lang %}">
+    <head>
+	{% block head %}
+	<title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="{{ SITEURL }}/theme/css/rdark.css"/>
+	<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/{{ CSS_FILE }}"/>
+	{% endblock head %}
+    </head>
+    <body id="index" class="home">
+	<header id="banner" class="body">
+            <a href="{{ SITEURL }}/">
+		{{ SITENAME }}
+		{% if SITESUBTITLE %}
+		<strong>
+		    {{ SITESUBTITLE }}
+		</strong>
+		{% endif %}
+	    </a>
+	    <nav id="menu"><ul>
+		<li>
+		    <a href="{{ SITEURL }}/pages/projects.html">Projects</a>
+		</li>
+		<li>
+		    <a href="{{ SITEURL }}/blog">Blog</a>
+		</li>
+            </ul></nav><!-- /#menu -->
+	</header><!-- /#banner -->
+	<hr style="padding: 0">
+	<section id="content">
+	    {% block content %}
+            {% endblock %}
+	</section>
+    </body>
+</html>

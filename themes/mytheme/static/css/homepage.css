@@ -1,22 +1,3 @@
-@font-face {
-    font-family: 'freemono';
-    src: url('/static/fonts/freemono-webfont.woff2') format('woff2'),
-         url('/static/fonts/freemono-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-header {
-    display: flex;
-    font-size: x-large;
-    font-family: 'freemono', sans-serif;
-}
-
-header a {
-    text-decoration: none
-}
-
 #picture_and_name {
     display: flex;
     align-items: center;

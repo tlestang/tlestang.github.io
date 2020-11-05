@@ -1,10 +1,29 @@
 @font-face {
+    font-family: 'freemono';
+    src: url('/static/fonts/freemono-webfont.woff2') format('woff2'),
+         url('/static/fonts/freemono-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
     font-family: 'freesans';
     src: url('/static/fonts/freesans-webfont.woff2') format('woff2'),
          url('/static/fonts/freesans-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
+}
+
+header {
+    display: flex;
+    font-size: x-large;
+    font-family: 'freemono', sans-serif;
+    justify-content: space-between;
+}
+
+header a {
+    text-decoration: none
 }
 
 body {
@@ -14,10 +33,6 @@ body {
 #content {
     margin-left: 30%;
     margin-right: 30%;
-}
-
-#menu li {
-    display: inline;
 }
 
 p {
@@ -30,7 +45,6 @@ nav ul {
     padding: 0;
 }
 
-header {
-    display: flex;
-    justify-content: space-between;
+#menu li {
+    display: inline;
 }
