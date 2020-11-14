@@ -20,6 +20,9 @@ header {
     font-size: x-large;
     font-family: 'freemono', sans-serif;
     justify-content: space-between;
+    margin-bottom: 5em;
+    border-bottom: 5px solid #A0522D;
+    line-height: 1.5em;
 }
 
 header a {
