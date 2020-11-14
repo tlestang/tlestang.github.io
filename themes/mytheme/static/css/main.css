@@ -1,15 +1,15 @@
 @font-face {
-    font-family: 'freemono';
-    src: url('/static/fonts/freemono-webfont.woff2') format('woff2'),
-         url('/static/fonts/freemono-webfont.woff') format('woff');
+    font-family: 'abrilfatface';
+    src: url('/static/fonts/abrilfatface-regular-webfont.woff2') format('woff2'),
+         url('/static/fonts/abrilfatface-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
 }
 @font-face {
-    font-family: 'freesans';
-    src: url('/static/fonts/freesans-webfont.woff2') format('woff2'),
-         url('/static/fonts/freesans-webfont.woff') format('woff');
+    font-family: 'opensans';
+    src: url('/static/fonts/opensans-regular-webfont.woff2') format('woff2'),
+         url('/static/fonts/opensans-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -18,10 +18,9 @@
 header {
     display: flex;
     font-size: x-large;
-    font-family: 'freemono', sans-serif;
+    font-family: 'abrilfatface', sans-serif;
     justify-content: space-between;
-    margin-bottom: 5em;
-    border-bottom: 5px solid #A0522D;
+    margin-bottom: 3em;
     line-height: 1.5em;
 }
 
@@ -41,12 +40,18 @@ nav a:hover {
 }
 
 body {
-    font-family: 'freesans', sans-serif;
+    font-family: 'opensans', sans-serif;
 }
 
 #content {
     margin-left: 30%;
     margin-right: 30%;
+}
+
+#content a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #005221;
 }
 
 p {
@@ -66,4 +71,6 @@ nav ul {
 h1 {
     border-bottom: 5px solid #005221;
     line-height: 1.5em;
+    font-family: 'abrilfatface', sans-serif;
+    font-size: x-large;
 }
