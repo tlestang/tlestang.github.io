@@ -1,40 +1,80 @@
-body {
-  font-family: monospace;
-  font-size: 120%;
-  background-color: white;
-  color: #111;
-  width: 80%;
-  min-width: 400px;
-  min-height: 200px;
-  padding: 1em;
-  margin: 5% 10%;
-  border: thin solid gray;
-  border-radius: 5px;
-  display: block;
+@font-face {
+    font-family: 'abrilfatface';
+    src: url('/static/fonts/abrilfatface-regular-webfont.woff2') format('woff2'),
+         url('/static/fonts/abrilfatface-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'opensans';
+    src: url('/static/fonts/opensans-regular-webfont.woff2') format('woff2'),
+         url('/static/fonts/opensans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
-a:link    { color: blue; text-decoration: none;      }
-a:hover   { color: blue; text-decoration: underline; }
-a:visited { color: blue;                             }
+#banner {
+    display: flex;
+    font-size: x-large;
+    font-family: 'abrilfatface', sans-serif;
+    justify-content: space-between;
+    margin-bottom: 3em;
+    line-height: 1.5em;
+}
 
-h1 a { color: inherit !important }
-h2 a { color: inherit !important }
-h3 a { color: inherit !important }
-h4 a { color: inherit !important }
-h5 a { color: inherit !important }
-h6 a { color: inherit !important }
+header a {
+    text-decoration: none;
+    color: #005221
+
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #005221;
+    color: #FFFF
+}
+
+body {
+    font-family: 'opensans', sans-serif;
+}
+
+#content {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+#content a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #005221;
+}
+
+p {
+    width: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
 
 #menu li {
     display: inline;
 }
 
-#post-list {
-    margin-bottom: 1em;
-    margin-top: 1em;
+h1, h2 {
+    font-family: 'abrilfatface', sans-serif;
+    font-size: x-large;
 }
 
-pre {
-    margin: 2em 1em 2em 4em;
-    white-space: pre-wrap;
+h2 {
+    border-bottom: 5px solid #005221;
+    line-height: 1.5em;
+    
 }
-
