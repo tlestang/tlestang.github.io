@@ -8,9 +8,9 @@ courses](#courses). As much as I can, [I'm getting
 involved](#community) with both the local academic community at
 Oxford and the wider, global research software engineering movement.
 
-# <a name="current-software-projects"></a> Current software projects
+## <a name="current-software-projects"></a> Current software projects
 
-## PyBaMM
+### PyBaMM
 
 Design and manufacturing of more efficient and resilient energy
 storage solutions is a key effort towards the development of
@@ -30,7 +30,7 @@ in freedom) package available to all for use but also to contribute
 to. Beyond efficiently solving battery models, PyBaMM aims at becoming
 a community tool, developed by and for battery scientist.
 
-## stochare
+### stochare
 
 Stochastic models (understand mathematical models of random processes)
 arise in many scientific fields: physics, chemistry, biology,
@@ -50,9 +50,9 @@ out-of-equilibrium statistical physics point of view, it aims at
 providing tools to support research with stochastic processes in any
 of these fields.
 
-# Past software projects
+## Past software projects
 
-## Oxford Visual Perception Screen (OxVPS)
+### Oxford Visual Perception Screen (OxVPS)
 
 A large number of stroke patients - up to almost 80% - suffer visual
 impairment after stroke. Such impairment can include neglecting
@@ -86,7 +86,7 @@ for the benefit of the clinician performing the screening. More
 complete data is securely stored in a cloud database, and can be
 downloaded for additional processing by Dr Vancleef and her team.
 
-## smif
+### smif
 
 Infrastructure systems (think water and energy supply, transport
 systems...) provide essential basic services to society but can also
@@ -122,9 +122,9 @@ binding, or call out to a command-line executable.
    Cooper and Thibault Lestang | **nismod/smif v1.2.0** | *Zenodo* |
    2019 | ([doi](http://doi.org/10.5281/zenodo.1309336))
 
-# <a name="community"></a> Community
+## <a name="community"></a> Community
 
-## The Oxford Code Review Network
+### The Oxford Code Review Network
 
 As a researcher it's often difficult to feedback on your codes.  Is
 your code readable and understandable by someone else? Are you missing
@@ -150,7 +150,7 @@ themselves, but also by enabling the sharing of software skills and
 knowledge across levels of experience, backgrounds and research
 communities.  I feel like this is much needed.
 
-## Reproducible research Oxford
+### Reproducible research Oxford
 
 I've been a [Reproducible Research Oxford](https://ox.ukrn.org/)
 (RROx) fellow since May 2020. RROx is the local Oxford branch of the
@@ -166,7 +166,7 @@ Network](https://github.com/OxfordCodeReviewNet/forum) and the Oxford
 Free and Open Source Software group.
 
 
-## Oxford Free/Open Source Software (OxFOSS)
+### Oxford Free/Open Source Software (OxFOSS)
 
 Together with Laura Fortunato, Rowan Wilson and Malika Ihle, we
 initiated a local interest group on free (as in free speech)
@@ -189,7 +189,7 @@ you're not working at the University Of Oxford, feel free [to get in
 touch](mailto:thibault.lestang@cs.ox.ac.uk) with me and I can add you
 to the room.
 
-## Junior Research Fellowship at Kellogg College
+### Junior Research Fellowship at Kellogg College
 
 In may 2020 I was awarded a Junior Research Fellowship from [Kellogg
 College](https://www.kellogg.ox.ac.uk/), starting
@@ -202,7 +202,7 @@ believe than research software engineers can bring a lot to colleges,
 and I am very grateful to Kellogg College for giving me the
 opportunity to demonstrate this!
 
-# <a name="courses"></a> Courses
+## <a name="courses"></a> Courses
 
 A crucial part of our mission at [Oxford Research Software
 Engineering](https://www.rse.ox.ac.uk/) is to deliver training courses
@@ -211,7 +211,7 @@ we run regularly [here](https://www.rse.ox.ac.uk/training/).  Feel
 free to get in touch if you'd like us to run a course for your
 team/lab/department.  Among them, I'm responsible for the following:
 
-## Python packaging
+### Python packaging
 
 A three hours course on organising and sharing python projects, using
 python packages.
