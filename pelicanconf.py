@@ -49,3 +49,8 @@ ARTICLE_PATHS = ["blog"]
 
 ARTICLE_URL = 'blog/{slug}.html'
 ARTICLE_SAVE_AS = 'blog/{slug}.html'
+
+PLUGIN_PATHS = ["pelican-plugins"]
+PLUGINS=["org_reader"]
+ORG_READER_EMACS_LOCATION = "/usr/local/bin/emacs"
+ORG_READER_EMACS_SETTINGS="org-export.el"
