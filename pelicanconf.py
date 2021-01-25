@@ -47,3 +47,5 @@ STATIC_PATHS = ['images', 'static']
 INDEX_SAVE_AS = "blog/index.html"
 ARTICLE_PATHS = ["blog"]
 
+ARTICLE_URL = 'blog/{slug}.html'
+ARTICLE_SAVE_AS = 'blog/{slug}.html'
