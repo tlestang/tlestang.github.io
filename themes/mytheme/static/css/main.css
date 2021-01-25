@@ -15,7 +15,7 @@
 
 }
 
-header {
+#banner {
     display: flex;
     font-size: x-large;
     font-family: 'abrilfatface', sans-serif;
@@ -68,9 +68,13 @@ nav ul {
     display: inline;
 }
 
-h1 {
-    border-bottom: 5px solid #005221;
-    line-height: 1.5em;
+h1, h2 {
     font-family: 'abrilfatface', sans-serif;
     font-size: x-large;
+}
+
+h2 {
+    border-bottom: 5px solid #005221;
+    line-height: 1.5em;
+
 }
