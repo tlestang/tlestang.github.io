@@ -41,11 +41,12 @@ nav a:hover {
 
 body {
     font-family: 'opensans', sans-serif;
+    font-size: 18px;
 }
 
 #content {
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
 #content a {
