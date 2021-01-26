@@ -2,12 +2,24 @@
 #+DATE: <2021-01-19 Tue>
 #+OPTIONS: toc:nil
 
-Org-mode is a set of (relatively) coherent functionalities inside GNU Emacs.
-These become available when activiting Org-mode (~M-x org-mode~) or simply
-by opening a file with the ~.org~ extension. 
+Org-mode is a set of functionalities inside GNU Emacs, geared towards
+note-taking, structuring text and managing tasks.  These
+functionalities become available with activiting Org-Mode (~M-x
+org-mode~) or simply by opening a file with the ~.org~ extension.
 
-Org-mode is very broad allows for complex documents, workflows and task management.
-However, quoting its original developer
+Org is an incredibly broad mode. Just as Emacs itself goes beyond bein
+a text editor, Org Mode provides a very broad range of
+functionalities, going well beyond than taking notes.  In fact, it is
+useful to see Org no so much as an organisational solution, but as a
+toolbox for building organisational solutions.
+
+From a beginner's point of view however, Org's basic functionalities
+are easy to ge started with. Out of the box, Org offers an efficient,
+distraction-free writing environment, with a lightweigtht syntax for
+markup, similar to markdown.  From there, users are free to explore
+the various settings and functionanlities available to them, as they
+need them.
+
 #+begin_quote
 Complexity is not imposed [...]. Org is a toolbox. Many users actually
 run only a (very personal) fraction of Org's capabilities, and know
@@ -16,14 +28,17 @@ that there more whenever they need it.
 /The Org Mode 9 Reference Manual/, Carsten Dominik
 #+end_quote
 
-In the following we're going to explore a small subset of Org's
-functionalities, with the objective of facilitating the organization
-and tracking of the many things we did, do, and must/want to do.
+This post describes how I use Org-Mode to organise 
+
+ manage my tasks 
+This blog post exposes a small subset of Org's functionalities,
+focusing on facilitating the organisation and tracking of the many
+things we did, do, and must/want to do.
 
 #+TOC: headlines 2
 
 * *Org*anize text
-At the center of Org is a simple markup language, similar to markdown
+At the core of Org is a simple markup language, similar to markdown
 or reStructuredText. The content of an Org document can be structured
 using headlines, lists and tables. Text itself can be _underlined_,
 +stroke trough+, /italicized/ or written in *bold*.
@@ -51,24 +66,23 @@ using headlines, lists and tables. Text itself can be _underlined_,
 
 #+end_src
 
-In most cases, you don't need more when writing notes, an essay, or
-even a scientific paper.  Whenever you are happy with the /content/ of
-your document, Org makes it straihtforward to /export/ the plain text
-document to a richer format, such as PDF (through LaTeX), ODT (to be
-used with LibreOffice or MS Word for instance), or HTML.  This post is
-actually written using Org, and you are reading the exported HTML
-version of the document.
+When writing notes, an essay, or even a scientific paper, there ins't
+much more you need. In addition, Org makes it straightforward to
+/export/ the plain text Org document to a richer format, such as PDF
+(through LaTeX), ODT (to be used with LibreOffice or MS Word for
+instance), or HTML.  This post is actually written using Org, and you
+are reading the exported HTML version of the underlying Org file.
 
-Org document are *plain text*, and you could write Org using any text
-editor.  Naturally, it is most convenient withing GNU Emacs, since
-Org-mode automatically renders Org syntax (e.g. it will write
-headlines in a different color, often with an increased font
-size). Org-mode also provides a wealth of functionaities to
-efficiently manipulate Org documents, such as reorder and sort
-headlines and lists, insert new headlines, links and tables. More
-importantly, Org makes it very efficient to navigate the document, for
-instance by jumping to the next headline of any level (~C-c n~) or
-jumping to the parent headline (~C-c u~).
+Org documents are *plain text*, and it is worth noting that it is
+possible to write Org using any text editor.  Naturally, it is most
+convenient within GNU Emacs, since Org-mode automatically renders Org
+syntax (e.g. it will display headlines in a different color, often with
+an increased font size). Org-mode also provides a wealth of
+functionaities to efficiently manipulate Org documents, such as
+reorder and sort headlines and lists, insert new headlines, links and
+tables. More importantly, Org makes it very efficient to navigate the
+document, for instance by jumping to the next headline of any level
+(~C-c n~) or jumping to the parent headline (~C-c u~).
 
 ** Further reading in the Org Mode manual
    - [[https://orgmode.org/manual/Document-Structure.html#Document-Structure][Document Structure]], in particular [[https://orgmode.org/manual/Headlines.html#Headlines][Headlines]], [[https://orgmode.org/manual/Structure-Editing.html#Structure-Editing][Structure editing]],
@@ -78,14 +92,14 @@ jumping to the parent headline (~C-c u~).
 * *Org* anize tasks
 
 In Org, it is common for headlines to represent tasks. Beyond its
-title, a headline can be further described using either, or a conbination of:
+title, a headline can be further described using either, or a combination of:
 - A TODO state (typically someting like "TODO" or "DONE")
-- A collection of one or more arbitrary tags (each represented as a
-  character string, like "home" or "office").
+- A collection of one or more tags (each represented as a character
+  string, like "home" or "office").
 - A collection of one or more properties (each one represented by a
   key-value pair, like ~Date: 1992~ or ~City: Oxford~).
 
-#+NAME: An example of charachet=rising a headline with TODO state, tags and CATEGORY property.
+#+NAME: An example of characterising a headline with TODO state, tags and CATEGORY property.
 #+begin_src org
   ,** DONE Introduce TODO states, tags and categories      :emacs:writing:mytag:
      :PROPERTIES:
@@ -94,7 +108,7 @@ title, a headline can be further described using either, or a conbination of:
      :END:
 #+end_src
 
-The above defines a new headline with a state ~TODO~. By default,
+The above defines a new headline with a TODO state ~TODO~. By default,
 tasks can take two states: ~TODO~ or ~DONE~.  Users are free to redefine
 variable ~org-todo-keywords~ to introduce more states:
 #+begin_src elisp
@@ -105,15 +119,16 @@ TODO states are most conveniently set using ~C-c t~ (~org-todo~). It
 is also possible to cycle through the different states in order in the
 order their appear in the sequence, using ~S-RIGHT~.
 
-In addition to the state of a task, Org allows to further specify it
-by attaching a collection of tags.  In the above example, the task
-/introduce TODO states, tahs and categories/ is attached two tags:
-~emacs~ and ~writing~. By default, tags aren't part of any specific
-list and using ~C-c q~ (~org-set-tags-command~) will let you use
-anything you want as a tag. Choose whatever you think best describes
-the task according to your organisational system. Note that Org will
-offer completion based on the tags already defined throughout the
-document. A list of allowed tags can also be declared, either as a file property
+In addition to the state of a task, headlines can be described by a
+collection of tags.  In the above example, the task /introduce TODO
+states, tags and categories/ is attached two tags: ~emacs~ and
+~writing~. By default, tags aren't part of any specific list and using
+~C-c q~ (~org-set-tags-command~) will let you input anything as a
+tag. Choose whatever you think best describes the task according to
+your organisational system. Note that Org will offer completion based
+on the tags already defined throughout the document.
+
+A list of allowed tags can be defined, either as a file property
 #+begin_src org
   ,#+TAGS: meeting(m) talk(t) seminar
   This syntax defines a property ~TAGS~ for the whole document. It controls the
@@ -127,69 +142,46 @@ or by defining the variable ~org-tags-alist~:
 Either way, it is possible to define a shortcut for tags (/e.g/ ~m~ for ~meeting~).
 This is optional.
 
-Lastly, the example task /introduce TODO states, tahs and categories/ has the property
-~CATEGORY~ set to ~blog~. headlines can be associated properties in the form 
-+ ~:KEY: value~ inside a ~:PROPERTIES:~ drawer. Both ~KEY~ and ~value~
-can be set using ~C-x p~ (~org-set-property~) to any string you
-want. However, there are some special properties, and ~CATEGORY~ is one of them.
-We'll talk about it in more details later in this post.
-Special properties are
-
-  | 'ALLTAGS'      | All tags, including inherited ones.                            |
-  | 'BLOCKED'      | t if task is currently blocked by children or siblings.        |
-  | 'CATEGORY'     | The category of an entry.                                      |
-  | 'CLOCKSUM'     | The sum of CLOCK intervals in the subtree. org-clock-sum       |
-  |                | must be run first to compute the values in the current buffer. |
-  | 'CLOCKSUM_T'   | The sum of CLOCK intervals in the subtree for today.           |
-  |                | org-clock-sum-today must be run first to compute the           |
-  |                | values in the current buffer.                                  |
-  | 'CLOSED'       | When was this entry closed?                                    |
-  | 'DEADLINE'     | The deadline timestamp.                                        |
-  | 'FILE'         | The filename the entry is located in.                          |
-  | 'ITEM'         | The headline of the entry.                                     |
-  | 'PRIORITY'     | The priority of the entry, a string with a single letter.      |
-  | 'SCHEDULED'    | The scheduling timestamp.                                      |
-  | 'TAGS'         | The tags defined directly in the headline.                     |
-  | 'TIMESTAMP'    | The first keyword-less timestamp in the entry.                 |
-  | 'TIMESTAMP_IA' | The first inactive timestamp in the entry.                     |
-  | 'TODO'         | The TODO keyword of the entry.                                 |
-  
+Lastly, the example task /introduce TODO states, tags and categories/
+has the property ~CATEGORY~ set to ~blog~. Headlines can be associated
+properties ~:KEY: value~ inside a ~:PROPERTIES:~
+drawer. Both ~KEY~ and ~value~ can be set using ~C-x p~
+(~org-set-property~) to any string you want. However, there are some
+special properties, and ~CATEGORY~ is one of them.  We'll talk about
+it in more details later in this post.  A list of special properties
+can be found at https://orgmode.org/manual/Special-Properties.html.
 Properties are a supplementary way of describing a headline, in a way
-complementary to tags. Which information should be described as a tag,
-what information should be described as a property, the choice is
-yours.
+complementary to tags.
 
-
-Overall, adding such metadata to headlines that represent tasks
-(referred in the following as simply "tasks") enables their
-organisation and tracking, for instance by keeping track of lists of
-TODOs, e.g. organising them by tags and/or properties or displaying
-them on an agenda.
+Adding such "metadata" to headlines enables their organisation and
+tracking. For instance, it is common to keep track of lists of tasks,
+/e.g./ organising them by tags and/or properties or displaying them on
+an agenda.
 
 * Setting the stage
-  In this section we go beyond the default setting provided by Org as I described
-  my own and personal way of describing and organizing both tasks and projects.
+  This section illustrates describes my personal use of TODO states, tags and properties.
+  This provide a simple example illustrating how Org can be tailored to a specific workflow.
   #+TOC: headlines 2 local
 
 ** Describing tasks and projects
 
-  This separation from /tasks/ and /projects/ is inspired by the
-  Getting Things Done (GTD) methodology, coined by David Allen. A
-  /task/ can be expressed as a single action like /send latest draft
-  to John/. The path the completion is clear: open my email client,
+  Separating /tasks/ from /projects/ is inspired by the Getting Things
+  Done (GTD) methodology, coined by David Allen. A /task/ can be
+  expressed as a single action like /send latest draft to John/. In
+  this case, the path to completion is clear: open my email client,
   attach the latest draft and hit send. A /project/ is something
   larger, that must be decomposed into a series of subsequent or
   parallel tasks, like /Update paper following John's feedback/. In
-  this case, the path to completion, isn't that clear, and writing
+  this case, the path to completion isn't that clear, and writing
   someting like ~* TODO Update paper following John's feedback~ isn't
   going to lead to anything except procrastination. Instead, it is
-  good practice to identify the next tangible action that would move the
-  project forward, something like /Summarize John's feedback on first
-  draft/.
+  good practice to identify the next tangible action that would move
+  the project forward, something like /Summarize John's feedback on
+  first draft/.
 
-  I define a task as any headline with an active todo state, whereas any top level
-  headline without a todo state must be a project, containing tasks as second-level
-  entries with a todo state.
+  In Org terms, I define a task as any headline with an active todo
+  state, whereas any top level headline without a todo state must be a
+  project, containing tasks as second-level entries with a todo state.
   Top level headlines with an active todo state are standalone tasks.
 
   #+begin_src org
@@ -203,8 +195,8 @@ them on an agenda.
 
 *** ~TODO~ states
 
-   Having only ~TODO~ and ~DONE~ to desribe the state of a task is a bit limited.
-   In additon, let's define new states
+   Having only ~TODO~ and ~DONE~ to describe the state of a task is a bit limited.
+   Let's introdice three new states:
    - ~STARTED~: Describes a task that was started, but not completed yet.
    - ~WAITING~: Describes a task that was deferred to someone else,
      /e.g/ ~* WAITING Jane to share her changes with me~.
@@ -213,8 +205,8 @@ them on an agenda.
      (setq org-todo-keywords
 	     '((sequence "TODO(t)" "STARTED(s!)" "WAITING(w!)" "|" "DONE(d!)" "CANCELLED(c!)")))
    #+end_src
-   The exclamation mark following the shortcut letter for all the states but ~TODO~ tells Org
-   to record to change to the new state. Real life example:
+   The exclamation mark following the shortcut letter tells Org to
+   record to change to the new state. Real life example:
    #+begin_src org
      ,** WAITING Draft PR on enabling pickling of ~EvaluatorPython~ objects :issue_1283_pickle_python_format:
 	- State "WAITING"    from "DONE"       [2021-01-07 Thu 15:26]
@@ -226,7 +218,7 @@ them on an agenda.
    automatically added by Org as I set the task's state to ~DONE~.
    Logging state changes is a very important part of my system, both
    for keeping track of when I completed/started a task/project (or
-   since when I have been waiting for something), but also for having
+   since when I have been waiting for something), but also for generating
    a bird's eye view of what I did in a day, using the Org agenda as
    described further down.
 
@@ -272,46 +264,45 @@ them on an agenda.
     #+end_quote
 
     The manual further describes how properties are useful to attach
-    information to headlines in a way that almost makes you Org
-    document a database.  When you know that Org also comes with
-    powerful search functionalities, including looking up properties
-    (see below), that sounds very useful.  Properties keys and values
-    are arbitrary, and users are free to defined the properties they
-    like. You should know however that by default Org comes with a
-    handful of /special properties/ with a well-defined meaning.  You
-    can find the list in section 7.2 of the Org 9.4 Reference Manual:
-    [[https://orgmode.org/org.html#Special-Properties][Special Properties]].
+    information to headlines in a way that almost turn Org documents
+    into a database. In section [[* Compiling lists of tasks and
+    projects]], I'll describe how properties can be used to look up
+    tasks and projects in this database.  Properties keys and values
+    are arbitrary, and users are free to define the properties they
+    like. Lastly, it's useful to know that Org comes with a handful of
+    /special properties/ with a well-defined meaning.  You can find
+    the a list a special properties in section 7.2 of the Org 9.4
+    Reference Manual: [[https://orgmode.org/org.html#Special-Properties][Special Properties]].
 
     Suprisingly, I don't make extensive use of Org properties in my
-    current workflow.  It might change in the future, and this
-    document will be updated accordingly.  One property I /do/ use a
-    lot is the special property ~CATEGORY~.  By default, the value of
-    ~CATEGORY~ for headlines in a Org file is name of this file.  This
-    comes in handy when compiling lists of tasks across a pool of org
-    files, a feature discussed in the next section.  More generally, I
-    interpet the value of ~CATEGORY~ as a specific /areas of focus/,
-    another concept borrowed from David Allen's GTD approach.  As a
-    Research Software Engineer, my tasks are spread across several
-    research software projects, but also training courses I develop
-    and deliver. There's also several academic communities and
-    networks I'm involved in, such as the [[https://github.com/OxfordCodeReviewNet/forum][Oxford Code Review Network]]
-    or [[https://ox.ukrn.org/][Reproducible Research Oxford]], the personal stuff (like shopping
-    tasks) and so on and so forth.  These areas of focus tend to have
-    little overlap, and are therefore well described by the ~CATEGORY~
-    property.  Note the difference with tags: a task can have multiple
-    tags, but only one category.
+    current workflow. One property I /do/ use a lot is the special
+    property ~CATEGORY~.  By default, the value of ~CATEGORY~ for
+    headlines in a Org file is name of this file.  This comes in handy
+    when compiling lists of tasks across a pool of org files, as
+    described in the next section.  More generally, I interpet the
+    value of ~CATEGORY~ as a specific /areas of focus/, another
+    concept borrowed from David Allen's GTD approach.  As a Research
+    Software Engineer, my days are spread across several research
+    software projects, but also training courses I develop and
+    deliver. There's also several academic communities and networks
+    I'm involved in, such as the [[https://github.com/OxfordCodeReviewNet/forum][Oxford Code Review Network]] or
+    [[https://ox.ukrn.org/][Reproducible Research Oxford]]. Not to forget the non-professional
+    activities, like sport and hobbies. Personal admin and less
+    glamorous taks (like shopping tasks) are there too.  These areas
+    of focus tend to have little overlap, and are therefore well
+    described by the ~CATEGORY~ property.  Note the difference with
+    tags: a task can have multiple tags, but only one category.
 
 * Compiling lists of tasks and projects
 
   So far we've learned how to attach useful information to headlines,
-  so as to further describe tasks beyond their title, /e.g/ by setting
-  its state, some context or its category.  If you're like me though,
-  you generate (or are assigned) tasks to do faster than you complete
-  them, which leads to a rather large number of tasks.  Even with all
-  tasks and project described with the right TODO state, collection of
-  tags and ~CATEGORY~ property, the simple view of this long list of
-  headlines can be daunting, confusing, and actually counter
-  productive.
+  /e.g/ by setting their state, describing their some context or their
+  area.  If you're like me though, tasks are generated faster than you
+  complete them, which leads to an ever growing number of tasks.  Even
+  with all tasks and project described with the right TODO state,
+  collection of tags and ~CATEGORY~ property, the simple view of this
+  long list of headlines can be daunting, confusing, and actually
+  counter productive.
 
   The challenge is clearly stated in David Allen's /Getting Things Done/:
   #+begin_quote
@@ -321,7 +312,7 @@ them on an agenda.
   #+end_quote
   
   To answer this question, we're going to use Org's functinalities to
-  compile lists and agenda views of tasks, organized according to TODO
+  compile lists and agenda views of tasks, organised according to TODO
   states, tags, and properties.
   
   #+TOC: headlines 3 local
@@ -371,7 +362,7 @@ them on an agenda.
    files defined by the variable ~org-agenda-files~. Let's set it to
    contain our file ~todo.org~.
    #+begin_src elisp
-     (setq org-agenda-files '("~/org/data/68/540903-7311-4476-b414-d045f94207cb/todo.org"))
+     (setq org-agenda-files '("~/org/todo.org"))
    #+end_src
    With this set, pressing ~C-c a t~ will display all headlines in
    ~todo.org~ which TODO state is ~TODO~, in a separate buffer.  This
@@ -385,10 +376,10 @@ them on an agenda.
    to the corresponding org buffer (at the location of the headline)
    in the current window. Similar behavior is available by hitting
    ~TAB~, but this time the Org buffer is opened in another window.
+
    With ~C-c a t~, you instantly get a bird's eye view of all the
    ~TODO~ tasks, that is much easy on the brain than painfully looking
    through all the entries in your Org files.
-
    The agenda dispatcher offers several other agenda commands.  With
    ~C-c a T~, it is possible to compile a list of headlines with a
    specific TODO state.  For instance, hitting ~C-c a T CAL RET~ would
@@ -402,19 +393,18 @@ them on an agenda.
    more!).
 
    Let's pretend it's 13:00, my post-lunch coffee is just brewed and
-   I've got an afternoon free of meeting ahead of me.  My main project
-   at the moment is PyBaMM, a Python package to simulate and study
-   mathematical models of batteries.  I'd like to dedicate my
-   afternoon to that.  I've got a good chunk of time ahead of me so
-   now would be a good time to start or continue a substantial
-   programming task, which are usually identified with the tag ~dev~.
+   I've got an afternoon free of meetings ahead of me.  Now would be a
+   good time to start or continue a substantial programming task.  At
+   the time of writing, my main project is PyBaMM, a Python package to
+   simulate and study mathematical models of batteries FOOTNOTE.
    
    Let's build a list of candidate tasks. Let's invoke the agenda
    dispatcher once again with ~C-c a~ (~org-agenda~). Pressing ~m~, we
    can compile a list of tasks that match a given set combination of
    TODO state, tags and property.  In this case, we want to match
-   tasks which ~CATEGORY~ value is ~pybamm~, with tag ~dev~ and TODO
-   state ~TODO~ or ~STARTED~.  The string for such a match is
+   tasks which ~CATEGORY~ value is ~pybamm~ and TODO state ~TODO~ or
+   ~STARTED~.  Programming tasks are attached the ~dev~ tag.  The
+   string for such a match is therefore:
    #+begin_example
    dev+CATEGORY="pybamm"/TODO|STARTED
    #+end_example
@@ -429,9 +419,9 @@ them on an agenda.
      pybamm:     TODO Understand why call to ~__setstate_~ isn't covered by tests :issue_1283_pickle_python_format:dev:
    #+end_example
    The syntax for matching headlines isn't very
-   complicated but often for complex enough queries there may be
-   several ways of writing it, a bit like when writing a regular
-   expression. Speaking of which, you can also use when matching
+   complicated. Oftentimes however, there may be several ways of
+   writing complex queries, similarly to writing regular
+   expressions. Speaking of which, you can also use when matching
    headlines.  I won't go into more details about the match syntax
    here, because it is well described in the Org Reference Manual, see
    [[https://orgmode.org/manual/Matching-tags-and-properties.html][Matching tags and properties]].
