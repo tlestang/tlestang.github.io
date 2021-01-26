@@ -1,0 +1,12 @@
+#picture_and_name {
+    display: flex;
+    align-items: center;
+}
+#name {
+    font-size: 200%;
+    padding-left: 5%;
+}
+
+#icons a {
+    text-decoration: none
+}

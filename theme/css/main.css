@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'abrilfatface';
+    src: url('/static/fonts/abrilfatface-regular-webfont.woff2') format('woff2'),
+         url('/static/fonts/abrilfatface-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'opensans';
+    src: url('/static/fonts/opensans-regular-webfont.woff2') format('woff2'),
+         url('/static/fonts/opensans-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+#banner {
+    display: flex;
+    font-size: x-large;
+    font-family: 'abrilfatface', sans-serif;
+    justify-content: space-between;
+    margin-bottom: 3em;
+    line-height: 1.5em;
+}
+
+header a {
+    text-decoration: none;
+    color: #005221
+
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+nav a:hover {
+    background-color: #005221;
+    color: #FFFF
+}
+
+body {
+    font-family: 'opensans', sans-serif;
+}
+
+#content {
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+#content a {
+    text-decoration: underline;
+    font-weight: bold;
+    color: #005221;
+}
+
+p {
+    width: auto;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#menu li {
+    display: inline;
+}
+
+h1, h2 {
+    font-family: 'abrilfatface', sans-serif;
+    font-size: x-large;
+}
+
+h2 {
+    border-bottom: 5px solid #005221;
+    line-height: 1.5em;
+    
+}
