@@ -87,7 +87,7 @@ rsync_upload: publish
 
 github: publish
 	ghp-import -m "Generate Pelican site" -b $(GITHUB_PAGES_BRANCH) $(OUTPUTDIR)
-	git push git@github.com:tlestang/tlestang.github.io.git $(GITHUB_PAGES_BRANCH):master	
+	git push git@github.com:tlestang/tlestang.github.io.git $(GITHUB_PAGES_BRANCH)
 
 
 .PHONY: html help clean regenerate serve serve-global devserver publish ssh_upload rsync_upload github
