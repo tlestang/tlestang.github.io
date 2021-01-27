@@ -1,4 +1,4 @@
-#+TITLE: Staying organised with Org Mode
+#+TITLE: Keeping track of tasks and projects with GNU Emacs and Org Mode
 #+DATE: <2021-01-27 Wed>
 #+CATEGORY: Emacs
 #+AUTHOR: Thibault Lestang
