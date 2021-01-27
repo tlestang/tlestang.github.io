@@ -59,14 +59,14 @@
     <p>
 Org-mode is a set of functionalities inside GNU Emacs, geared towards
 note-taking, structuring text and managing tasks.  These
-functionalities become available with activiting Org-Mode (<code>M-x
+functionalities become available with activating Org-Mode (<code>M-x
 org-mode</code>) or simply by opening a file with the <code>.org</code> extension.
 </p>
 
 <p>
 Org is an incredibly broad mode. Just as Emacs itself goes beyond
 being a text editor, Org Mode is much more than a note taking app
-running in Emacs. In fact, it is useful to see Org no so much as an
+running in Emacs. In fact, it is useful to see Org not so much as an
 organisational solution, but rather as a toolbox for building
 organisational solutions.
 </p>
@@ -75,7 +75,7 @@ organisational solutions.
 From a beginner's point of view however, Org is easy to get started
 with.  Taking structured notes, folding, reordering and jumping
 between headlines requires no configuration and already provide great
-benefit a zero cost.  Exporting notes to HTML or ODT file is available
+benefits a zero cost.  Exporting notes to HTML or ODT files is available
 out of the box, a keystroke away.  From there, users are free to explore
 the various settings and functionalities available to them, and
 invest in learning how to use them as they see fit.
@@ -96,10 +96,10 @@ that there more whenever they need it.
 <p>
 Org Mode can be used for a wide range of purposes, and no two Org
 users use it in the same way.  This text focuses on using Org to
-manage lists of tasks and projects, from capturing ideas early on all
+manage lists of tasks and projects, from capturing ideas early on - all
 the way archiving completed projects.  I hope it can serve as a guide
 and inspiration for newcomers to Org, to either replicate a similar
-workflow or mold a system of their own.  Lastly, I want to stress that
+workflow or mould a system of their own.  Lastly, I want to stress that
 only a small subset of Org's functionalities are described in this
 post.  This should come as good news though, as it means there's
 always more to explore and be surprised by.
@@ -109,47 +109,47 @@ always more to explore and be surprised by.
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org43d7b77">1. Organise text</a>
+<li><a href="#org04df60e">1. Organise text</a>
 <ul>
-<li><a href="#org3a3072a">1.1. Further reading in the Org Mode manual</a></li>
+<li><a href="#org378a66e">1.1. Further reading in the Org Mode manual</a></li>
 </ul>
 </li>
-<li><a href="#org3ec50eb">2. Organise tasks</a></li>
-<li><a href="#orga5fa35a">3. Using TODO states, tags and properties in practice</a>
+<li><a href="#org6c20e95">2. Organise tasks</a></li>
+<li><a href="#org5fe9863">3. Using TODO states, tags and properties in practice</a>
 <ul>
-<li><a href="#org5e156f3">3.1. Describing tasks and projects</a></li>
-<li><a href="#org2435a82">3.2. <code>TODO</code> states, tags and the <code>CATEGORY</code> property</a></li>
+<li><a href="#orga183b18">3.1. Describing tasks and projects</a></li>
+<li><a href="#orgfe13c2e">3.2. <code>TODO</code> states, tags and the <code>CATEGORY</code> property</a></li>
 </ul>
 </li>
-<li><a href="#orgc56e523">4. Compiling lists of tasks and projects</a>
+<li><a href="#orgd1170a4">4. Compiling lists of tasks and projects</a>
 <ul>
-<li><a href="#org7f33927">4.1. Listing all <code>TODO</code> tasks</a></li>
-<li><a href="#org7a945a4">4.2. Complex agenda views</a></li>
-<li><a href="#orgdcc7269">4.3. Custom agenda views</a></li>
+<li><a href="#orgf5bd4b2">4.1. Listing all <code>TODO</code> tasks</a></li>
+<li><a href="#orge8941e2">4.2. Complex agenda views</a></li>
+<li><a href="#org764ab4b">4.3. Custom agenda views</a></li>
 </ul>
 </li>
-<li><a href="#orgac939d3">5. Deadlines and appointments: displaying time-specific information in the agenda</a>
+<li><a href="#org5ebb5cd">5. Deadlines and appointments: displaying time-specific information in the agenda</a>
 <ul>
-<li><a href="#orge9ad070">5.1. Timestamps</a></li>
-<li><a href="#org4e09657">5.2. Displaying tasks in the Org Agenda</a></li>
-<li><a href="#org3cab5c8">5.3. Combining lists of tasks and agendas</a></li>
+<li><a href="#orgd970e72">5.1. Timestamps</a></li>
+<li><a href="#org3177915">5.2. Displaying tasks in the Org Agenda</a></li>
+<li><a href="#org55e6d83">5.3. Combining lists of tasks and agendas</a></li>
 </ul>
 </li>
-<li><a href="#org0fef12c">6. Capturing tasks</a>
+<li><a href="#org3295911">6. Capturing tasks</a>
 <ul>
-<li><a href="#org7f2bc37">6.1. Writing directly in the Org file</a></li>
-<li><a href="#org4b3dac8">6.2. Using <code>org-capture</code></a></li>
-<li><a href="#orgabf7d4a">6.3. Processing captured tasks with org-refile</a></li>
+<li><a href="#org164230d">6.1. Writing directly in the Org file</a></li>
+<li><a href="#org2fa66ff">6.2. Using <code>org-capture</code></a></li>
+<li><a href="#org7e857ad">6.3. Processing captured tasks with org-refile</a></li>
 </ul>
 </li>
-<li><a href="#orgd3ea355">7. Archiving</a></li>
-<li><a href="#org2f593a7">8. Further topics</a></li>
+<li><a href="#org4e00fee">7. Archiving</a></li>
+<li><a href="#org7949189">8. Further topics</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org43d7b77" class="outline-2">
-<h2 id="org43d7b77"><span class="section-number-2">1</span> Organise text</h2>
+<div id="outline-container-org04df60e" class="outline-2">
+<h2 id="org04df60e"><span class="section-number-2">1</span> Organise text</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 At the core of Org is a simple markup language, similar to markdown
@@ -159,7 +159,7 @@ using headlines, lists and tables. Text itself can be <span class="underline">un
 </p>
 
 <div class="org-src-container">
-<pre class="src src-org" id="org2552109"><span class="org-org-level-1">* A top level headline</span>
+<pre class="src src-org" id="org1495cc5"><span class="org-org-level-1">* A top level headline</span>
   Headlines are declared using the <span class="org-org-code">~*~</span> character.
   The content of headlines is simply text below it.
 <span class="org-org-level-1">* Another top level headline</span>
@@ -173,7 +173,7 @@ using headlines, lists and tables. Text itself can be <span class="underline">un
    Some content with a <span class="org-org-link"><a href="https://tlestang.github.io">link</a></span> to my website.
 <span class="org-org-level-3">*** A subheader with a table</span>
     Org comes with a full-blown plain text table editor,
-    that alsi brings surprisingly powerful spreadsheet functionalities.
+    that also brings surprisingly powerful spreadsheet functionalities.
 
     <span class="org-org-table">|   a |   b |   c |</span>
     <span class="org-org-table">| 1.0 | 2.0 | 3.0 |</span>
@@ -195,8 +195,8 @@ It's worth noting than Org documents are just <b>plain text</b>, and
 therefore could be written using any text editor<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>.  However,
 editing Org files is most convenient within GNU Emacs, since
 Org-mode automatically renders Org syntax (e.g. it will display
-headlines in a different color, often with an increased font
-size). Org-mode also provides a wealth of functionaities to
+headlines in a different colour, often with an increased font
+size). Org-mode also provides a wealth of functionalities to
 efficiently manipulate Org documents, such as reorder and sort
 headlines and lists, insert new headlines, links and tables. More
 importantly, Org makes it very efficient to navigate the document,
@@ -205,8 +205,8 @@ or jumping to the parent headline (<code>C-c u</code>).
 </p>
 </div>
 
-<div id="outline-container-org3a3072a" class="outline-3">
-<h3 id="org3a3072a"><span class="section-number-3">1.1</span> Further reading in the Org Mode manual</h3>
+<div id="outline-container-org378a66e" class="outline-3">
+<h3 id="org378a66e"><span class="section-number-3">1.1</span> Further reading in the Org Mode manual</h3>
 <div class="outline-text-3" id="text-1-1">
 <ul class="org-ul">
 <li><a href="https://orgmode.org/manual/Document-Structure.html#Document-Structure">Document Structure</a>, in particular <a href="https://orgmode.org/manual/Headlines.html#Headlines">Headlines</a>, <a href="https://orgmode.org/manual/Structure-Editing.html#Structure-Editing">Structure editing</a>,
@@ -217,15 +217,15 @@ or jumping to the parent headline (<code>C-c u</code>).
 </div>
 </div>
 
-<div id="outline-container-org3ec50eb" class="outline-2">
-<h2 id="org3ec50eb"><span class="section-number-2">2</span> Organise tasks</h2>
+<div id="outline-container-org6c20e95" class="outline-2">
+<h2 id="org6c20e95"><span class="section-number-2">2</span> Organise tasks</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 In Org, it is common for headlines to represent tasks. Beyond its
 title, a headline can be further described using either, or a combination of:
 </p>
 <ul class="org-ul">
-<li>A TODO state (typically someting like "TODO" or "DONE")</li>
+<li>A TODO state (typically something like "TODO" or "DONE")</li>
 <li>A collection of one or more tags (each represented as a character
 string, like "home" or "office").</li>
 <li>A collection of one or more properties (each represented by a
@@ -233,7 +233,7 @@ key-value pair, like <code>Date: 2003</code> or <code>City: Oxford</code>).</li>
 </ul>
 
 <div class="org-src-container">
-<pre class="src src-org" id="org2056ba3"><span class="org-org-level-2">** </span><span class="org-org-done">DONE</span><span class="org-org-level-2"> Introduce TODO states, tags and categories      </span><span class="org-org-level-2"><span class="org-org-tag">:emacs:writing:</span></span>
+<pre class="src src-org" id="orgf852e48"><span class="org-org-level-2">** </span><span class="org-org-done">DONE</span><span class="org-org-level-2"> Introduce TODO states, tags and categories      </span><span class="org-org-level-2"><span class="org-org-tag">:emacs:writing:</span></span>
 <span class="org-org-drawer">   :PROPERTIES:</span>
    <span class="org-org-special-keyword">:CATEGORY:</span> <span class="org-org-property-value">blog</span>
    <span class="org-org-special-keyword">:myprop:</span>   <span class="org-org-property-value">myvalue</span>
@@ -312,8 +312,8 @@ an agenda.
 </div>
 </div>
 
-<div id="outline-container-orga5fa35a" class="outline-2">
-<h2 id="orga5fa35a"><span class="section-number-2">3</span> Using TODO states, tags and properties in practice</h2>
+<div id="outline-container-org5fe9863" class="outline-2">
+<h2 id="org5fe9863"><span class="section-number-2">3</span> Using TODO states, tags and properties in practice</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 This section describes my personal use of TODO states, tags and properties.
@@ -321,20 +321,20 @@ This provide a simple example illustrating how Org can be tailored to a specific
 </p>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org5e156f3">3.1. Describing tasks and projects</a></li>
-<li><a href="#org2435a82">3.2. <code>TODO</code> states, tags and the <code>CATEGORY</code> property</a>
+<li><a href="#orga183b18">3.1. Describing tasks and projects</a></li>
+<li><a href="#orgfe13c2e">3.2. <code>TODO</code> states, tags and the <code>CATEGORY</code> property</a>
 <ul>
-<li><a href="#org43c2071">3.2.1. <code>TODO</code> states</a></li>
-<li><a href="#org4f0dd9f">3.2.2. Tags</a></li>
-<li><a href="#orgb9908f1">3.2.3. Properties</a></li>
+<li><a href="#org33968cb">3.2.1. <code>TODO</code> states</a></li>
+<li><a href="#org113c09f">3.2.2. Tags</a></li>
+<li><a href="#org28e954f">3.2.3. Properties</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org5e156f3" class="outline-3">
-<h3 id="org5e156f3"><span class="section-number-3">3.1</span> Describing tasks and projects</h3>
+<div id="outline-container-orga183b18" class="outline-3">
+<h3 id="orga183b18"><span class="section-number-3">3.1</span> Describing tasks and projects</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Separating <i>tasks</i> from <i>projects</i> is inspired by the <a href="https://hamberg.no/gtd/">Getting Things
@@ -345,11 +345,11 @@ attaching the latest draft and hitting send. A <i>project</i> is
 something larger, that must be decomposed into a series of
 subsequent or parallel tasks, like <i>Update paper following Jane's
 feedback</i>. In this case, the path to completion isn't that clear,
-and writing someting like <code>* TODO Update paper following Jane's
+and writing something like <code>* TODO Update paper following Jane's
   feedback</code> isn't going to lead to anything except
 procrastination. Instead, it is good practice to identify the next
 tangible action that would move the project forward, something like
-<i>Summarize Jane's feedback on first draft</i>.
+<i>Summarise Jane's feedback on first draft</i>.
 </p>
 
 <p>
@@ -369,16 +369,16 @@ Top level headlines with an active todo state are standalone tasks.
 </div>
 </div>
 
-<div id="outline-container-org2435a82" class="outline-3">
-<h3 id="org2435a82"><span class="section-number-3">3.2</span> <code>TODO</code> states, tags and the <code>CATEGORY</code> property</h3>
+<div id="outline-container-orgfe13c2e" class="outline-3">
+<h3 id="orgfe13c2e"><span class="section-number-3">3.2</span> <code>TODO</code> states, tags and the <code>CATEGORY</code> property</h3>
 <div class="outline-text-3" id="text-3-2">
 </div>
-<div id="outline-container-org43c2071" class="outline-4">
-<h4 id="org43c2071"><span class="section-number-4">3.2.1</span> <code>TODO</code> states</h4>
+<div id="outline-container-org33968cb" class="outline-4">
+<h4 id="org33968cb"><span class="section-number-4">3.2.1</span> <code>TODO</code> states</h4>
 <div class="outline-text-4" id="text-3-2-1">
 <p>
 The states <code>TODO</code> and <code>DONE</code> available by default are not very
-descritive.  Let's introduce three new states:
+descriptive.  Let's introduce three new states:
 </p>
 <ul class="org-ul">
 <li><code>STARTED</code>: Describes a task that was started, but not completed yet.</li>
@@ -423,8 +423,8 @@ GitHub). To do this, use <code>org-todo</code> with a prefix argument (<i>i.e.</
 </div>
 </div>
 
-<div id="outline-container-org4f0dd9f" class="outline-4">
-<h4 id="org4f0dd9f"><span class="section-number-4">3.2.2</span> Tags</h4>
+<div id="outline-container-org113c09f" class="outline-4">
+<h4 id="org113c09f"><span class="section-number-4">3.2.2</span> Tags</h4>
 <div class="outline-text-4" id="text-3-2-2">
 <p>
 I use tags for attaching contexts to tasks. An example is
@@ -453,8 +453,8 @@ later. Actually we'll see in a minute that tags can be <i>searched</i>.
 </div>
 </div>
 
-<div id="outline-container-orgb9908f1" class="outline-4">
-<h4 id="orgb9908f1"><span class="section-number-4">3.2.3</span> Properties</h4>
+<div id="outline-container-org28e954f" class="outline-4">
+<h4 id="org28e954f"><span class="section-number-4">3.2.3</span> Properties</h4>
 <div class="outline-text-4" id="text-3-2-3">
 <p>
 Properties serve a role similar to tags, but are key-value pairs
@@ -467,7 +467,7 @@ First, properties are like tags, but with a value. Imagine
 maintaining a file where you document bugs and plan releases for a
 piece of software. Instead of using tags like <code>release_1</code>,
 <code>release_2</code>, you can use a property, say <code>Release</code>, that in
-different subtrees has different values, such as <code>1.0</code> or <code>2.0</code>.
+different sub-trees has different values, such as <code>1.0</code> or <code>2.0</code>.
 </p>
 
 <p>
@@ -478,7 +478,7 @@ The Org Mode 9.4 Reference Manual, Chapter 7 <i>Properties and Columns</i>
 <p>
 The manual further describes how properties are useful to attach
 information to headlines in a way that almost turn Org documents
-into a database. In section <a href="#orgc56e523">4</a>, I'll describe how properties can be used to look up
+into a database. In section <a href="#orgd1170a4">4</a>, I'll describe how properties can be used to look up
 tasks and projects in this database.  Properties keys and values
 are arbitrary, and users are free to define the properties they
 like. Lastly, it's useful to know that Org comes with a handful of
@@ -488,12 +488,12 @@ Reference Manual: <a href="https://orgmode.org/org.html#Special-Properties">Spec
 </p>
 
 <p>
-Suprisingly, I don't make extensive use of Org properties in my
+Surprisingly, I don't make extensive use of Org properties in my
 current workflow. One property I <i>do</i> use a lot is the special
 property <code>CATEGORY</code>.  By default, the value of <code>CATEGORY</code> for
 headlines in a Org file is name of this file.  This comes in handy
 when compiling lists of tasks across a pool of org files, as
-described in the next section.  More generally, I interpet the
+described in the next section.  More generally, I interpret the
 value of <code>CATEGORY</code> as a specific <i>areas of focus</i>, another
 concept borrowed from David Allen's GTD approach.  As a Research
 Software Engineer, my days are spread across several research
@@ -502,7 +502,7 @@ deliver. There's also several academic communities and networks
 I'm involved in, such as the <a href="https://github.com/OxfordCodeReviewNet/forum">Oxford Code Review Network</a> or
 <a href="https://ox.ukrn.org/">Reproducible Research Oxford</a>. Not to forget the non-professional
 activities, like sport and hobbies. Personal admin and less
-glamorous taks (like shopping tasks) are there too.  These areas
+glamorous tasks (like shopping tasks) are there too.  These areas
 of focus tend to have little overlap, and are therefore well
 described by the <code>CATEGORY</code> property.  Note the difference with
 tags: a task can have multiple tags, but only one category.
@@ -512,8 +512,8 @@ tags: a task can have multiple tags, but only one category.
 </div>
 </div>
 
-<div id="outline-container-orgc56e523" class="outline-2">
-<h2 id="orgc56e523"><span class="section-number-2">4</span> Compiling lists of tasks and projects</h2>
+<div id="outline-container-orgd1170a4" class="outline-2">
+<h2 id="orgd1170a4"><span class="section-number-2">4</span> Compiling lists of tasks and projects</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 So far we've learned how to attach useful information to headlines,
@@ -532,7 +532,7 @@ The challenge is clearly stated in David Allen's <i>Getting Things Done</i>:
 <blockquote>
 <p>
 [&#x2026;] the ultimate point and challenge of all this personal
-collecting, processing, organizing and reviewing methodology: It's
+collecting, processing, organising and reviewing methodology: It's
 9:22 A.M, Wednesday morning &#x2013; what do you do?
 </p>
 
@@ -549,20 +549,20 @@ states, tags, and properties.
 
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7f33927">4.1. Listing all <code>TODO</code> tasks</a></li>
-<li><a href="#org7a945a4">4.2. Complex agenda views</a></li>
-<li><a href="#orgdcc7269">4.3. Custom agenda views</a>
+<li><a href="#orgf5bd4b2">4.1. Listing all <code>TODO</code> tasks</a></li>
+<li><a href="#orge8941e2">4.2. Complex agenda views</a></li>
+<li><a href="#org764ab4b">4.3. Custom agenda views</a>
 <ul>
-<li><a href="#org6197e04">4.3.1. Example 1: PyBaMM development work</a></li>
-<li><a href="#org359b520">4.3.2. Example 2: Compiling a list of active projects</a></li>
+<li><a href="#org2f1f95a">4.3.1. Example 1: PyBaMM development work</a></li>
+<li><a href="#orgd4a559c">4.3.2. Example 2: Compiling a list of active projects</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7f33927" class="outline-3">
-<h3 id="org7f33927"><span class="section-number-3">4.1</span> Listing all <code>TODO</code> tasks</h3>
+<div id="outline-container-orgf5bd4b2" class="outline-3">
+<h3 id="orgf5bd4b2"><span class="section-number-3">4.1</span> Listing all <code>TODO</code> tasks</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Let's consider the content of an example Org file named <code>todo.org</code>:
@@ -629,7 +629,7 @@ the title with tags.  It is possible to act on a headline just as
 in the original Org buffer: change TODO state, set tags and
 properties&#x2026;  With point on a headline, hitting <code>RET</code> will switch
 to the corresponding org buffer (at the location of the headline)
-in the current window. Similar behavior is available by hitting
+in the current window. Similar behaviour is available by hitting
 <code>TAB</code>, but this time the Org buffer is opened in another window.
 </p>
 
@@ -645,8 +645,8 @@ display an Org-Agenda buffer with a list of all upcoming events.
 </div>
 </div>
 
-<div id="outline-container-org7a945a4" class="outline-3">
-<h3 id="org7a945a4"><span class="section-number-3">4.2</span> Complex agenda views</h3>
+<div id="outline-container-orge8941e2" class="outline-3">
+<h3 id="orge8941e2"><span class="section-number-3">4.2</span> Complex agenda views</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 There's a reason we described our tasks with tags and properties:
@@ -701,8 +701,8 @@ here, because it is well described in the Org Reference Manual, see
 </div>
 </div>
 
-<div id="outline-container-orgdcc7269" class="outline-3">
-<h3 id="orgdcc7269"><span class="section-number-3">4.3</span> Custom agenda views</h3>
+<div id="outline-container-org764ab4b" class="outline-3">
+<h3 id="org764ab4b"><span class="section-number-3">4.3</span> Custom agenda views</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 The ability to narrow down the content of your Org files to a list
@@ -724,7 +724,7 @@ running the corresponding agenda query, just like we would do with
 </p>
 
 <p>
-To define new agenda commands, we customize the variable
+To define new agenda commands, we customise the variable
 <code>org-agenda-custom-commands</code>. There's a lot of freedom in defining
 custom agenda commands, but sadly with great flexibility often
 comes complexity. So let's illustrate the concept with a couple of
@@ -732,8 +732,8 @@ simple examples from my own configuration.
 </p>
 </div>
 
-<div id="outline-container-org6197e04" class="outline-4">
-<h4 id="org6197e04"><span class="section-number-4">4.3.1</span> Example 1: PyBaMM development work</h4>
+<div id="outline-container-org2f1f95a" class="outline-4">
+<h4 id="org2f1f95a"><span class="section-number-4">4.3.1</span> Example 1: PyBaMM development work</h4>
 <div class="outline-text-4" id="text-4-3-1">
 <p>
 I didn't choose the previous example, programming for PyBaMM, for
@@ -770,15 +770,15 @@ element is the match string itself
 </div>
 </div>
 
-<div id="outline-container-org359b520" class="outline-4">
-<h4 id="org359b520"><span class="section-number-4">4.3.2</span> Example 2: Compiling a list of active projects</h4>
+<div id="outline-container-orgd4a559c" class="outline-4">
+<h4 id="orgd4a559c"><span class="section-number-4">4.3.2</span> Example 2: Compiling a list of active projects</h4>
 <div class="outline-text-4" id="text-4-3-2">
 <p>
 Another useful agenda operations is to generate a bird's eye view
 of all active projects.  As a reminder, a project is a goal which
-completion involves more than one tasks.  In section <a href="#org5e156f3">3.1</a>, we described active projects as any top-level
+completion involves more than one tasks.  In section <a href="#orga183b18">3.1</a>, we described active projects as any top-level
 headline without a TODO state.  Let's add a new command to
-<code>org-agenda-custom-commands</code> to display a list of active priojects:
+<code>org-agenda-custom-commands</code> to display a list of active projects:
 </p>
 <div class="org-src-container">
 <pre class="src src-elisp">(<span class="org-keyword">setq</span> org-agenda-custom-commands
@@ -801,8 +801,8 @@ headlines without a TODO state.
 </div>
 </div>
 
-<div id="outline-container-orgac939d3" class="outline-2">
-<h2 id="orgac939d3"><span class="section-number-2">5</span> Deadlines and appointments: displaying time-specific information in the agenda</h2>
+<div id="outline-container-org5ebb5cd" class="outline-2">
+<h2 id="org5ebb5cd"><span class="section-number-2">5</span> Deadlines and appointments: displaying time-specific information in the agenda</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Sometimes the description of a task must contain information about
@@ -814,24 +814,24 @@ started before a specific date or time.
 
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orge9ad070">5.1. Timestamps</a>
+<li><a href="#orgd970e72">5.1. Timestamps</a>
 <ul>
-<li><a href="#org40a53dc">5.1.1. Deadlines</a></li>
-<li><a href="#orgd450b53">5.1.2. Scheduled tasks</a></li>
+<li><a href="#org9926b10">5.1.1. Deadlines</a></li>
+<li><a href="#org54d8feb">5.1.2. Scheduled tasks</a></li>
 </ul>
 </li>
-<li><a href="#org4e09657">5.2. Displaying tasks in the Org Agenda</a>
+<li><a href="#org3177915">5.2. Displaying tasks in the Org Agenda</a>
 <ul>
-<li><a href="#orgbf6d254">5.2.1. Viewing progress in the agenda</a></li>
+<li><a href="#orgcc7abe2">5.2.1. Viewing progress in the agenda</a></li>
 </ul>
 </li>
-<li><a href="#org3cab5c8">5.3. Combining lists of tasks and agendas</a></li>
+<li><a href="#org55e6d83">5.3. Combining lists of tasks and agendas</a></li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-orge9ad070" class="outline-3">
-<h3 id="orge9ad070"><span class="section-number-3">5.1</span> Timestamps</h3>
+<div id="outline-container-orgd970e72" class="outline-3">
+<h3 id="orgd970e72"><span class="section-number-3">5.1</span> Timestamps</h3>
 <div class="outline-text-3" id="text-5-1">
 <p>
 Org comes with a very complete support for defining and manipulating
@@ -840,7 +840,7 @@ in the current Org buffer, hit <code>C-c .</code> (<code>org-time-stamp</code>).
 will open the built-in Emacs calendar in which you can navigate
 (using shift and the arrow keys) to select the date you want the
 timestamp to describe.  In addition to the date, you can also write
-a time directly in the minibuffer.  Org accepts <i>a lot</i> of formats
+a time directly in the mini-buffer.  Org accepts <i>a lot</i> of formats
 for specifying both date and time, and I encourage you to have a
 look at the docs for a description of each of them, see <a href="https://orgmode.org/manual/The-date_002ftime-prompt.html#The-date_002ftime-prompt">8.2.1 The
 date/time prompt</a>.
@@ -887,8 +887,8 @@ Reference Manual: <a href="https://orgmode.org/manual/Repeated-tasks.html">8.3.2
 </p>
 </div>
 
-<div id="outline-container-org40a53dc" class="outline-4">
-<h4 id="org40a53dc"><span class="section-number-4">5.1.1</span> Deadlines</h4>
+<div id="outline-container-org9926b10" class="outline-4">
+<h4 id="org9926b10"><span class="section-number-4">5.1.1</span> Deadlines</h4>
 <div class="outline-text-4" id="text-5-1-1">
 <p>
 Sometimes we must remember that a task must be completed by a
@@ -907,8 +907,8 @@ The above describes a project that must be completed by
 </div>
 </div>
 
-<div id="outline-container-orgd450b53" class="outline-4">
-<h4 id="orgd450b53"><span class="section-number-4">5.1.2</span> Scheduled tasks</h4>
+<div id="outline-container-org54d8feb" class="outline-4">
+<h4 id="org54d8feb"><span class="section-number-4">5.1.2</span> Scheduled tasks</h4>
 <div class="outline-text-4" id="text-5-1-2">
 <p>
 In a similar way to deadlines, Org makes it easy to describe tasks
@@ -920,7 +920,7 @@ that shouldn't be started before a specific date. Example:
 </pre>
 </div>
 <p>
-It's sometimes confusing for new Org users to differenciate between
+It's sometimes confusing for new Org users to differentiate between
 setting a <code>SCHEDULED</code> timestamp to a task and a plain timestamp.
 This quote from the Org Mode Reference Manual clarifies the
 situation:
@@ -944,11 +944,11 @@ you want to start working on an action item.
 </div>
 </div>
 
-<div id="outline-container-org4e09657" class="outline-3">
-<h3 id="org4e09657"><span class="section-number-3">5.2</span> Displaying tasks in the Org Agenda</h3>
+<div id="outline-container-org3177915" class="outline-3">
+<h3 id="org3177915"><span class="section-number-3">5.2</span> Displaying tasks in the Org Agenda</h3>
 <div class="outline-text-3" id="text-5-2">
 <p>
-In section <a href="#org7f33927">4.1</a>, the Org agenda dispatcher
+In section <a href="#orgf5bd4b2">4.1</a>, the Org agenda dispatcher
 (<code>M-x org-agenda</code>) was introduced. This dispatcher offers several
 agenda commands that read agenda files (defined in the
 <code>org-agenda-files</code> variable) and display some of their content in a
@@ -977,7 +977,7 @@ they are completed.
 </p>
 
 <p>
-The display of the Org agenda is customizable, by hitting <code>v</code> in
+The display of the Org agenda is customisable, by hitting <code>v</code> in
 the Org-Agenda buffer.  Particularly, it is possible to go from
 the default weekly view to a monthly or yearly view.  or day view.
 Going forward in time is done hitting <code>f</code>, backward with <code>b</code>.  See
@@ -985,25 +985,25 @@ Going forward in time is done hitting <code>f</code>, backward with <code>b</cod
 </p>
 </div>
 
-<div id="outline-container-orgbf6d254" class="outline-4">
-<h4 id="orgbf6d254"><span class="section-number-4">5.2.1</span> Viewing progress in the agenda</h4>
+<div id="outline-container-orgcc7abe2" class="outline-4">
+<h4 id="orgcc7abe2"><span class="section-number-4">5.2.1</span> Viewing progress in the agenda</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <p>
-In section <a href="#org43c2071">3.2.1</a>, we saw that changing the state of a
+In section <a href="#org33968cb">3.2.1</a>, we saw that changing the state of a
 task triggers the recording of the date and time at which this
-change occured.  However, notice that in this case the inserted
+change occurred.  However, notice that in this case the inserted
 timestamp is delimited by square brackets instead of <code>&lt;</code> and <code>&gt;</code>.
-This is refered to as an <i>inactive</i> timestamp, and by default
+This is refereed to as an <i>inactive</i> timestamp, and by default
 these will <i>not show up</i> in the agenda.  To show inactive
-timstamps in the agenda, hit <code>v [</code> in the Org-Agenda buffer.
+timestamps in the agenda, hit <code>v [</code> in the Org-Agenda buffer.
 </p>
 
 <p>
 Showing inactive timestamps in the agenda can make it cluttered
 and therefore hard to read.  However, this makes for a good
 summary of what happened in a day/week, and when.  In my case,
-using the TODO states configuration introduced in <a href="#org43c2071">3.2.1</a>,
-displaying inactive timestamp is a conveninet way of getting a
+using the TODO states configuration introduced in <a href="#org33968cb">3.2.1</a>,
+displaying inactive timestamp is a convenient way of getting a
 bird's eye view of
 </p>
 <ul class="org-ul">
@@ -1019,27 +1019,27 @@ directly, it's always possible to log a note with an inactive
 timestamp below it, using <code>C-c z</code> (<code>org-add-note</code>).  I use this
 extensively to log my progress on longer tasks, that might span
 several days.  Even if a task was <code>STARTED</code> yesterday, <code>DONE</code>
-tomorrow, logging progress with a quick note garantees it will show
+tomorrow, logging progress with a quick note guarantees it will show
 up in today's agenda when displaying inactive timestamps.
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3cab5c8" class="outline-3">
-<h3 id="org3cab5c8"><span class="section-number-3">5.3</span> Combining lists of tasks and agendas</h3>
+<div id="outline-container-org55e6d83" class="outline-3">
+<h3 id="org55e6d83"><span class="section-number-3">5.3</span> Combining lists of tasks and agendas</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 So far, we've learned how the Org agenda can be used to either display
 lists of tasks matching a specific tags/todo/properties query, or
 an agenda displaying timestamped tasks on a timeline.  However,
-customizing <code>org-agenda-custom-commands</code>, introduced above in
-section <a href="#orgdcc7269">4.3</a>, it is possible to define new agenda
+customising <code>org-agenda-custom-commands</code>, introduced above in
+section <a href="#org764ab4b">4.3</a>, it is possible to define new agenda
 views that mix both list(s) of tasks and agenda(s).
 </p>
 
 <p>
-Let's pretend its wednesday morning, and you are sitting at your
+Let's pretend its Wednesday morning, and you are sitting at your
 desk.  In this context, a simple, yet useful, composite (or
 "block") agenda command is a combination of the day's agenda and
 the list of urgent tasks:
@@ -1055,13 +1055,13 @@ the list of urgent tasks:
 </div>
 <p>
 Defining composite agenda views is similar to defining custom
-single agenda views (see <a href="#orgdcc7269">4.3</a> for a reminder),
+single agenda views (see <a href="#org764ab4b">4.3</a> for a reminder),
 except that the third element of the list is itself a list of
 single agenda views, that makes the composite agenda.  In the above
 example, the agenda view is made of both the day's agenda (<code>agenda
    ""</code>) and a list of tasks matching headlines with the highest
 priority (<code>tags-todo "+PRIORITY=\"A\""</code>).  Both single agenda views
-are are further customized by properties <code>org-agenda-span</code> and
+are are further customised by properties <code>org-agenda-span</code> and
 <code>org-agenda-overriding-header</code>, respectively.  The first one makes
 sure only one day is displayed in the agenda.  The second defines a
 clear header for the list of urgent tasks.
@@ -1069,7 +1069,7 @@ clear header for the list of urgent tasks.
 
 <p>
 Custom agenda views, whether they define single or composite views,
-offer a broad range of opportunites for quickly displaying information
+offer a broad range of opportunities for quickly displaying information
 based on your agenda files, in a way useful to a particular area or
 context.  I encourage you to have a look at the the documentation
 for <code>org-agenda-custom-commands</code>, to grasp the extent of
@@ -1081,8 +1081,8 @@ little searching should give give lots of ideas.
 </div>
 </div>
 
-<div id="outline-container-org0fef12c" class="outline-2">
-<h2 id="org0fef12c"><span class="section-number-2">6</span> Capturing tasks</h2>
+<div id="outline-container-org3295911" class="outline-2">
+<h2 id="org3295911"><span class="section-number-2">6</span> Capturing tasks</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 The previous sections discussed the description and processing of
@@ -1091,8 +1091,8 @@ tasks.  But to do that, we need tasks. How do we add tasks?
 
 <p>
 A straightforward way to add a new task is to open the relevant Org
-file, write a new headline and think about a revelant TODO state,
-set of tags and <code>CATEGORY</code> property.  Perhaps suprisingly, that's
+file, write a new headline and think about a relevant TODO state,
+set of tags and <code>CATEGORY</code> property.  Perhaps surprisingly, that's
 not an approach that I would recommend.
 </p>
 
@@ -1106,7 +1106,7 @@ blurry idea of something you would want or have to do.  This idea
 your current task, whether it's working through your email inbox or
 attending the weekly team meeting.  Particularly, now is <i>not</i> the
 time to think hard about a clear formulation of what must be done,
-neither of when, by whom, and in wich context.  This can be done
+neither of when, by whom, and in which context.  This can be done
 later, when your full attention is available to process this new
 task.
 </p>
@@ -1115,31 +1115,31 @@ task.
 Again inspired from David Allen's GTD approach, the addition of new
 tasks and project is made of two distinct steps: <i>capturing</i> and
 <i>processing</i>.  The next two sections are all about the former.
-Section <a href="#orgabf7d4a">6.3</a> then focuses on
+Section <a href="#org7e857ad">6.3</a> then focuses on
 processing captured tasks.
 </p>
 
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#org7f2bc37">6.1. Writing directly in the Org file</a></li>
-<li><a href="#org4b3dac8">6.2. Using <code>org-capture</code></a>
+<li><a href="#org164230d">6.1. Writing directly in the Org file</a></li>
+<li><a href="#org2fa66ff">6.2. Using <code>org-capture</code></a>
 <ul>
-<li><a href="#orgacdc6d7">6.2.1. Writing capture templates</a></li>
-<li><a href="#org184d228">6.2.2. More examples of custom capture templates</a></li>
+<li><a href="#org8da486d">6.2.1. Writing capture templates</a></li>
+<li><a href="#org1208657">6.2.2. More examples of custom capture templates</a></li>
 </ul>
 </li>
-<li><a href="#orgabf7d4a">6.3. Processing captured tasks with org-refile</a>
+<li><a href="#org7e857ad">6.3. Processing captured tasks with org-refile</a>
 <ul>
-<li><a href="#org7b54743">6.3.1. <code>org-refile</code> to move headlines around consistently</a></li>
-<li><a href="#org1864219">6.3.2. Clearing the inbox with <code>org-refile</code></a></li>
+<li><a href="#orgd740e3f">6.3.1. <code>org-refile</code> to move headlines around consistently</a></li>
+<li><a href="#org9ccb80a">6.3.2. Clearing the inbox with <code>org-refile</code></a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org7f2bc37" class="outline-3">
-<h3 id="org7f2bc37"><span class="section-number-3">6.1</span> Writing directly in the Org file</h3>
+<div id="outline-container-org164230d" class="outline-3">
+<h3 id="org164230d"><span class="section-number-3">6.1</span> Writing directly in the Org file</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 New tasks come in the form of blurry ideas, often a couple of
@@ -1160,19 +1160,19 @@ easy to forget to add the <code>UNPROCESSED</code> tag.  If you do so, you will
 likely forget about the task and not noticing it until too
 late&#x2026; hello stress!  Second, when editing an Org file, there is
 always the risk of messing with its content, potentially altering
-the description of other tasks.  You wouldn't want to inadvertantly
+the description of other tasks.  You wouldn't want to inadvertently
 push the deadline for that grant proposal by a week, would you?
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4b3dac8" class="outline-3">
-<h3 id="org4b3dac8"><span class="section-number-3">6.2</span> Using <code>org-capture</code></h3>
+<div id="outline-container-org2fa66ff" class="outline-3">
+<h3 id="org2fa66ff"><span class="section-number-3">6.2</span> Using <code>org-capture</code></h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 Both pitfalls can be avoided by using <code>org-capture</code>.  This function
 lets you add a new headline to an Org file, from any other buffer,
-in a well-defined manner.  No risks of alterting anyting.
+in a well-defined manner.  No risks of altering anything.
 </p>
 
 <p>
@@ -1205,7 +1205,7 @@ resume your task at hand.
 </p>
 
 <p>
-The behaviour of <code>org-capture</code> is highly customizable, through
+The behaviour of <code>org-capture</code> is highly customisable, through
 writing custom capture template as shown in the next section.
 However, the default behaviour already exposes the tow main
 benefits of using <code>org-capture</code>: disruption is kept at a minimum,
@@ -1214,13 +1214,13 @@ file.
 </p>
 </div>
 
-<div id="outline-container-orgacdc6d7" class="outline-4">
-<h4 id="orgacdc6d7"><span class="section-number-4">6.2.1</span> Writing capture templates</h4>
+<div id="outline-container-org8da486d" class="outline-4">
+<h4 id="org8da486d"><span class="section-number-4">6.2.1</span> Writing capture templates</h4>
 <div class="outline-text-4" id="text-6-2-1">
 <p>
 The default capture template may be useful to some, but
 <code>org-capture</code> can only reach its true potential with defining
-custom capture templates.  This is done by customizing the
+custom capture templates.  This is done by customising the
 variable <code>org-capture-templates</code>.  Let's consider an example from
 my own configuration:
 </p>
@@ -1253,20 +1253,20 @@ followed by a space, followed by an (inactive) timestamp
 indicating the capture time, followed by a new line.  So what does
 <code>"* %?\n%u\n%a\n"</code> mean?  The "%-escape" string <code>%a</code> stands for a
 link to the location from which the call to <code>org-capture</code> was
-made, and <code>%?</code> indicates the positon of the cursor in the capture
+made, and <code>%?</code> indicates the position of the cursor in the capture
 buffer, both separated by a new line character.
 </p>
 
 <p>
 There are more than 25 different escape characters available to
-customize the behavior of your capture templates, and if none fits
+customise the behaviour of your capture templates, and if none fits
 your needs, it's always possible to evaluate arbitrary Emacs
 Lisp expression when expanding a capture template.
 </p>
 
 <p>
 Beyond using %-escapes, capture templates can be further
-customized through adding properties to the template definition
+customised through adding properties to the template definition
 list.  For instance
 </p>
 <div class="org-src-container">
@@ -1283,8 +1283,8 @@ the capture buffer.
 </div>
 </div>
 
-<div id="outline-container-org184d228" class="outline-4">
-<h4 id="org184d228"><span class="section-number-4">6.2.2</span> More examples of custom capture templates</h4>
+<div id="outline-container-org1208657" class="outline-4">
+<h4 id="org1208657"><span class="section-number-4">6.2.2</span> More examples of custom capture templates</h4>
 <div class="outline-text-4" id="text-6-2-2">
 <p>
 If you've skimmed through the documentation for <code>org-capture</code>,
@@ -1319,8 +1319,8 @@ but here are two more:
 </div>
 </div>
 </div>
-<div id="outline-container-orgabf7d4a" class="outline-3">
-<h3 id="orgabf7d4a"><span class="section-number-3">6.3</span> Processing captured tasks with org-refile</h3>
+<div id="outline-container-org7e857ad" class="outline-3">
+<h3 id="org7e857ad"><span class="section-number-3">6.3</span> Processing captured tasks with org-refile</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 Capturing must a fast, minimally disruptive action.  The main
@@ -1335,7 +1335,7 @@ Most captured items aren't exploitable yet, because they're not
 descriptive enough to make it to the main Org file(s).
 Consequently, most of my captures target a specific file
 <code>inbox.org</code>, that acts as a repository for ideas, thoughts,
-assignements or links to emails awaiting reply or containing
+assignments or links to emails awaiting reply or containing
 important information. More generally, it's anything that pops up
 during the day that is not requesting my attention right away.
 </p>
@@ -1363,15 +1363,15 @@ Once a headline in <code>inbox.org</code> has been processed, it is ready to
 enter the collection of main Org files that forms the tasks and
 project database.  Again, in my personal case, this is a single
 file <code>todo.org</code>.  Instead of cutting (killing) the headline and
-potential subtrees and pasting (yanking) it at the right location
+potential sub-trees and pasting (yanking) it at the right location
 in the destination Org file, Org provides the function
 <code>org-refile</code>, that helps with moving headlines around, whether it
 is between headlines in a single file, or across files.
 </p>
 </div>
 
-<div id="outline-container-org7b54743" class="outline-4">
-<h4 id="org7b54743"><span class="section-number-4">6.3.1</span> <code>org-refile</code> to move headlines around consistently</h4>
+<div id="outline-container-orgd740e3f" class="outline-4">
+<h4 id="orgd740e3f"><span class="section-number-4">6.3.1</span> <code>org-refile</code> to move headlines around consistently</h4>
 <div class="outline-text-4" id="text-6-3-1">
 <p>
 <code>org-refile</code> essentially is a convenience wrapper around cutting
@@ -1416,8 +1416,8 @@ the target headline will be selected among a set made of
 </div>
 </div>
 
-<div id="outline-container-org1864219" class="outline-4">
-<h4 id="org1864219"><span class="section-number-4">6.3.2</span> Clearing the inbox with <code>org-refile</code></h4>
+<div id="outline-container-org9ccb80a" class="outline-4">
+<h4 id="org9ccb80a"><span class="section-number-4">6.3.2</span> Clearing the inbox with <code>org-refile</code></h4>
 <div class="outline-text-4" id="text-6-3-2">
 <p>
 My main use of <code>org-refile</code> is to move processed tasks/projects
@@ -1460,11 +1460,11 @@ that file.
 </div>
 </div>
 
-<div id="outline-container-orgd3ea355" class="outline-2">
-<h2 id="orgd3ea355"><span class="section-number-2">7</span> Archiving</h2>
+<div id="outline-container-org4e00fee" class="outline-2">
+<h2 id="org4e00fee"><span class="section-number-2">7</span> Archiving</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
-<li>Arhiving is basicaly refiling to the archive file</li>
+<li>Archiving is basically refiling to the archive file</li>
 <li><code>C-c C-x C-a</code> invokes command specified in <code>org-archive-default-command</code>.</li>
 <li>Defaults to <code>org-archive-subtree</code> (<code>C-x C-c C-s</code>)</li>
 <li>Archiving regularly keeps your file(s) compact.</li>
@@ -1475,11 +1475,11 @@ See <a href="https://orgmode.org/manual/Archiving.html">9.2 Archiving</a> in the
 </p>
 </div>
 </div>
-<div id="outline-container-org2f593a7" class="outline-2">
-<h2 id="org2f593a7"><span class="section-number-2">8</span> Further topics</h2>
+<div id="outline-container-org7949189" class="outline-2">
+<h2 id="org7949189"><span class="section-number-2">8</span> Further topics</h2>
 <div class="outline-text-2" id="text-8">
 <ul class="org-ul">
-<li><a href="https://orgmode.org/manual/Attachments.html">Attachements</a></li>
+<li><a href="https://orgmode.org/manual/Attachments.html">Attachments</a></li>
 <li><a href="https://orgmode.org/manual/Clocking-Work-Time.html">Clocking tasks</a> and <a href="https://orgmode.org/manual/Effort-Estimates.html#Effort-Estimates">effort estimates</a></li>
 </ul>
 </div>
@@ -1496,7 +1496,7 @@ Org can manage bibliographies, see <a href="https://github.com/jkitchin/org-ref"
 There are several ongoing efforts to port Org Mode editing
 support for text editors other than GNU Emacs. See <a href="https://github.com/axvr/org.vim">org.vim</a> or
 <a href="https://github.com/jceb/vim-orgmode">vim-orgmode</a>, <a href="https://atom.io/packages/org-mode">org-mode for Atom</a>, <a href="https://github.com/vscode-org-mode/vscode-org-mode">vscode-org-mode</a> or <a href="https://packagecontrol.io/packages/orgmode">orgmode for Sublime
-Text 2 &amp; 3</a>. In addition, <a href="https://github.com/200ok-ch/organice">organice</a> reimplements Org using web
+Text 2 &amp; 3</a>. In addition, <a href="https://github.com/200ok-ch/organice">organice</a> re-implements Org using web
 technologies, <i>i.e</i> in the browser.
 </p></div></div>
 
