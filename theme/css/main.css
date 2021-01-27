@@ -30,9 +30,9 @@ header a {
 
 }
 
-a:visited {
-  text-decoration: none;
-}
+/* a:visited { */
+/*   text-decoration: none; */
+/* } */
 
 nav a:hover {
     background-color: #005221;
@@ -41,17 +41,22 @@ nav a:hover {
 
 body {
     font-family: 'opensans', sans-serif;
+    font-size: 18px;
 }
 
 #content {
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 20%;
+    margin-right: 20%;
 }
 
-#content a {
-    text-decoration: underline;
+a {
     font-weight: bold;
     color: #005221;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 p {
@@ -76,5 +81,6 @@ h1, h2 {
 h2 {
     border-bottom: 5px solid #005221;
     line-height: 1.5em;
-    
+
 }
+

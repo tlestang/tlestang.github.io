@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Thibault Lestang - blog</title><link href="/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2021-01-26T00:00:00+00:00</updated><entry><title>Code reviews in academia</title><link href="/blog/code-review.html" rel="alternate"></link><published>2021-01-26T00:00:00+00:00</published><updated>2021-01-26T00:00:00+00:00</updated><author><name>Thibault Lestang</name></author><id>tag:None,2021-01-26:/blog/code-review.html</id><summary type="html">&lt;p&gt;
+Code reviewing is a standard practice among professional software
+developers. In general terms, this means code is always subject to
+human feedback, complementary to machine feedback such as output from
+compilers, automatic linters and test runners. Indeed, code reviews
+are most useful to look at aspects of software quality for …&lt;/p&gt;</summary><content type="html">&lt;p&gt;
+Code reviewing is a standard practice among professional software
+developers. In general terms, this means code is always subject to
+human feedback, complementary to machine feedback such as output from
+compilers, automatic linters and test runners. Indeed, code reviews
+are most useful to look at aspects of software quality for which
+feedback cannot be automated, such as software design or code
+readability.  In these cases, human feedback is crucial to ensure that
+the code is written in a way that facilitates its study and reuse by
+other developpers. In a commercial context, this could mean ensuring
+that the software remains easy to debug, update and extend.  In other
+words, code reviewing is about software sustainability.
+&lt;/p&gt;
+
+&lt;p&gt;
+Code reviews also are a key component of open source software
+developemnt.  Organised around platforms such as GitHub, GitLab or
+SourceHut, contributors to open source software projects are able to
+propose and discuss their contributions publicly. At the core of this
+development model is the generally shared idea (across open source
+developers) that contributed code isn't set in stone, and that several
+rounds of feedback from other developers will be necessary for it the
+be ready to be integrated into the larger project.  
+&lt;/p&gt;
+
+&lt;p&gt;
+Meanwhile, in academia, research code is almost never reviewed.  Given
+the tremendous importance of software in research, the previous
+statement should come as a great surprise&amp;#x2026; but does it?  Within the
+academic research process, software quality is a widely overlooked
+topic, if not completely ignored.  This is because software rarely is
+the end product, in contrast with the scientific results (&lt;i&gt;e.g&lt;/i&gt;
+figures and tables) that it generates.  On top of that, the highly
+competitive, publication rate-based funding system is not offering any
+reward to to the researcher ready to dedicate time to writing good
+software.  In fact, spending too much effort into software development
+is often considered harmful for one's carreer, as it is detrimental to
+the publication output.
+&lt;/p&gt;
+
+&lt;p&gt;
+In 2021, it seems like the situation is slowly evolving, and has been
+over the past ten years.  The "reproducibiliy crisis" opened many eyes
+(and still does) to the fact many research works, in a wide range of
+disciplines, cannot be reproduced by an independant team of
+researchers.  A common cause of non-reproducibility stems from
+software issues, &lt;i&gt;e.g&lt;/i&gt; the code being unavailable or left in an
+unusable state after the main paper was published. Even though some
+journals and funding bodies now require the code to be made available
+at the time of publication, the large majority of research software is
+still written by temporary staff (graduate students or post-doctoral
+researchers), without formal training in software engineering, and
+often operating under high pressure. As a result, an increasing number
+of researchers experience the deep frustration of having to build upon
+poorly written, undocumented, and untested software. This leads to an
+increasing awareness that sacrificing software quality on the altar or
+scientific productivity is very likely to backfire, actually &lt;i&gt;slowing
+down&lt;/i&gt; research on the not-so-long run.  Consequently, many researchers
+develop an interest and curiosity in programming and software
+engineering, simply because "there must be a better way of doing
+this".  In most cases, unfortunately, the knowledge gap is simply too
+big to fill, especially for researcher-programmers in labs or research
+groups that does not value software in the same way, and where
+suitable mentors cannot be found.
+&lt;/p&gt;
+
+
+&lt;p&gt;
+Although most researchers are
+aware of their relatively limited software engineering skillsgenerally
+want to write better software
+&lt;/p&gt;
+
+
+
+&lt;p&gt;
+ In a academic
+setting, this could mean ensuring that research code can be understood
+by other researchers, as well as reused and built upon for further
+researc prjects.
+&lt;/p&gt;
+
+
+
+&lt;p&gt;
+ cannot be auto where machines cannot, for
+instance software design an code readability
+&lt;/p&gt;
+
+&lt;p&gt;
+ beforecIt can take different forms in practice, but generally it means
+feedback between developers working in a company or an open-source
+project.  
+&lt;/p&gt;
+</content><category term="blog"></category></entry></feed>
