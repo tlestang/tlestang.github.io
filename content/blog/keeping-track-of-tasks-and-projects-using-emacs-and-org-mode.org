@@ -10,19 +10,19 @@
 
 Org-mode is a set of functionalities inside GNU Emacs, geared towards
 note-taking, structuring text and managing tasks.  These
-functionalities become available with activiting Org-Mode (~M-x
+functionalities become available with activating Org-Mode (~M-x
 org-mode~) or simply by opening a file with the ~.org~ extension.
 
 Org is an incredibly broad mode. Just as Emacs itself goes beyond
 being a text editor, Org Mode is much more than a note taking app
-running in Emacs. In fact, it is useful to see Org no so much as an
+running in Emacs. In fact, it is useful to see Org not so much as an
 organisational solution, but rather as a toolbox for building
 organisational solutions.
 
 From a beginner's point of view however, Org is easy to get started
 with.  Taking structured notes, folding, reordering and jumping
 between headlines requires no configuration and already provide great
-benefit a zero cost.  Exporting notes to HTML or ODT file is available
+benefits a zero cost.  Exporting notes to HTML or ODT files is available
 out of the box, a keystroke away.  From there, users are free to explore
 the various settings and functionalities available to them, and
 invest in learning how to use them as they see fit.
@@ -37,10 +37,10 @@ that there more whenever they need it.
 
 Org Mode can be used for a wide range of purposes, and no two Org
 users use it in the same way.  This text focuses on using Org to
-manage lists of tasks and projects, from capturing ideas early on all
+manage lists of tasks and projects, from capturing ideas early on - all
 the way archiving completed projects.  I hope it can serve as a guide
 and inspiration for newcomers to Org, to either replicate a similar
-workflow or mold a system of their own.  Lastly, I want to stress that
+workflow or mould a system of their own.  Lastly, I want to stress that
 only a small subset of Org's functionalities are described in this
 post.  This should come as good news though, as it means there's
 always more to explore and be surprised by.
@@ -69,7 +69,7 @@ using headlines, lists and tables. Text itself can be _underlined_,
      Some content with a [[https://tlestang.github.io][link]] to my website.
   ,*** A subheader with a table
       Org comes with a full-blown plain text table editor,
-      that alsi brings surprisingly powerful spreadsheet functionalities.
+      that also brings surprisingly powerful spreadsheet functionalities.
 
       |   a |   b |   c |
       | 1.0 | 2.0 | 3.0 |
@@ -87,8 +87,8 @@ are reading the exported HTML version of the underlying Org file.
   therefore could be written using any text editor[fn:2].  However,
   editing Org files is most convenient within GNU Emacs, since
   Org-mode automatically renders Org syntax (e.g. it will display
-  headlines in a different color, often with an increased font
-  size). Org-mode also provides a wealth of functionaities to
+  headlines in a different colour, often with an increased font
+  size). Org-mode also provides a wealth of functionalities to
   efficiently manipulate Org documents, such as reorder and sort
   headlines and lists, insert new headlines, links and tables. More
   importantly, Org makes it very efficient to navigate the document,
@@ -104,7 +104,7 @@ are reading the exported HTML version of the underlying Org file.
 
 In Org, it is common for headlines to represent tasks. Beyond its
 title, a headline can be further described using either, or a combination of:
-- A TODO state (typically someting like "TODO" or "DONE")
+- A TODO state (typically something like "TODO" or "DONE")
 - A collection of one or more tags (each represented as a character
   string, like "home" or "office").
 - A collection of one or more properties (each represented by a
@@ -184,11 +184,11 @@ an agenda.
   something larger, that must be decomposed into a series of
   subsequent or parallel tasks, like /Update paper following Jane's
   feedback/. In this case, the path to completion isn't that clear,
-  and writing someting like ~* TODO Update paper following Jane's
+  and writing something like ~* TODO Update paper following Jane's
   feedback~ isn't going to lead to anything except
   procrastination. Instead, it is good practice to identify the next
   tangible action that would move the project forward, something like
-  /Summarize Jane's feedback on first draft/.
+  /Summarise Jane's feedback on first draft/.
 
   In Org terms, I define a task as any headline with an active todo
   state, whereas any top level headline without a todo state must be a
@@ -207,7 +207,7 @@ an agenda.
 *** ~TODO~ states
 
    The states ~TODO~ and ~DONE~ available by default are not very
-   descritive.  Let's introduce three new states:
+   descriptive.  Let's introduce three new states:
    - ~STARTED~: Describes a task that was started, but not completed yet.
    - ~WAITING~: Describes a task that was deferred to someone else,
      /e.g/ ~* WAITING Jane to share her changes with me~.
@@ -269,7 +269,7 @@ an agenda.
     maintaining a file where you document bugs and plan releases for a
     piece of software. Instead of using tags like ~release_1~,
     ~release_2~, you can use a property, say ~Release~, that in
-    different subtrees has different values, such as ~1.0~ or ~2.0~.
+    different sub-trees has different values, such as ~1.0~ or ~2.0~.
 
     The Org Mode 9.4 Reference Manual, Chapter 7 /Properties and Columns/
     #+end_quote
@@ -285,12 +285,12 @@ an agenda.
     the a list a special properties in section 7.2 of the Org 9.4
     Reference Manual: [[https://orgmode.org/org.html#Special-Properties][Special Properties]].
 
-    Suprisingly, I don't make extensive use of Org properties in my
+    Surprisingly, I don't make extensive use of Org properties in my
     current workflow. One property I /do/ use a lot is the special
     property ~CATEGORY~.  By default, the value of ~CATEGORY~ for
     headlines in a Org file is name of this file.  This comes in handy
     when compiling lists of tasks across a pool of org files, as
-    described in the next section.  More generally, I interpet the
+    described in the next section.  More generally, I interpret the
     value of ~CATEGORY~ as a specific /areas of focus/, another
     concept borrowed from David Allen's GTD approach.  As a Research
     Software Engineer, my days are spread across several research
@@ -299,7 +299,7 @@ an agenda.
     I'm involved in, such as the [[https://github.com/OxfordCodeReviewNet/forum][Oxford Code Review Network]] or
     [[https://ox.ukrn.org/][Reproducible Research Oxford]]. Not to forget the non-professional
     activities, like sport and hobbies. Personal admin and less
-    glamorous taks (like shopping tasks) are there too.  These areas
+    glamorous tasks (like shopping tasks) are there too.  These areas
     of focus tend to have little overlap, and are therefore well
     described by the ~CATEGORY~ property.  Note the difference with
     tags: a task can have multiple tags, but only one category.
@@ -318,7 +318,7 @@ an agenda.
   The challenge is clearly stated in David Allen's /Getting Things Done/:
   #+begin_quote
   [...] the ultimate point and challenge of all this personal
-  collecting, processing, organizing and reviewing methodology: It's
+  collecting, processing, organising and reviewing methodology: It's
   9:22 A.M, Wednesday morning -- what do you do?
 
   /Getting Things Done/, David Allen
@@ -387,7 +387,7 @@ an agenda.
    in the original Org buffer: change TODO state, set tags and
    properties...  With point on a headline, hitting ~RET~ will switch
    to the corresponding org buffer (at the location of the headline)
-   in the current window. Similar behavior is available by hitting
+   in the current window. Similar behaviour is available by hitting
    ~TAB~, but this time the Org buffer is opened in another window.
 
    With ~C-c a t~, you instantly get a bird's eye view of all the
@@ -456,7 +456,7 @@ an agenda.
    running the corresponding agenda query, just like we would do with
    ~C-c a t~ (~org-todo-list~).
 
-   To define new agenda commands, we customize the variable
+   To define new agenda commands, we customise the variable
    ~org-agenda-custom-commands~. There's a lot of freedom in defining
    custom agenda commands, but sadly with great flexibility often
    comes complexity. So let's illustrate the concept with a couple of
@@ -499,7 +499,7 @@ an agenda.
     completion involves more than one tasks.  In section [[* Describing
     tasks and projects]], we described active projects as any top-level
     headline without a TODO state.  Let's add a new command to
-    ~org-agenda-custom-commands~ to display a list of active priojects:
+    ~org-agenda-custom-commands~ to display a list of active projects:
     #+begin_src elisp
       (setq org-agenda-custom-commands
 	    '(("b"
@@ -532,7 +532,7 @@ an agenda.
   will open the built-in Emacs calendar in which you can navigate
   (using shift and the arrow keys) to select the date you want the
   timestamp to describe.  In addition to the date, you can also write
-  a time directly in the minibuffer.  Org accepts /a lot/ of formats
+  a time directly in the mini-buffer.  Org accepts /a lot/ of formats
   for specifying both date and time, and I encourage you to have a
   look at the docs for a description of each of them, see [[https://orgmode.org/manual/The-date_002ftime-prompt.html#The-date_002ftime-prompt][8.2.1 The
   date/time prompt]].
@@ -588,7 +588,7 @@ an agenda.
       ,* NEXT Send Happy New Year cards
 	SCHEDULED: <2021-01-01 Fri>
     #+end_src
-    It's sometimes confusing for new Org users to differenciate between
+    It's sometimes confusing for new Org users to differentiate between
     setting a ~SCHEDULED~ timestamp to a task and a plain timestamp.
     This quote from the Org Mode Reference Manual clarifies the
     situation:
@@ -629,7 +629,7 @@ an agenda.
    are also clearly signalled, and reminded of every day until
    they are completed.
 
-   The display of the Org agenda is customizable, by hitting ~v~ in
+   The display of the Org agenda is customisable, by hitting ~v~ in
    the Org-Agenda buffer.  Particularly, it is possible to go from
    the default weekly view to a monthly or yearly view.  or day view.
    Going forward in time is done hitting ~f~, backward with ~b~.  See
@@ -639,17 +639,17 @@ an agenda.
 
     In section [[* ~TODO~ states]], we saw that changing the state of a
     task triggers the recording of the date and time at which this
-    change occured.  However, notice that in this case the inserted
+    change occurred.  However, notice that in this case the inserted
     timestamp is delimited by square brackets instead of =<= and =>=.
-    This is refered to as an /inactive/ timestamp, and by default
+    This is refereed to as an /inactive/ timestamp, and by default
     these will /not show up/ in the agenda.  To show inactive
-    timstamps in the agenda, hit ~v [~ in the Org-Agenda buffer.
+    timestamps in the agenda, hit ~v [~ in the Org-Agenda buffer.
 
     Showing inactive timestamps in the agenda can make it cluttered
     and therefore hard to read.  However, this makes for a good
     summary of what happened in a day/week, and when.  In my case,
     using the TODO states configuration introduced in [[* ~TODO~ states]],
-    displaying inactive timestamp is a conveninet way of getting a
+    displaying inactive timestamp is a convenient way of getting a
     bird's eye view of
     - When a task was completed (switched to ~DONE~).
     - When a task started depending on someone/something else (switched to ~WAITING~).
@@ -661,7 +661,7 @@ an agenda.
    timestamp below it, using ~C-c z~ (~org-add-note~).  I use this
    extensively to log my progress on longer tasks, that might span
    several days.  Even if a task was ~STARTED~ yesterday, ~DONE~
-   tomorrow, logging progress with a quick note garantees it will show
+   tomorrow, logging progress with a quick note guarantees it will show
    up in today's agenda when displaying inactive timestamps.
 
 ** Combining lists of tasks and agendas
@@ -669,11 +669,11 @@ an agenda.
    So far, we've learned how the Org agenda can be used to either display
    lists of tasks matching a specific tags/todo/properties query, or
    an agenda displaying timestamped tasks on a timeline.  However,
-   customizing ~org-agenda-custom-commands~, introduced above in
+   customising ~org-agenda-custom-commands~, introduced above in
    section [[* Custom agenda views]], it is possible to define new agenda
    views that mix both list(s) of tasks and agenda(s).
 
-   Let's pretend its wednesday morning, and you are sitting at your
+   Let's pretend its Wednesday morning, and you are sitting at your
    desk.  In this context, a simple, yet useful, composite (or
    "block") agenda command is a combination of the day's agenda and
    the list of urgent tasks:
@@ -692,13 +692,13 @@ an agenda.
    example, the agenda view is made of both the day's agenda (~agenda
    ""~) and a list of tasks matching headlines with the highest
    priority (~tags-todo "+PRIORITY=\"A\""~).  Both single agenda views
-   are are further customized by properties ~org-agenda-span~ and
+   are are further customised by properties ~org-agenda-span~ and
    ~org-agenda-overriding-header~, respectively.  The first one makes
    sure only one day is displayed in the agenda.  The second defines a
    clear header for the list of urgent tasks.
 
    Custom agenda views, whether they define single or composite views,
-   offer a broad range of opportunites for quickly displaying information
+   offer a broad range of opportunities for quickly displaying information
    based on your agenda files, in a way useful to a particular area or
    context.  I encourage you to have a look at the the documentation
    for ~org-agenda-custom-commands~, to grasp the extent of
@@ -712,8 +712,8 @@ an agenda.
   tasks.  But to do that, we need tasks. How do we add tasks?
   
   A straightforward way to add a new task is to open the relevant Org
-  file, write a new headline and think about a revelant TODO state,
-  set of tags and ~CATEGORY~ property.  Perhaps suprisingly, that's
+  file, write a new headline and think about a relevant TODO state,
+  set of tags and ~CATEGORY~ property.  Perhaps surprisingly, that's
   not an approach that I would recommend.
 
   Most new tasks and projects originate from sudden ideas or suddenly
@@ -725,7 +725,7 @@ an agenda.
   your current task, whether it's working through your email inbox or
   attending the weekly team meeting.  Particularly, now is /not/ the
   time to think hard about a clear formulation of what must be done,
-  neither of when, by whom, and in wich context.  This can be done
+  neither of when, by whom, and in which context.  This can be done
   later, when your full attention is available to process this new
   task.
 
@@ -755,14 +755,14 @@ an agenda.
    likely forget about the task and not noticing it until too
    late... hello stress!  Second, when editing an Org file, there is
    always the risk of messing with its content, potentially altering
-   the description of other tasks.  You wouldn't want to inadvertantly
+   the description of other tasks.  You wouldn't want to inadvertently
    push the deadline for that grant proposal by a week, would you?
 
 ** Using ~org-capture~
 
    Both pitfalls can be avoided by using ~org-capture~.  This function
    lets you add a new headline to an Org file, from any other buffer,
-   in a well-defined manner.  No risks of alterting anyting.
+   in a well-defined manner.  No risks of altering anything.
 
    For this to be true, let's bind ~org-capture~ to ~C-c c~ in the
    global keymap:
@@ -786,7 +786,7 @@ an agenda.
    in your home directory.  The capture buffer is closed and you can
    resume your task at hand.
 
-   The behaviour of ~org-capture~ is highly customizable, through
+   The behaviour of ~org-capture~ is highly customisable, through
    writing custom capture template as shown in the next section.
    However, the default behaviour already exposes the tow main
    benefits of using ~org-capture~: disruption is kept at a minimum,
@@ -797,7 +797,7 @@ an agenda.
 
     The default capture template may be useful to some, but
     ~org-capture~ can only reach its true potential with defining
-    custom capture templates.  This is done by customizing the
+    custom capture templates.  This is done by customising the
     variable ~org-capture-templates~.  Let's consider an example from
     my own configuration:
     #+begin_src elisp
@@ -825,16 +825,16 @@ an agenda.
     indicating the capture time, followed by a new line.  So what does
     ~"* %?\n%u\n%a\n"~ mean?  The "%-escape" string ~%a~ stands for a
     link to the location from which the call to ~org-capture~ was
-    made, and ~%?~ indicates the positon of the cursor in the capture
+    made, and ~%?~ indicates the position of the cursor in the capture
     buffer, both separated by a new line character.
     
     There are more than 25 different escape characters available to
-    customize the behavior of your capture templates, and if none fits
+    customise the behaviour of your capture templates, and if none fits
     your needs, it's always possible to evaluate arbitrary Emacs
     Lisp expression when expanding a capture template.
     
     Beyond using %-escapes, capture templates can be further
-    customized through adding properties to the template definition
+    customised through adding properties to the template definition
     list.  For instance
     #+begin_src elisp
       (setq org-capture-templates
@@ -885,7 +885,7 @@ an agenda.
    descriptive enough to make it to the main Org file(s).
    Consequently, most of my captures target a specific file
    ~inbox.org~, that acts as a repository for ideas, thoughts,
-   assignements or links to emails awaiting reply or containing
+   assignments or links to emails awaiting reply or containing
    important information. More generally, it's anything that pops up
    during the day that is not requesting my attention right away.
 
@@ -907,7 +907,7 @@ an agenda.
    enter the collection of main Org files that forms the tasks and
    project database.  Again, in my personal case, this is a single
    file ~todo.org~.  Instead of cutting (killing) the headline and
-   potential subtrees and pasting (yanking) it at the right location
+   potential sub-trees and pasting (yanking) it at the right location
    in the destination Org file, Org provides the function
    ~org-refile~, that helps with moving headlines around, whether it
    is between headlines in a single file, or across files.
@@ -972,14 +972,14 @@ an agenda.
     that file.
 
 * Archiving
-   - Arhiving is basicaly refiling to the archive file
+   - Archiving is basically refiling to the archive file
    - ~C-c C-x C-a~ invokes command specified in ~org-archive-default-command~.
    - Defaults to ~org-archive-subtree~ (~C-x C-c C-s~)
    - Archiving regularly keeps your file(s) compact.
 
    See [[https://orgmode.org/manual/Archiving.html][9.2 Archiving]] in the Org manual.
 * Further topics
-  - [[https://orgmode.org/manual/Attachments.html][Attachements]]
+  - [[https://orgmode.org/manual/Attachments.html][Attachments]]
   - [[https://orgmode.org/manual/Clocking-Work-Time.html][Clocking tasks]] and [[https://orgmode.org/manual/Effort-Estimates.html#Effort-Estimates][effort estimates]]
 
 * Footnotes
@@ -987,7 +987,7 @@ an agenda.
 [fn:2] There are several ongoing efforts to port Org Mode editing
 support for text editors other than GNU Emacs. See [[https://github.com/axvr/org.vim][org.vim]] or
 [[https://github.com/jceb/vim-orgmode][vim-orgmode]], [[https://atom.io/packages/org-mode][org-mode for Atom]], [[https://github.com/vscode-org-mode/vscode-org-mode][vscode-org-mode]] or [[https://packagecontrol.io/packages/orgmode][orgmode for Sublime
-Text 2 & 3]]. In addition, [[https://github.com/200ok-ch/organice][organice]] reimplements Org using web
+Text 2 & 3]]. In addition, [[https://github.com/200ok-ch/organice][organice]] re-implements Org using web
 technologies, /i.e/ in the browser.
 
 [fn:1] Org can manage bibliographies, see [[https://github.com/jkitchin/org-ref][org-ref]]. 
