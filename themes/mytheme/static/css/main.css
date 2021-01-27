@@ -30,9 +30,9 @@ header a {
 
 }
 
-a:visited {
-  text-decoration: none;
-}
+/* a:visited { */
+/*   text-decoration: none; */
+/* } */
 
 nav a:hover {
     background-color: #005221;
@@ -49,10 +49,14 @@ body {
     margin-right: 20%;
 }
 
-#content a {
-    text-decoration: underline;
+a {
     font-weight: bold;
     color: #005221;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 p {
@@ -79,3 +83,4 @@ h2 {
     line-height: 1.5em;
 
 }
+

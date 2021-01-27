@@ -2259,14 +2259,5 @@
         font-weight: bold;
       }
 
-      a {
-        color: inherit;
-        background-color: inherit;
-        font: inherit;
-        text-decoration: inherit;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
     -->
 </style>
