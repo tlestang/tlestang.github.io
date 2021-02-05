@@ -1,5 +1,261 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Thibault Lestang</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2021-01-27T00:00:00+00:00</updated><entry><title>Keeping track of tasks and projects with GNU Emacs and Org Mode</title><link href="/blog/keeping-track-of-tasks-and-projects-using-emacs-and-org-mode.html" rel="alternate"></link><published>2021-01-27T00:00:00+00:00</published><updated>2021-01-27T00:00:00+00:00</updated><author><name>Thibault Lestang</name></author><id>tag:None,2021-01-27:/blog/keeping-track-of-tasks-and-projects-using-emacs-and-org-mode.html</id><summary type="html">&lt;p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Thibault Lestang</title><link href="/" rel="alternate"></link><link href="/feeds/all.atom.xml" rel="self"></link><id>/</id><updated>2021-02-04T00:00:00+00:00</updated><entry><title>Code reviews in academia</title><link href="/blog/code-review.html" rel="alternate"></link><published>2021-02-04T00:00:00+00:00</published><updated>2021-02-04T00:00:00+00:00</updated><author><name>Thibault Lestang</name></author><id>tag:None,2021-02-04:/blog/code-review.html</id><summary type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org09c1ed7"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga144818"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org531948c"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org5d2aafe"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org09c1ed7" class="outline-2"&gt;
+&lt;h2 id="org09c1ed7"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+Code reviewing is a standard practice among professional software
+developers. Generally, this means code is subject to human feedback,
+complementary to machine …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org09c1ed7"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga144818"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org531948c"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org5d2aafe"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org09c1ed7" class="outline-2"&gt;
+&lt;h2 id="org09c1ed7"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+Code reviewing is a standard practice among professional software
+developers. Generally, this means code is subject to human feedback,
+complementary to machine feedback such as output from compilers,
+automatic linters and test runners. Code reviews are most useful to
+look at aspects of software quality for which feedback cannot be
+automated, such as software design or code readability.  In these
+cases, human feedback is crucial to ensure that the code is written in
+a way that facilitates its study and reuse by other developers. In a
+commercial context, this could mean ensuring that the software remains
+easy to maintain, update and extend.  Therefore, code reviewing
+is ultimately about software sustainability.
+&lt;/p&gt;
+
+&lt;p&gt;
+Code reviews also are a key component of open source software
+development.  Organised around platforms such as GitHub or GitLab,
+contributors to open source projects propose and discuss their
+contributions publicly. At the core of this development model is the
+simple idea that contributed code isn't set in stone, and that
+several rounds of feedback from other project contributors will be
+necessary for it the be ready to be integrated into the project's
+codebase.
+&lt;/p&gt;
+
+&lt;p&gt;
+Meanwhile, in academia, research code is almost never reviewed.
+Despite the ever-increasing reliance of modern research on software,
+software quality remains a widely overlooked topic, if not completely
+ignored.  This is because research software is rarely the end product,
+as opposed to the scientific results (e.g figures and tables) that it
+generates.  On top of that, the highly competitive, publication
+rate-based funding model is not particularly rewarding to researchers
+ready to dedicate time to writing good software.  In fact, spending
+too much effort into software development is often considered harmful
+to a researcher's career development, as it is detrimental to their
+publication rate.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga144818" class="outline-2"&gt;
+&lt;h2 id="orga144818"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
+In 2021, the situation is slowly evolving, and has been so over the
+past few years.  The "reproducibility crisis" opened many people's
+eyes (and continues to do so) to the fact that a significant number of
+research findings, in a wide range of disciplines, cannot be
+reproduced by an independent team of researchers.  A common cause of
+non-reproducibility is software issues, for instance the code being
+unavailable, or left in an unusable state after the main paper was
+published. Although some journals and funding bodies nowadays require
+associated code(s) to be made available at the time of publication,
+the large majority of research software is still written by temporary
+staff (graduate students or post-doctoral researchers), without formal
+training in software engineering, often operating under high
+pressure. As a result, an increasing number of researchers experience
+the deep frustration of having to build upon poorly written,
+undocumented, and untested software. 
+&lt;/p&gt;
+
+&lt;p&gt;
+One upshot is that this results to an increasing awareness that
+cutting corners regarding software quality is counter productive, as
+this actually &lt;i&gt;slows down&lt;/i&gt; research in the long run&amp;#x2026; as well as in
+the short run.  In most cases, unfortunately, the gap in software
+engineering knowledge is simply too big to fill for researchers,
+especially for those isolated and/or working in research groups where
+a suitable software engineering culture isn't established, and where
+mentors cannot be found and where feedback isn't available.
+&lt;/p&gt;
+
+&lt;p&gt;
+As survey conducted at the University of Oxford in 2018 shows that,
+among 375 scientists, 75% declared they could do with expert software
+engineering help.  The first training course organised by the Oxford
+Research Software Engineering group for researchers at Oxford,
+focusing on version control, was fully booked in about 20 minutes (~
+30 seats), despite very limited advertising.  This illustrates that a
+large majority of researchers are not happy with the way research
+software is developed, and there often consensus on the fact
+that "there must be a better way of doing this".  Training courses are
+part of the solution, but cannot be the whole of it. The research
+community must seize software development as part and parcel of the
+research effort, as opposed to view it as a foreign activity that
+researchers can only be amateurs in.  Researchers &lt;i&gt;are&lt;/i&gt; software
+developers.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org531948c" class="outline-2"&gt;
+&lt;h2 id="org531948c"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Code reviewing is not bug-hunting&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+Consequently, it should be common practice for researchers to "talk
+code". Currently, the opposite is true, as most research software is
+written in isolation, almost hidden from others' gaze, in fear that
+the author's (self-assessed) low programming skills will be exposed.
+On the one hand, and to put it mildly, it is true that a large
+portion of research software could be written in a better way.  On the
+other hand, researchers tend to be too harsh on themselves, by
+forgetting (or not being aware of the fact that) writing quality code
+is an iterative process that greatly benefits from other people's
+input &amp;#x2013; especially when the original author has limited software
+engineering experience themselves.
+&lt;/p&gt;
+
+&lt;p&gt;
+This is a call for code reviewing in academia.  Instead of hiding
+analysis scripts, hoping nobody will notice they are unreadable for
+anyone outside the project, these should be reviewed by other
+researchers on a regular basis all along their development.  Done
+regularly, code reviewing doesn't come with a large overhead: an hour
+every week, for instance spent sitting with a colleague to review the
+latest modifications.  In this way, participating in code reviews
+should join the list of the many activities that make up the day of
+academics.  There is a lot to be gained in reviewing a colleague'
+code: new ways of writing software, programming tricks or elegant
+designs, but also a refresher on things to avoid, such as bad naming
+or monster functions.
+&lt;/p&gt;
+
+&lt;p&gt;
+It is worth stressing that beginner programmers can make very good
+reviewers, and therefore reviewing isn't limited to researchers with
+substantial programming experience.  Generally, the purpose of code
+reviewing &amp;#x2013; at least in academia &amp;#x2013; is not to catch bugs or
+programming mistakes. To some extent, machines can already help with
+this.  Rather, the purpose of a code review is to flag up those things
+that make the code difficult to read, debug, reuse and extend. From a
+software sustainability and research reproducibility point of view, it
+is crucial that even researchers with limited experience in software,
+or simply limited experience in that specific programming language,
+are able to understand the program.  Beginner programmers are
+therefore well placed to review research software and should
+feel encouraged to do so.  And of course, reviewing "real-life"
+research code makes for a fantastic learning opportunity for them.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org5d2aafe" class="outline-2"&gt;
+&lt;h2 id="org5d2aafe"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Distributing knowledge and experience&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;p&gt;
+In academia, programming and software engineering skills are both
+scarce and unevenly distributed.  This is true at the level of both
+individuals and academic disciplines.  In this context, another
+purpose of code reviewing is knowledge transfer.  At the scale of a
+research group, regular code reviews between all members will ensure
+that members with the least software experience benefit from the
+knowledge of more seasoned members of the group, learn from them, and
+in turn become mentors for others.  If several members are involved in
+a common project, regular code reviews spread knowledge of the
+codebase across the team.  This means more independent teammates, as
+well as more efficient and fruitful teamwork. But above all, it
+prevents the codebase from falling apart as some members of the team move
+on to work on other projects.  With regular code reviews, there will
+always be someone in the group who is able to mentor new recruits.
+&lt;/p&gt;
+
+&lt;p&gt;
+Going beyond research groups, code reviewing has the potential to
+spread software engineering practices across disciplines.  As many
+computational approaches are common to several fields, a biologist may
+be well suited to provide insightful feedback on the readability and
+modularity of a code written by a physicist, and &lt;i&gt;vice versa&lt;/i&gt;.
+Interdisciplinary code reviews enable knowledge transfer at
+a larger scale, enriching different research communities from one
+another's experience and practices.  This is one of the core
+motivations behind the Oxford Code Review Network&lt;sup&gt;&lt;a id="fnr.1" class="footref" href="#fn.1"&gt;1&lt;/a&gt;&lt;/sup&gt;, an initiative at the University of Oxford
+that promotes and facilitates code reviews between researchers across
+the university. Code reviews involving researchers from different
+fields are particularly important since few communities boast the greatest
+concentration of programming and software engineering skills (for instance
+particle physics), and democratising interdisciplinary code reviews
+would make the rest of the research community benefit from that
+expertise.
+&lt;/p&gt;
+
+&lt;p&gt;
+In a world where research software is recognised as a key component of
+research, code reviews would certainly be a widespread practice among
+academics, just like it is for commercial software developers.
+At the same time, democratising code reviewing in academia would help
+driving the culture change required for software development to be
+considered a key part of a researcher's activities, as well as making
+software sustainability a core concern of quality research.  Short,
+regular code reviews provide an opportunity for researchers to "talk
+code", both teaching or learning from colleagues. Although these
+meetings can go relatively unnoticed in researcher's daily schedule,
+they greatly impact the readability, debugability and reusability of
+research software.  
+&lt;/p&gt;
+
+&lt;p&gt;
+Why is that important? Because poor software quality cripples
+research, in both the short and long term.  By contrast, quality
+software quality accelerates research: it makes it more efficient,
+more open, more collaborative and more reproducible.  Code reviews
+also spread programming and software engineering experience,
+contributing to the education of future generations of researchers and
+making research teams more resilient to change.  And with an
+increasing number of research fields heavily relying on software
+development, code reviews enable knowledge transfer across
+disciplines.  This can lead to the adoption of new practices inspired
+from other fields of research, but also to transdisciplinary research
+collaborations&amp;#x2026; what's not to like about this?
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="footnotes"&gt;
+&lt;h2 class="footnotes"&gt;Footnotes: &lt;/h2&gt;
+&lt;div id="text-footnotes"&gt;
+
+&lt;div class="footdef"&gt;&lt;sup&gt;&lt;a id="fn.1" class="footnum" href="#fnr.1"&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;div class="footpara"&gt;&lt;p class="footpara"&gt;
+&lt;a href="https://github.com/OxfordCodeReviewNet/forum"&gt;https://github.com/OxfordCodeReviewNet/forum&lt;/a&gt; 
+&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+
+
+&lt;/div&gt;
+&lt;/div&gt;</content><category term="blog"></category></entry><entry><title>Keeping track of tasks and projects with GNU Emacs and Org Mode</title><link href="/blog/keeping-track-of-tasks-and-projects-using-emacs-and-org-mode.html" rel="alternate"></link><published>2021-01-27T00:00:00+00:00</published><updated>2021-01-27T00:00:00+00:00</updated><author><name>Thibault Lestang</name></author><id>tag:None,2021-01-27:/blog/keeping-track-of-tasks-and-projects-using-emacs-and-org-mode.html</id><summary type="html">&lt;p&gt;
 Org-mode is a set of functionalities inside GNU Emacs, geared towards
 note-taking, structuring text and managing tasks.  These
 functionalities become available with activating Org-Mode (&lt;code&gt;M-x
@@ -61,47 +317,47 @@ always more to explore and be surprised by.
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#orgd3a9b31"&gt;1. Organise text&lt;/a&gt;
+&lt;li&gt;&lt;a href="#orga912827"&gt;1. Organise text&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org617e8f4"&gt;1.1. Further reading in the Org Mode manual&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org001a8f4"&gt;1.1. Further reading in the Org Mode manual&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#org1f7d052"&gt;2. Organise tasks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgdf702f9"&gt;3. Using TODO states, tags and properties in practice&lt;/a&gt;
+&lt;li&gt;&lt;a href="#orgc7cbdbd"&gt;2. Organise tasks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgad29adc"&gt;3. Using TODO states, tags and properties in practice&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org0792753"&gt;3.1. Describing tasks and projects&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org8101b6e"&gt;3.2. &lt;code&gt;TODO&lt;/code&gt; states, tags and the &lt;code&gt;CATEGORY&lt;/code&gt; property&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org6c7882b"&gt;3.1. Describing tasks and projects&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgd80c8fe"&gt;3.2. &lt;code&gt;TODO&lt;/code&gt; states, tags and the &lt;code&gt;CATEGORY&lt;/code&gt; property&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#org1fb52fb"&gt;4. Compiling lists of tasks and projects&lt;/a&gt;
+&lt;li&gt;&lt;a href="#org0f88ec2"&gt;4. Compiling lists of tasks and projects&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org95281ac"&gt;4.1. Listing all &lt;code&gt;TODO&lt;/code&gt; tasks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgfc4a18e"&gt;4.2. Complex agenda views&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org021ad9e"&gt;4.3. Custom agenda views&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org078ae17"&gt;4.1. Listing all &lt;code&gt;TODO&lt;/code&gt; tasks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org65181f6"&gt;4.2. Complex agenda views&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb552236"&gt;4.3. Custom agenda views&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#org62330eb"&gt;5. Deadlines and appointments: displaying time-specific information in the agenda&lt;/a&gt;
+&lt;li&gt;&lt;a href="#org92f7ed0"&gt;5. Deadlines and appointments: displaying time-specific information in the agenda&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org76f1aa0"&gt;5.1. Timestamps&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org423f65f"&gt;5.2. Displaying tasks in the Org Agenda&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orged1a887"&gt;5.3. Combining lists of tasks and agendas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga9cfcde"&gt;5.1. Timestamps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb52e686"&gt;5.2. Displaying tasks in the Org Agenda&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org84e71cf"&gt;5.3. Combining lists of tasks and agendas&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgfd95a22"&gt;6. Capturing tasks&lt;/a&gt;
+&lt;li&gt;&lt;a href="#org6749516"&gt;6. Capturing tasks&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org09f9b3a"&gt;6.1. Writing directly in the Org file&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org2c7a11a"&gt;6.2. Using &lt;code&gt;org-capture&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orge65b6e9"&gt;6.3. Processing captured tasks with org-refile&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgbdfab6d"&gt;6.1. Writing directly in the Org file&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org3e3bd26"&gt;6.2. Using &lt;code&gt;org-capture&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org0810351"&gt;6.3. Processing captured tasks with org-refile&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#org94b69f0"&gt;7. Archiving&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgcfa6959"&gt;8. Further topics&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgcf548a8"&gt;7. Archiving&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org6a78ae9"&gt;8. Further topics&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgd3a9b31" class="outline-2"&gt;
-&lt;h2 id="orgd3a9b31"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Organise text&lt;/h2&gt;
+&lt;div id="outline-container-orga912827" class="outline-2"&gt;
+&lt;h2 id="orga912827"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Organise text&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-1"&gt;
 &lt;p&gt;
 At the core of Org is a simple markup language, similar to markdown
@@ -111,7 +367,7 @@ using headlines, lists and tables. Text itself can be &lt;span class="underline"
 &lt;/p&gt;
 
 &lt;div class="org-src-container"&gt;
-&lt;pre class="src src-org" id="org46cc743"&gt;&lt;span class="org-org-level-1"&gt;* A top level headline&lt;/span&gt;
+&lt;pre class="src src-org" id="orge447845"&gt;&lt;span class="org-org-level-1"&gt;* A top level headline&lt;/span&gt;
   Headlines are declared using the &lt;span class="org-org-code"&gt;~*~&lt;/span&gt; character.
   The content of headlines is simply text below it.
 &lt;span class="org-org-level-1"&gt;* Another top level headline&lt;/span&gt;
@@ -157,8 +413,8 @@ or jumping to the parent headline (&lt;code&gt;C-c u&lt;/code&gt;).
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org617e8f4" class="outline-3"&gt;
-&lt;h3 id="org617e8f4"&gt;&lt;span class="section-number-3"&gt;1.1&lt;/span&gt; Further reading in the Org Mode manual&lt;/h3&gt;
+&lt;div id="outline-container-org001a8f4" class="outline-3"&gt;
+&lt;h3 id="org001a8f4"&gt;&lt;span class="section-number-3"&gt;1.1&lt;/span&gt; Further reading in the Org Mode manual&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-1-1"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;&lt;a href="https://orgmode.org/manual/Document-Structure.html#Document-Structure"&gt;Document Structure&lt;/a&gt;, in particular &lt;a href="https://orgmode.org/manual/Headlines.html#Headlines"&gt;Headlines&lt;/a&gt;, &lt;a href="https://orgmode.org/manual/Structure-Editing.html#Structure-Editing"&gt;Structure editing&lt;/a&gt;,
@@ -169,8 +425,8 @@ or jumping to the parent headline (&lt;code&gt;C-c u&lt;/code&gt;).
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1f7d052" class="outline-2"&gt;
-&lt;h2 id="org1f7d052"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Organise tasks&lt;/h2&gt;
+&lt;div id="outline-container-orgc7cbdbd" class="outline-2"&gt;
+&lt;h2 id="orgc7cbdbd"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Organise tasks&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-2"&gt;
 &lt;p&gt;
 In Org, it is common for headlines to represent tasks. Beyond its
@@ -185,7 +441,7 @@ key-value pair, like &lt;code&gt;Date: 2003&lt;/code&gt; or &lt;code&gt;City: Ox
 &lt;/ul&gt;
 
 &lt;div class="org-src-container"&gt;
-&lt;pre class="src src-org" id="orgf65501d"&gt;&lt;span class="org-org-level-2"&gt;** &lt;/span&gt;&lt;span class="org-org-done"&gt;DONE&lt;/span&gt;&lt;span class="org-org-level-2"&gt; Introduce TODO states, tags and categories      &lt;/span&gt;&lt;span class="org-org-level-2"&gt;&lt;span class="org-org-tag"&gt;:emacs:writing:&lt;/span&gt;&lt;/span&gt;
+&lt;pre class="src src-org" id="org405c0c7"&gt;&lt;span class="org-org-level-2"&gt;** &lt;/span&gt;&lt;span class="org-org-done"&gt;DONE&lt;/span&gt;&lt;span class="org-org-level-2"&gt; Introduce TODO states, tags and categories      &lt;/span&gt;&lt;span class="org-org-level-2"&gt;&lt;span class="org-org-tag"&gt;:emacs:writing:&lt;/span&gt;&lt;/span&gt;
 &lt;span class="org-org-drawer"&gt;   :PROPERTIES:&lt;/span&gt;
    &lt;span class="org-org-special-keyword"&gt;:CATEGORY:&lt;/span&gt; &lt;span class="org-org-property-value"&gt;blog&lt;/span&gt;
    &lt;span class="org-org-special-keyword"&gt;:myprop:&lt;/span&gt;   &lt;span class="org-org-property-value"&gt;myvalue&lt;/span&gt;
@@ -264,8 +520,8 @@ an agenda.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdf702f9" class="outline-2"&gt;
-&lt;h2 id="orgdf702f9"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Using TODO states, tags and properties in practice&lt;/h2&gt;
+&lt;div id="outline-container-orgad29adc" class="outline-2"&gt;
+&lt;h2 id="orgad29adc"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Using TODO states, tags and properties in practice&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-3"&gt;
 &lt;p&gt;
 This section describes my personal use of TODO states, tags and properties.
@@ -273,20 +529,20 @@ This provide a simple example illustrating how Org can be tailored to a specific
 &lt;/p&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org0792753"&gt;3.1. Describing tasks and projects&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org8101b6e"&gt;3.2. &lt;code&gt;TODO&lt;/code&gt; states, tags and the &lt;code&gt;CATEGORY&lt;/code&gt; property&lt;/a&gt;
+&lt;li&gt;&lt;a href="#org6c7882b"&gt;3.1. Describing tasks and projects&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgd80c8fe"&gt;3.2. &lt;code&gt;TODO&lt;/code&gt; states, tags and the &lt;code&gt;CATEGORY&lt;/code&gt; property&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org56a2251"&gt;3.2.1. &lt;code&gt;TODO&lt;/code&gt; states&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgfcb8ee7"&gt;3.2.2. Tags&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org4403fc8"&gt;3.2.3. Properties&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgff9e1de"&gt;3.2.1. &lt;code&gt;TODO&lt;/code&gt; states&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org195be2f"&gt;3.2.2. Tags&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgadc92fe"&gt;3.2.3. Properties&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org0792753" class="outline-3"&gt;
-&lt;h3 id="org0792753"&gt;&lt;span class="section-number-3"&gt;3.1&lt;/span&gt; Describing tasks and projects&lt;/h3&gt;
+&lt;div id="outline-container-org6c7882b" class="outline-3"&gt;
+&lt;h3 id="org6c7882b"&gt;&lt;span class="section-number-3"&gt;3.1&lt;/span&gt; Describing tasks and projects&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-3-1"&gt;
 &lt;p&gt;
 Separating &lt;i&gt;tasks&lt;/i&gt; from &lt;i&gt;projects&lt;/i&gt; is inspired by the &lt;a href="https://hamberg.no/gtd/"&gt;Getting Things
@@ -321,12 +577,12 @@ Top level headlines with an active todo state are standalone tasks.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8101b6e" class="outline-3"&gt;
-&lt;h3 id="org8101b6e"&gt;&lt;span class="section-number-3"&gt;3.2&lt;/span&gt; &lt;code&gt;TODO&lt;/code&gt; states, tags and the &lt;code&gt;CATEGORY&lt;/code&gt; property&lt;/h3&gt;
+&lt;div id="outline-container-orgd80c8fe" class="outline-3"&gt;
+&lt;h3 id="orgd80c8fe"&gt;&lt;span class="section-number-3"&gt;3.2&lt;/span&gt; &lt;code&gt;TODO&lt;/code&gt; states, tags and the &lt;code&gt;CATEGORY&lt;/code&gt; property&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-3-2"&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org56a2251" class="outline-4"&gt;
-&lt;h4 id="org56a2251"&gt;&lt;span class="section-number-4"&gt;3.2.1&lt;/span&gt; &lt;code&gt;TODO&lt;/code&gt; states&lt;/h4&gt;
+&lt;div id="outline-container-orgff9e1de" class="outline-4"&gt;
+&lt;h4 id="orgff9e1de"&gt;&lt;span class="section-number-4"&gt;3.2.1&lt;/span&gt; &lt;code&gt;TODO&lt;/code&gt; states&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-3-2-1"&gt;
 &lt;p&gt;
 The states &lt;code&gt;TODO&lt;/code&gt; and &lt;code&gt;DONE&lt;/code&gt; available by default are not very
@@ -375,8 +631,8 @@ GitHub). To do this, use &lt;code&gt;org-todo&lt;/code&gt; with a prefix argumen
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfcb8ee7" class="outline-4"&gt;
-&lt;h4 id="orgfcb8ee7"&gt;&lt;span class="section-number-4"&gt;3.2.2&lt;/span&gt; Tags&lt;/h4&gt;
+&lt;div id="outline-container-org195be2f" class="outline-4"&gt;
+&lt;h4 id="org195be2f"&gt;&lt;span class="section-number-4"&gt;3.2.2&lt;/span&gt; Tags&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-3-2-2"&gt;
 &lt;p&gt;
 I use tags for attaching contexts to tasks. An example is
@@ -405,8 +661,8 @@ later. Actually we'll see in a minute that tags can be &lt;i&gt;searched&lt;/i&g
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4403fc8" class="outline-4"&gt;
-&lt;h4 id="org4403fc8"&gt;&lt;span class="section-number-4"&gt;3.2.3&lt;/span&gt; Properties&lt;/h4&gt;
+&lt;div id="outline-container-orgadc92fe" class="outline-4"&gt;
+&lt;h4 id="orgadc92fe"&gt;&lt;span class="section-number-4"&gt;3.2.3&lt;/span&gt; Properties&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-3-2-3"&gt;
 &lt;p&gt;
 Properties serve a role similar to tags, but are key-value pairs
@@ -430,7 +686,7 @@ The Org Mode 9.4 Reference Manual, Chapter 7 &lt;i&gt;Properties and Columns&lt;
 &lt;p&gt;
 The manual further describes how properties are useful to attach
 information to headlines in a way that almost turn Org documents
-into a database. In section &lt;a href="#org1fb52fb"&gt;4&lt;/a&gt;, I'll describe how properties can be used to look up
+into a database. In section &lt;a href="#org0f88ec2"&gt;4&lt;/a&gt;, I'll describe how properties can be used to look up
 tasks and projects in this database.  Properties keys and values
 are arbitrary, and users are free to define the properties they
 like. Lastly, it's useful to know that Org comes with a handful of
@@ -464,8 +720,8 @@ tags: a task can have multiple tags, but only one category.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org1fb52fb" class="outline-2"&gt;
-&lt;h2 id="org1fb52fb"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Compiling lists of tasks and projects&lt;/h2&gt;
+&lt;div id="outline-container-org0f88ec2" class="outline-2"&gt;
+&lt;h2 id="org0f88ec2"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Compiling lists of tasks and projects&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-4"&gt;
 &lt;p&gt;
 So far we've learned how to attach useful information to headlines,
@@ -501,20 +757,20 @@ states, tags, and properties.
 
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org95281ac"&gt;4.1. Listing all &lt;code&gt;TODO&lt;/code&gt; tasks&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgfc4a18e"&gt;4.2. Complex agenda views&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org021ad9e"&gt;4.3. Custom agenda views&lt;/a&gt;
+&lt;li&gt;&lt;a href="#org078ae17"&gt;4.1. Listing all &lt;code&gt;TODO&lt;/code&gt; tasks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org65181f6"&gt;4.2. Complex agenda views&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb552236"&gt;4.3. Custom agenda views&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org43a29b5"&gt;4.3.1. Example 1: PyBaMM development work&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org6506d46"&gt;4.3.2. Example 2: Compiling a list of active projects&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org989726a"&gt;4.3.1. Example 1: PyBaMM development work&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga5c495b"&gt;4.3.2. Example 2: Compiling a list of active projects&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org95281ac" class="outline-3"&gt;
-&lt;h3 id="org95281ac"&gt;&lt;span class="section-number-3"&gt;4.1&lt;/span&gt; Listing all &lt;code&gt;TODO&lt;/code&gt; tasks&lt;/h3&gt;
+&lt;div id="outline-container-org078ae17" class="outline-3"&gt;
+&lt;h3 id="org078ae17"&gt;&lt;span class="section-number-3"&gt;4.1&lt;/span&gt; Listing all &lt;code&gt;TODO&lt;/code&gt; tasks&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-4-1"&gt;
 &lt;p&gt;
 Let's consider the content of an example Org file named &lt;code&gt;todo.org&lt;/code&gt;:
@@ -597,8 +853,8 @@ display an Org-Agenda buffer with a list of all upcoming events.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfc4a18e" class="outline-3"&gt;
-&lt;h3 id="orgfc4a18e"&gt;&lt;span class="section-number-3"&gt;4.2&lt;/span&gt; Complex agenda views&lt;/h3&gt;
+&lt;div id="outline-container-org65181f6" class="outline-3"&gt;
+&lt;h3 id="org65181f6"&gt;&lt;span class="section-number-3"&gt;4.2&lt;/span&gt; Complex agenda views&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-4-2"&gt;
 &lt;p&gt;
 There's a reason we described our tasks with tags and properties:
@@ -653,8 +909,8 @@ here, because it is well described in the Org Reference Manual, see
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org021ad9e" class="outline-3"&gt;
-&lt;h3 id="org021ad9e"&gt;&lt;span class="section-number-3"&gt;4.3&lt;/span&gt; Custom agenda views&lt;/h3&gt;
+&lt;div id="outline-container-orgb552236" class="outline-3"&gt;
+&lt;h3 id="orgb552236"&gt;&lt;span class="section-number-3"&gt;4.3&lt;/span&gt; Custom agenda views&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-4-3"&gt;
 &lt;p&gt;
 The ability to narrow down the content of your Org files to a list
@@ -684,8 +940,8 @@ simple examples from my own configuration.
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org43a29b5" class="outline-4"&gt;
-&lt;h4 id="org43a29b5"&gt;&lt;span class="section-number-4"&gt;4.3.1&lt;/span&gt; Example 1: PyBaMM development work&lt;/h4&gt;
+&lt;div id="outline-container-org989726a" class="outline-4"&gt;
+&lt;h4 id="org989726a"&gt;&lt;span class="section-number-4"&gt;4.3.1&lt;/span&gt; Example 1: PyBaMM development work&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-4-3-1"&gt;
 &lt;p&gt;
 I didn't choose the previous example, programming for PyBaMM, for
@@ -722,13 +978,13 @@ element is the match string itself
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6506d46" class="outline-4"&gt;
-&lt;h4 id="org6506d46"&gt;&lt;span class="section-number-4"&gt;4.3.2&lt;/span&gt; Example 2: Compiling a list of active projects&lt;/h4&gt;
+&lt;div id="outline-container-orga5c495b" class="outline-4"&gt;
+&lt;h4 id="orga5c495b"&gt;&lt;span class="section-number-4"&gt;4.3.2&lt;/span&gt; Example 2: Compiling a list of active projects&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-4-3-2"&gt;
 &lt;p&gt;
 Another useful agenda operations is to generate a bird's eye view
 of all active projects.  As a reminder, a project is a goal which
-completion involves more than one tasks.  In section &lt;a href="#org0792753"&gt;3.1&lt;/a&gt;, we described active projects as any top-level
+completion involves more than one tasks.  In section &lt;a href="#org6c7882b"&gt;3.1&lt;/a&gt;, we described active projects as any top-level
 headline without a TODO state.  Let's add a new command to
 &lt;code&gt;org-agenda-custom-commands&lt;/code&gt; to display a list of active projects:
 &lt;/p&gt;
@@ -753,8 +1009,8 @@ headlines without a TODO state.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org62330eb" class="outline-2"&gt;
-&lt;h2 id="org62330eb"&gt;&lt;span class="section-number-2"&gt;5&lt;/span&gt; Deadlines and appointments: displaying time-specific information in the agenda&lt;/h2&gt;
+&lt;div id="outline-container-org92f7ed0" class="outline-2"&gt;
+&lt;h2 id="org92f7ed0"&gt;&lt;span class="section-number-2"&gt;5&lt;/span&gt; Deadlines and appointments: displaying time-specific information in the agenda&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-5"&gt;
 &lt;p&gt;
 Sometimes the description of a task must contain information about
@@ -766,24 +1022,24 @@ started before a specific date or time.
 
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org76f1aa0"&gt;5.1. Timestamps&lt;/a&gt;
+&lt;li&gt;&lt;a href="#orga9cfcde"&gt;5.1. Timestamps&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org6e4a5a8"&gt;5.1.1. Deadlines&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org48f1946"&gt;5.1.2. Scheduled tasks&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org36f09fd"&gt;5.1.1. Deadlines&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb908726"&gt;5.1.2. Scheduled tasks&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#org423f65f"&gt;5.2. Displaying tasks in the Org Agenda&lt;/a&gt;
+&lt;li&gt;&lt;a href="#orgb52e686"&gt;5.2. Displaying tasks in the Org Agenda&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#orgf610a99"&gt;5.2.1. Viewing progress in the agenda&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgd4b6c13"&gt;5.2.1. Viewing progress in the agenda&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#orged1a887"&gt;5.3. Combining lists of tasks and agendas&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org84e71cf"&gt;5.3. Combining lists of tasks and agendas&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org76f1aa0" class="outline-3"&gt;
-&lt;h3 id="org76f1aa0"&gt;&lt;span class="section-number-3"&gt;5.1&lt;/span&gt; Timestamps&lt;/h3&gt;
+&lt;div id="outline-container-orga9cfcde" class="outline-3"&gt;
+&lt;h3 id="orga9cfcde"&gt;&lt;span class="section-number-3"&gt;5.1&lt;/span&gt; Timestamps&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-5-1"&gt;
 &lt;p&gt;
 Org comes with a very complete support for defining and manipulating
@@ -839,8 +1095,8 @@ Reference Manual: &lt;a href="https://orgmode.org/manual/Repeated-tasks.html"&gt
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org6e4a5a8" class="outline-4"&gt;
-&lt;h4 id="org6e4a5a8"&gt;&lt;span class="section-number-4"&gt;5.1.1&lt;/span&gt; Deadlines&lt;/h4&gt;
+&lt;div id="outline-container-org36f09fd" class="outline-4"&gt;
+&lt;h4 id="org36f09fd"&gt;&lt;span class="section-number-4"&gt;5.1.1&lt;/span&gt; Deadlines&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-5-1-1"&gt;
 &lt;p&gt;
 Sometimes we must remember that a task must be completed by a
@@ -859,8 +1115,8 @@ The above describes a project that must be completed by
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org48f1946" class="outline-4"&gt;
-&lt;h4 id="org48f1946"&gt;&lt;span class="section-number-4"&gt;5.1.2&lt;/span&gt; Scheduled tasks&lt;/h4&gt;
+&lt;div id="outline-container-orgb908726" class="outline-4"&gt;
+&lt;h4 id="orgb908726"&gt;&lt;span class="section-number-4"&gt;5.1.2&lt;/span&gt; Scheduled tasks&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-5-1-2"&gt;
 &lt;p&gt;
 In a similar way to deadlines, Org makes it easy to describe tasks
@@ -896,11 +1152,11 @@ you want to start working on an action item.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org423f65f" class="outline-3"&gt;
-&lt;h3 id="org423f65f"&gt;&lt;span class="section-number-3"&gt;5.2&lt;/span&gt; Displaying tasks in the Org Agenda&lt;/h3&gt;
+&lt;div id="outline-container-orgb52e686" class="outline-3"&gt;
+&lt;h3 id="orgb52e686"&gt;&lt;span class="section-number-3"&gt;5.2&lt;/span&gt; Displaying tasks in the Org Agenda&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-5-2"&gt;
 &lt;p&gt;
-In section &lt;a href="#org95281ac"&gt;4.1&lt;/a&gt;, the Org agenda dispatcher
+In section &lt;a href="#org078ae17"&gt;4.1&lt;/a&gt;, the Org agenda dispatcher
 (&lt;code&gt;M-x org-agenda&lt;/code&gt;) was introduced. This dispatcher offers several
 agenda commands that read agenda files (defined in the
 &lt;code&gt;org-agenda-files&lt;/code&gt; variable) and display some of their content in a
@@ -937,11 +1193,11 @@ Going forward in time is done hitting &lt;code&gt;f&lt;/code&gt;, backward with 
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgf610a99" class="outline-4"&gt;
-&lt;h4 id="orgf610a99"&gt;&lt;span class="section-number-4"&gt;5.2.1&lt;/span&gt; Viewing progress in the agenda&lt;/h4&gt;
+&lt;div id="outline-container-orgd4b6c13" class="outline-4"&gt;
+&lt;h4 id="orgd4b6c13"&gt;&lt;span class="section-number-4"&gt;5.2.1&lt;/span&gt; Viewing progress in the agenda&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-5-2-1"&gt;
 &lt;p&gt;
-In section &lt;a href="#org56a2251"&gt;3.2.1&lt;/a&gt;, we saw that changing the state of a
+In section &lt;a href="#orgff9e1de"&gt;3.2.1&lt;/a&gt;, we saw that changing the state of a
 task triggers the recording of the date and time at which this
 change occurred.  However, notice that in this case the inserted
 timestamp is delimited by square brackets instead of &lt;code&gt;&amp;lt;&lt;/code&gt; and &lt;code&gt;&amp;gt;&lt;/code&gt;.
@@ -954,7 +1210,7 @@ timestamps in the agenda, hit &lt;code&gt;v [&lt;/code&gt; in the Org-Agenda buf
 Showing inactive timestamps in the agenda can make it cluttered
 and therefore hard to read.  However, this makes for a good
 summary of what happened in a day/week, and when.  In my case,
-using the TODO states configuration introduced in &lt;a href="#org56a2251"&gt;3.2.1&lt;/a&gt;,
+using the TODO states configuration introduced in &lt;a href="#orgff9e1de"&gt;3.2.1&lt;/a&gt;,
 displaying inactive timestamp is a convenient way of getting a
 bird's eye view of
 &lt;/p&gt;
@@ -978,15 +1234,15 @@ up in today's agenda when displaying inactive timestamps.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orged1a887" class="outline-3"&gt;
-&lt;h3 id="orged1a887"&gt;&lt;span class="section-number-3"&gt;5.3&lt;/span&gt; Combining lists of tasks and agendas&lt;/h3&gt;
+&lt;div id="outline-container-org84e71cf" class="outline-3"&gt;
+&lt;h3 id="org84e71cf"&gt;&lt;span class="section-number-3"&gt;5.3&lt;/span&gt; Combining lists of tasks and agendas&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-5-3"&gt;
 &lt;p&gt;
 So far, we've learned how the Org agenda can be used to either display
 lists of tasks matching a specific tags/todo/properties query, or
 an agenda displaying timestamped tasks on a timeline.  However,
 customising &lt;code&gt;org-agenda-custom-commands&lt;/code&gt;, introduced above in
-section &lt;a href="#org021ad9e"&gt;4.3&lt;/a&gt;, it is possible to define new agenda
+section &lt;a href="#orgb552236"&gt;4.3&lt;/a&gt;, it is possible to define new agenda
 views that mix both list(s) of tasks and agenda(s).
 &lt;/p&gt;
 
@@ -1007,7 +1263,7 @@ the list of urgent tasks:
 &lt;/div&gt;
 &lt;p&gt;
 Defining composite agenda views is similar to defining custom
-single agenda views (see &lt;a href="#org021ad9e"&gt;4.3&lt;/a&gt; for a reminder),
+single agenda views (see &lt;a href="#orgb552236"&gt;4.3&lt;/a&gt; for a reminder),
 except that the third element of the list is itself a list of
 single agenda views, that makes the composite agenda.  In the above
 example, the agenda view is made of both the day's agenda (&lt;code&gt;agenda
@@ -1033,8 +1289,8 @@ little searching should give give lots of ideas.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfd95a22" class="outline-2"&gt;
-&lt;h2 id="orgfd95a22"&gt;&lt;span class="section-number-2"&gt;6&lt;/span&gt; Capturing tasks&lt;/h2&gt;
+&lt;div id="outline-container-org6749516" class="outline-2"&gt;
+&lt;h2 id="org6749516"&gt;&lt;span class="section-number-2"&gt;6&lt;/span&gt; Capturing tasks&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-6"&gt;
 &lt;p&gt;
 The previous sections discussed the description and processing of
@@ -1067,31 +1323,31 @@ task.
 Again inspired from David Allen's GTD approach, the addition of new
 tasks and project is made of two distinct steps: &lt;i&gt;capturing&lt;/i&gt; and
 &lt;i&gt;processing&lt;/i&gt;.  The next two sections are all about the former.
-Section &lt;a href="#orge65b6e9"&gt;6.3&lt;/a&gt; then focuses on
+Section &lt;a href="#org0810351"&gt;6.3&lt;/a&gt; then focuses on
 processing captured tasks.
 &lt;/p&gt;
 
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org09f9b3a"&gt;6.1. Writing directly in the Org file&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org2c7a11a"&gt;6.2. Using &lt;code&gt;org-capture&lt;/code&gt;&lt;/a&gt;
+&lt;li&gt;&lt;a href="#orgbdfab6d"&gt;6.1. Writing directly in the Org file&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org3e3bd26"&gt;6.2. Using &lt;code&gt;org-capture&lt;/code&gt;&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#orgbb651e6"&gt;6.2.1. Writing capture templates&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org606627f"&gt;6.2.2. More examples of custom capture templates&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org98d8e66"&gt;6.2.1. Writing capture templates&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org5e8852d"&gt;6.2.2. More examples of custom capture templates&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;a href="#orge65b6e9"&gt;6.3. Processing captured tasks with org-refile&lt;/a&gt;
+&lt;li&gt;&lt;a href="#org0810351"&gt;6.3. Processing captured tasks with org-refile&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#org25dd4a1"&gt;6.3.1. &lt;code&gt;org-refile&lt;/code&gt; to move headlines around consistently&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org39fe741"&gt;6.3.2. Clearing the inbox with &lt;code&gt;org-refile&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org4cf4bec"&gt;6.3.1. &lt;code&gt;org-refile&lt;/code&gt; to move headlines around consistently&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org6157191"&gt;6.3.2. Clearing the inbox with &lt;code&gt;org-refile&lt;/code&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org09f9b3a" class="outline-3"&gt;
-&lt;h3 id="org09f9b3a"&gt;&lt;span class="section-number-3"&gt;6.1&lt;/span&gt; Writing directly in the Org file&lt;/h3&gt;
+&lt;div id="outline-container-orgbdfab6d" class="outline-3"&gt;
+&lt;h3 id="orgbdfab6d"&gt;&lt;span class="section-number-3"&gt;6.1&lt;/span&gt; Writing directly in the Org file&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-6-1"&gt;
 &lt;p&gt;
 New tasks come in the form of blurry ideas, often a couple of
@@ -1118,8 +1374,8 @@ push the deadline for that grant proposal by a week, would you?
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org2c7a11a" class="outline-3"&gt;
-&lt;h3 id="org2c7a11a"&gt;&lt;span class="section-number-3"&gt;6.2&lt;/span&gt; Using &lt;code&gt;org-capture&lt;/code&gt;&lt;/h3&gt;
+&lt;div id="outline-container-org3e3bd26" class="outline-3"&gt;
+&lt;h3 id="org3e3bd26"&gt;&lt;span class="section-number-3"&gt;6.2&lt;/span&gt; Using &lt;code&gt;org-capture&lt;/code&gt;&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-6-2"&gt;
 &lt;p&gt;
 Both pitfalls can be avoided by using &lt;code&gt;org-capture&lt;/code&gt;.  This function
@@ -1166,8 +1422,8 @@ file.
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgbb651e6" class="outline-4"&gt;
-&lt;h4 id="orgbb651e6"&gt;&lt;span class="section-number-4"&gt;6.2.1&lt;/span&gt; Writing capture templates&lt;/h4&gt;
+&lt;div id="outline-container-org98d8e66" class="outline-4"&gt;
+&lt;h4 id="org98d8e66"&gt;&lt;span class="section-number-4"&gt;6.2.1&lt;/span&gt; Writing capture templates&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-6-2-1"&gt;
 &lt;p&gt;
 The default capture template may be useful to some, but
@@ -1235,8 +1491,8 @@ the capture buffer.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org606627f" class="outline-4"&gt;
-&lt;h4 id="org606627f"&gt;&lt;span class="section-number-4"&gt;6.2.2&lt;/span&gt; More examples of custom capture templates&lt;/h4&gt;
+&lt;div id="outline-container-org5e8852d" class="outline-4"&gt;
+&lt;h4 id="org5e8852d"&gt;&lt;span class="section-number-4"&gt;6.2.2&lt;/span&gt; More examples of custom capture templates&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-6-2-2"&gt;
 &lt;p&gt;
 If you've skimmed through the documentation for &lt;code&gt;org-capture&lt;/code&gt;,
@@ -1271,8 +1527,8 @@ but here are two more:
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orge65b6e9" class="outline-3"&gt;
-&lt;h3 id="orge65b6e9"&gt;&lt;span class="section-number-3"&gt;6.3&lt;/span&gt; Processing captured tasks with org-refile&lt;/h3&gt;
+&lt;div id="outline-container-org0810351" class="outline-3"&gt;
+&lt;h3 id="org0810351"&gt;&lt;span class="section-number-3"&gt;6.3&lt;/span&gt; Processing captured tasks with org-refile&lt;/h3&gt;
 &lt;div class="outline-text-3" id="text-6-3"&gt;
 &lt;p&gt;
 Capturing must a fast, minimally disruptive action.  The main
@@ -1322,8 +1578,8 @@ is between headlines in a single file, or across files.
 &lt;/p&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org25dd4a1" class="outline-4"&gt;
-&lt;h4 id="org25dd4a1"&gt;&lt;span class="section-number-4"&gt;6.3.1&lt;/span&gt; &lt;code&gt;org-refile&lt;/code&gt; to move headlines around consistently&lt;/h4&gt;
+&lt;div id="outline-container-org4cf4bec" class="outline-4"&gt;
+&lt;h4 id="org4cf4bec"&gt;&lt;span class="section-number-4"&gt;6.3.1&lt;/span&gt; &lt;code&gt;org-refile&lt;/code&gt; to move headlines around consistently&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-6-3-1"&gt;
 &lt;p&gt;
 &lt;code&gt;org-refile&lt;/code&gt; essentially is a convenience wrapper around cutting
@@ -1368,8 +1624,8 @@ the target headline will be selected among a set made of
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org39fe741" class="outline-4"&gt;
-&lt;h4 id="org39fe741"&gt;&lt;span class="section-number-4"&gt;6.3.2&lt;/span&gt; Clearing the inbox with &lt;code&gt;org-refile&lt;/code&gt;&lt;/h4&gt;
+&lt;div id="outline-container-org6157191" class="outline-4"&gt;
+&lt;h4 id="org6157191"&gt;&lt;span class="section-number-4"&gt;6.3.2&lt;/span&gt; Clearing the inbox with &lt;code&gt;org-refile&lt;/code&gt;&lt;/h4&gt;
 &lt;div class="outline-text-4" id="text-6-3-2"&gt;
 &lt;p&gt;
 My main use of &lt;code&gt;org-refile&lt;/code&gt; is to move processed tasks/projects
@@ -1412,8 +1668,8 @@ that file.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org94b69f0" class="outline-2"&gt;
-&lt;h2 id="org94b69f0"&gt;&lt;span class="section-number-2"&gt;7&lt;/span&gt; Archiving&lt;/h2&gt;
+&lt;div id="outline-container-orgcf548a8" class="outline-2"&gt;
+&lt;h2 id="orgcf548a8"&gt;&lt;span class="section-number-2"&gt;7&lt;/span&gt; Archiving&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-7"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Archiving is basically refiling to the archive file&lt;/li&gt;
@@ -1427,8 +1683,8 @@ See &lt;a href="https://orgmode.org/manual/Archiving.html"&gt;9.2 Archiving&lt;/
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgcfa6959" class="outline-2"&gt;
-&lt;h2 id="orgcfa6959"&gt;&lt;span class="section-number-2"&gt;8&lt;/span&gt; Further topics&lt;/h2&gt;
+&lt;div id="outline-container-org6a78ae9" class="outline-2"&gt;
+&lt;h2 id="org6a78ae9"&gt;&lt;span class="section-number-2"&gt;8&lt;/span&gt; Further topics&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-8"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;&lt;a href="https://orgmode.org/manual/Attachments.html"&gt;Attachments&lt;/a&gt;&lt;/li&gt;

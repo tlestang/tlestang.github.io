@@ -1,70 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-  	<title>Thibault Lestang - Code reviews in academia</title>
-	<meta charset="utf-8" />
-	<link rel="stylesheet" href="/theme/css/rdark.css"/>
-	<link rel="stylesheet" type="text/css" href="/theme/css/main.css"/>
-	<link rel="stylesheet" type="text/css" href="/theme/css/org-htmlize.css"/>
-	<link rel="stylesheet" type="text/css" href="/theme/css/code-blocks.css"/>
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Thibault Lestang - blog</title><link href="/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2021-02-04T00:00:00+00:00</updated><entry><title>Code reviews in academia</title><link href="/blog/code-review.html" rel="alternate"></link><published>2021-02-04T00:00:00+00:00</published><updated>2021-02-04T00:00:00+00:00</updated><author><name>Thibault Lestang</name></author><id>tag:None,2021-02-04:/blog/code-review.html</id><summary type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org09c1ed7"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga144818"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org531948c"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org5d2aafe"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 
+&lt;div id="outline-container-org09c1ed7" class="outline-2"&gt;
+&lt;h2 id="org09c1ed7"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+Code reviewing is a standard practice among professional software
+developers. Generally, this means code is subject to human feedback,
+complementary to machine …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#org09c1ed7"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga144818"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org531948c"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org5d2aafe"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 
-
-
-
-    </head>
-    <body id="index" class="home">
-	<header id="banner" class="body">
-            <a href="/">
-		Thibault Lestang
-	    </a>
-	    <nav id="menu"><ul>
-		<li>
-		    <a href="/">About</a>
-		</li>
-		<li>
-		    <a href="/pages/projects.html">Projects</a>
-		</li>
-		<li>
-		    <a href="/blog">Blog</a>
-		</li>
-            </ul></nav><!-- /#menu -->
-	</header><!-- /#banner -->
-<section id="content" class="body">
-  <header>
-    <h2 class="entry-title">
-      <a href="/drafts/code-review.html" rel="bookmark"
-         title="Permalink to Code reviews in academia">Code reviews in academia</a></h2>
- 
-  </header>
-  <footer class="post-info">
-    <time class="published" datetime="2021-01-26T00:00:00+00:00">
-      Tue 26 January 2021
-    </time>
-    <address class="vcard author">
-      By           <a class="url fn" href="/author/thibault-lestang.html">Thibault Lestang</a>
-    </address>
-    <div class="category">
-        Category: <a href="/category/blog.html">blog</a>
-    </div>
-  </footer><!-- /.post-info -->
-  <div class="entry-content">
-    <div id="table-of-contents">
-<h2>Table of Contents</h2>
-<div id="text-table-of-contents">
-<ul>
-<li><a href="#org7c2f4b8">1. Research software isn't reviewed</a></li>
-<li><a href="#org87f6fbd">2. Researchers <i>are</i> developers</a></li>
-<li><a href="#org8b8df22">3. Code reviewing is not bug-hunting</a></li>
-<li><a href="#org6bf4c8f">4. Distributing knowledge and experience</a></li>
-</ul>
-</div>
-</div>
-
-<div id="outline-container-org7c2f4b8" class="outline-2">
-<h2 id="org7c2f4b8"><span class="section-number-2">1</span> Research software isn't reviewed</h2>
-<div class="outline-text-2" id="text-1">
-<p>
+&lt;div id="outline-container-org09c1ed7" class="outline-2"&gt;
+&lt;h2 id="org09c1ed7"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
 Code reviewing is a standard practice among professional software
 developers. Generally, this means code is subject to human feedback,
 complementary to machine feedback such as output from compilers,
@@ -76,9 +44,9 @@ a way that facilitates its study and reuse by other developers. In a
 commercial context, this could mean ensuring that the software remains
 easy to maintain, update and extend.  Therefore, code reviewing
 is ultimately about software sustainability.
-</p>
+&lt;/p&gt;
 
-<p>
+&lt;p&gt;
 Code reviews also are a key component of open source software
 development.  Organised around platforms such as GitHub or GitLab,
 contributors to open source projects propose and discuss their
@@ -87,9 +55,9 @@ simple idea that contributed code isn't set in stone, and that
 several rounds of feedback from other project contributors will be
 necessary for it the be ready to be integrated into the project's
 codebase.
-</p>
+&lt;/p&gt;
 
-<p>
+&lt;p&gt;
 Meanwhile, in academia, research code is almost never reviewed.
 Despite the ever-increasing reliance of modern research on software,
 software quality remains a widely overlooked topic, if not completely
@@ -101,14 +69,14 @@ ready to dedicate time to writing good software.  In fact, spending
 too much effort into software development is often considered harmful
 to a researcher's career development, as it is detrimental to their
 publication rate.
-</p>
-</div>
-</div>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 
-<div id="outline-container-org87f6fbd" class="outline-2">
-<h2 id="org87f6fbd"><span class="section-number-2">2</span> Researchers <i>are</i> developers</h2>
-<div class="outline-text-2" id="text-2">
-<p>
+&lt;div id="outline-container-orga144818" class="outline-2"&gt;
+&lt;h2 id="orga144818"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
 In 2021, the situation is slowly evolving, and has been so over the
 past few years.  The "reproducibility crisis" opened many people's
 eyes (and continues to do so) to the fact that a significant number of
@@ -124,20 +92,20 @@ training in software engineering, often operating under high
 pressure. As a result, an increasing number of researchers experience
 the deep frustration of having to build upon poorly written,
 undocumented, and untested software. 
-</p>
+&lt;/p&gt;
 
-<p>
+&lt;p&gt;
 One upshot is that this results to an increasing awareness that
 cutting corners regarding software quality is counter productive, as
-this actually <i>slows down</i> research in the long run&#x2026; as well as in
+this actually &lt;i&gt;slows down&lt;/i&gt; research in the long run&amp;#x2026; as well as in
 the short run.  In most cases, unfortunately, the gap in software
 engineering knowledge is simply too big to fill for researchers,
 especially for those isolated and/or working in research groups where
 a suitable software engineering culture isn't established, and where
 mentors cannot be found and where feedback isn't available.
-</p>
+&lt;/p&gt;
 
-<p>
+&lt;p&gt;
 As survey conducted at the University of Oxford in 2018 shows that,
 among 375 scientists, 75% declared they could do with expert software
 engineering help.  The first training course organised by the Oxford
@@ -150,16 +118,16 @@ that "there must be a better way of doing this".  Training courses are
 part of the solution, but cannot be the whole of it. The research
 community must seize software development as part and parcel of the
 research effort, as opposed to view it as a foreign activity that
-researchers can only be amateurs in.  Researchers <i>are</i> software
+researchers can only be amateurs in.  Researchers &lt;i&gt;are&lt;/i&gt; software
 developers.
-</p>
-</div>
-</div>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 
-<div id="outline-container-org8b8df22" class="outline-2">
-<h2 id="org8b8df22"><span class="section-number-2">3</span> Code reviewing is not bug-hunting</h2>
-<div class="outline-text-2" id="text-3">
-<p>
+&lt;div id="outline-container-org531948c" class="outline-2"&gt;
+&lt;h2 id="org531948c"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Code reviewing is not bug-hunting&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
 Consequently, it should be common practice for researchers to "talk
 code". Currently, the opposite is true, as most research software is
 written in isolation, almost hidden from others' gaze, in fear that
@@ -169,11 +137,11 @@ portion of research software could be written in a better way.  On the
 other hand, researchers tend to be too harsh on themselves, by
 forgetting (or not being aware of the fact that) writing quality code
 is an iterative process that greatly benefits from other people's
-input &#x2013; especially when the original author has limited software
+input &amp;#x2013; especially when the original author has limited software
 engineering experience themselves.
-</p>
+&lt;/p&gt;
 
-<p>
+&lt;p&gt;
 This is a call for code reviewing in academia.  Instead of hiding
 analysis scripts, hoping nobody will notice they are unreadable for
 anyone outside the project, these should be reviewed by other
@@ -186,13 +154,13 @@ academics.  There is a lot to be gained in reviewing a colleague'
 code: new ways of writing software, programming tricks or elegant
 designs, but also a refresher on things to avoid, such as bad naming
 or monster functions.
-</p>
+&lt;/p&gt;
 
-<p>
+&lt;p&gt;
 It is worth stressing that beginner programmers can make very good
 reviewers, and therefore reviewing isn't limited to researchers with
 substantial programming experience.  Generally, the purpose of code
-reviewing &#x2013; at least in academia &#x2013; is not to catch bugs or
+reviewing &amp;#x2013; at least in academia &amp;#x2013; is not to catch bugs or
 programming mistakes. To some extent, machines can already help with
 this.  Rather, the purpose of a code review is to flag up those things
 that make the code difficult to read, debug, reuse and extend. From a
@@ -203,14 +171,14 @@ are able to understand the program.  Beginner programmers are
 therefore well placed to review research software and should
 feel encouraged to do so.  And of course, reviewing "real-life"
 research code makes for a fantastic learning opportunity for them.
-</p>
-</div>
-</div>
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 
-<div id="outline-container-org6bf4c8f" class="outline-2">
-<h2 id="org6bf4c8f"><span class="section-number-2">4</span> Distributing knowledge and experience</h2>
-<div class="outline-text-2" id="text-4">
-<p>
+&lt;div id="outline-container-org5d2aafe" class="outline-2"&gt;
+&lt;h2 id="org5d2aafe"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Distributing knowledge and experience&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;p&gt;
 In academia, programming and software engineering skills are both
 scarce and unevenly distributed.  This is true at the level of both
 individuals and academic disciplines.  In this context, another
@@ -225,18 +193,18 @@ well as more efficient and fruitful teamwork. But above all, it
 prevents the codebase from falling apart as some members of the team move
 on to work on other projects.  With regular code reviews, there will
 always be someone in the group who is able to mentor new recruits.
-</p>
+&lt;/p&gt;
 
-<p>
+&lt;p&gt;
 Going beyond research groups, code reviewing has the potential to
 spread software engineering practices across disciplines.  As many
 computational approaches are common to several fields, a biologist may
 be well suited to provide insightful feedback on the readability and
-modularity of a code written by a physicist, and <i>vice versa</i>.
+modularity of a code written by a physicist, and &lt;i&gt;vice versa&lt;/i&gt;.
 Interdisciplinary code reviews enable knowledge transfer at
 a larger scale, enriching different research communities from one
 another's experience and practices.  This is one of the core
-motivations behind OxCRN, an initiative at the University of Oxford
+motivations behind the Oxford Code Review Network&lt;sup&gt;&lt;a id="fnr.1" class="footref" href="#fn.1"&gt;1&lt;/a&gt;&lt;/sup&gt;, an initiative at the University of Oxford
 that promotes and facilitates code reviews between researchers across
 the university. Code reviews involving researchers from different
 fields are particularly important since few communities boast the greatest
@@ -244,9 +212,9 @@ concentration of programming and software engineering skills (for instance
 particle physics), and democratising interdisciplinary code reviews
 would make the rest of the research community benefit from that
 expertise.
-</p>
+&lt;/p&gt;
 
-<p>
+&lt;p&gt;
 In a world where research software is recognised as a key component of
 research, code reviews would certainly be a widespread practice among
 academics, just like it is for commercial software developers.
@@ -259,9 +227,9 @@ code", both teaching or learning from colleagues. Although these
 meetings can go relatively unnoticed in researcher's daily schedule,
 they greatly impact the readability, debugability and reusability of
 research software.  
-</p>
+&lt;/p&gt;
 
-<p>
+&lt;p&gt;
 Why is that important? Because poor software quality cripples
 research, in both the short and long term.  By contrast, quality
 software quality accelerates research: it makes it more efficient,
@@ -273,12 +241,18 @@ increasing number of research fields heavily relying on software
 development, code reviews enable knowledge transfer across
 disciplines.  This can lead to the adoption of new practices inspired
 from other fields of research, but also to transdisciplinary research
-collaborations&#x2026; what's not to like about this?
-</p>
-</div>
-</div>
+collaborations&amp;#x2026; what's not to like about this?
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="footnotes"&gt;
+&lt;h2 class="footnotes"&gt;Footnotes: &lt;/h2&gt;
+&lt;div id="text-footnotes"&gt;
 
-  </div><!-- /.entry-content -->
-</section>
-    </body>
-</html>
+&lt;div class="footdef"&gt;&lt;sup&gt;&lt;a id="fn.1" class="footnum" href="#fnr.1"&gt;1&lt;/a&gt;&lt;/sup&gt; &lt;div class="footpara"&gt;&lt;p class="footpara"&gt;
+&lt;a href="https://github.com/OxfordCodeReviewNet/forum"&gt;https://github.com/OxfordCodeReviewNet/forum&lt;/a&gt; 
+&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;
+
+
+&lt;/div&gt;
+&lt;/div&gt;</content><category term="blog"></category></entry></feed>
