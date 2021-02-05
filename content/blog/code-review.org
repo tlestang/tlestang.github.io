@@ -1,6 +1,6 @@
 #+TITLE: Code reviews in academia
-#+PROPERTY: STATUS draft
-#+DATE: <2021-01-26 Tue>
+#+PROPERTY: STATUS published
+#+DATE: <2021-02-04 Tue>
 
 * Research software isn't reviewed
 
@@ -146,7 +146,7 @@ modularity of a code written by a physicist, and /vice versa/.
 Interdisciplinary code reviews enable knowledge transfer at
 a larger scale, enriching different research communities from one
 another's experience and practices.  This is one of the core
-motivations behind OxCRN, an initiative at the University of Oxford
+motivations behind the Oxford Code Review Network[fn:1], an initiative at the University of Oxford
 that promotes and facilitates code reviews between researchers across
 the university. Code reviews involving researchers from different
 fields are particularly important since few communities boast the greatest
@@ -180,3 +180,7 @@ development, code reviews enable knowledge transfer across
 disciplines.  This can lead to the adoption of new practices inspired
 from other fields of research, but also to transdisciplinary research
 collaborations... what's not to like about this?
+
+* Footnotes
+
+[fn:1]https://github.com/OxfordCodeReviewNet/forum 
