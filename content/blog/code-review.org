@@ -64,14 +64,14 @@ especially for those isolated and/or working in research groups where
 a suitable software engineering culture isn't established, and where
 mentors cannot be found and where feedback isn't available.
 
-As survey conducted at the University of Oxford in 2018 shows that,
+As [[https://www.rse.ox.ac.uk/rse_post/survey_results/][survey]] conducted at the University of Oxford in 2018 shows that,
 among 375 scientists, 75% declared they could do with expert software
 engineering help.  The first training course organised by the Oxford
 Research Software Engineering group for researchers at Oxford,
 focusing on version control, was fully booked in about 20 minutes (~
 30 seats), despite very limited advertising.  This illustrates that a
 large majority of researchers are not happy with the way research
-software is developed, and there often consensus on the fact
+software is developed, and there is often a consensus on the fact
 that "there must be a better way of doing this".  Training courses are
 part of the solution, but cannot be the whole of it. The research
 community must seize software development as part and parcel of the
@@ -146,7 +146,7 @@ modularity of a code written by a physicist, and /vice versa/.
 Interdisciplinary code reviews enable knowledge transfer at
 a larger scale, enriching different research communities from one
 another's experience and practices.  This is one of the core
-motivations behind the Oxford Code Review Network[fn:1], an initiative at the University of Oxford
+motivations behind the [[https://github.com/OxfordCodeReviewNet/forum][Oxford Code Review Network]], an initiative at the University of Oxford
 that promotes and facilitates code reviews between researchers across
 the university. Code reviews involving researchers from different
 fields are particularly important since few communities boast the greatest
@@ -170,7 +170,7 @@ research software.
 
 Why is that important? Because poor software quality cripples
 research, in both the short and long term.  By contrast, quality
-software quality accelerates research: it makes it more efficient,
+software accelerates research: it makes it more efficient,
 more open, more collaborative and more reproducible.  Code reviews
 also spread programming and software engineering experience,
 contributing to the education of future generations of researchers and
@@ -181,6 +181,3 @@ disciplines.  This can lead to the adoption of new practices inspired
 from other fields of research, but also to transdisciplinary research
 collaborations... what's not to like about this?
 
-* Footnotes
-
-[fn:1]https://github.com/OxfordCodeReviewNet/forum 
