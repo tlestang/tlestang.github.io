@@ -1,5 +1,5 @@
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/htmlize-20191111.2130"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/org-20200803"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/htmlize-20200816.746"))
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/elpa/org-20200817"))
 
 (require 'htmlize)
 (require 'ox)
