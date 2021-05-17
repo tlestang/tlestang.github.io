@@ -3,16 +3,16 @@
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#orgcebeb00"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgfa4e79b"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgdd34a41"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgc14740e"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org6c5b0e9"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb1efb0e"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgec278f3"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org79167f0"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcebeb00" class="outline-2"&gt;
-&lt;h2 id="orgcebeb00"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
+&lt;div id="outline-container-org6c5b0e9" class="outline-2"&gt;
+&lt;h2 id="org6c5b0e9"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-1"&gt;
 &lt;p&gt;
 Code reviewing is a standard practice among professional software
@@ -21,16 +21,16 @@ complementary to machine …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</summary><content
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#orgcebeb00"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgfa4e79b"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgdd34a41"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orgc14740e"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org6c5b0e9"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb1efb0e"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgec278f3"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org79167f0"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgcebeb00" class="outline-2"&gt;
-&lt;h2 id="orgcebeb00"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
+&lt;div id="outline-container-org6c5b0e9" class="outline-2"&gt;
+&lt;h2 id="org6c5b0e9"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-1"&gt;
 &lt;p&gt;
 Code reviewing is a standard practice among professional software
@@ -73,8 +73,8 @@ publication rate.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgfa4e79b" class="outline-2"&gt;
-&lt;h2 id="orgfa4e79b"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/h2&gt;
+&lt;div id="outline-container-orgb1efb0e" class="outline-2"&gt;
+&lt;h2 id="orgb1efb0e"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-2"&gt;
 &lt;p&gt;
 In 2021, the situation is slowly evolving, and has been so over the
@@ -124,8 +124,8 @@ developers.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgdd34a41" class="outline-2"&gt;
-&lt;h2 id="orgdd34a41"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Code reviewing is not bug-hunting&lt;/h2&gt;
+&lt;div id="outline-container-orgec278f3" class="outline-2"&gt;
+&lt;h2 id="orgec278f3"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Code reviewing is not bug-hunting&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-3"&gt;
 &lt;p&gt;
 Consequently, it should be common practice for researchers to "talk
@@ -175,8 +175,8 @@ research code makes for a fantastic learning opportunity for them.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgc14740e" class="outline-2"&gt;
-&lt;h2 id="orgc14740e"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Distributing knowledge and experience&lt;/h2&gt;
+&lt;div id="outline-container-org79167f0" class="outline-2"&gt;
+&lt;h2 id="org79167f0"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Distributing knowledge and experience&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-4"&gt;
 &lt;p&gt;
 In academia, programming and software engineering skills are both
