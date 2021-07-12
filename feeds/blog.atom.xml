@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Thibault Lestang - blog</title><link href="/" rel="alternate"></link><link href="/feeds/blog.atom.xml" rel="self"></link><id>/</id><updated>2021-06-13T00:00:00+01:00</updated><entry><title>Custom UK holidays in the Emacs calendar</title><link href="/blog/customizing-calendar.html" rel="alternate"></link><published>2021-06-13T00:00:00+01:00</published><updated>2021-06-13T00:00:00+01:00</updated><author><name>Thibault Lestang</name></author><id>tag:None,2021-06-13:/blog/customizing-calendar.html</id><summary type="html">&lt;p&gt;
+I've always used org-mode for managing and displaying my calendar, but
+it's worth noting that Emacs comes with a built-in calendar that
+already offers a lot of functionalities and customizations.  Its
+documentation sits within the Emacs manual (&lt;code&gt;C-h i m Emacs RET g
+Calendar/Diary RET&lt;/code&gt;).
+&lt;/p&gt;
+
+&lt;p&gt;
+Among other things, the …&lt;/p&gt;</summary><content type="html">&lt;p&gt;
+I've always used org-mode for managing and displaying my calendar, but
+it's worth noting that Emacs comes with a built-in calendar that
+already offers a lot of functionalities and customizations.  Its
+documentation sits within the Emacs manual (&lt;code&gt;C-h i m Emacs RET g
+Calendar/Diary RET&lt;/code&gt;).
+&lt;/p&gt;
+
+&lt;p&gt;
+Among other things, the Emacs calendar comes with &lt;i&gt;a lot&lt;/i&gt; of
+predefined holidays that can be displayed in the calendar buffer (by
+pressing &lt;code&gt;x&lt;/code&gt;) or listed using e.g. &lt;code&gt;calendar-holidays&lt;/code&gt;.  Dates of
+holidays are computed based on the value of several lists such as
+&lt;code&gt;holiday-general-holidays&lt;/code&gt;, &lt;code&gt;holiday-islamic-holidays&lt;/code&gt; or
+&lt;code&gt;holiday-christian-holidays&lt;/code&gt;. It is possible to customize these, but
+the calendar offer two variables &lt;code&gt;holiday-local-holidays&lt;/code&gt; and
+&lt;code&gt;holiday-other-holidays&lt;/code&gt; that are meant to be customized.
+&lt;/p&gt;
+
+&lt;p&gt;
+Let's see how we can customize the calendar to display the dates for
+public holidays in the United Kingdom. One potential difficulty is
+that, in the UK, public holidays that fall inside a weekend are pushed
+back to the first next non-holiday week day. But with the power of
+Lisp in our hands, I'm not to worried..
+&lt;/p&gt;
+
+&lt;div id="outline-container-orgd325c5d" class="outline-2"&gt;
+&lt;h2 id="orgd325c5d"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Setting UK bank holidays&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+Disable the default holidays. I'm not interested in most of them,
+and the few Christian holidays relevant when living in the UK are
+computed further below.
+&lt;/p&gt;
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-emacs-lisp"&gt;(&lt;span class="org-keyword"&gt;setq&lt;/span&gt; holiday-general-holidays nil
+      holiday-bahai-holidays nil
+      holiday-hebrew-holidays nil
+      holiday-christian-holidays nil
+      holiday-islamic-holidays nil
+      holiday-oriental-holidays nil)
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Next we define the holiday list for the UK bank holidays:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Christmas&lt;/li&gt;
+&lt;li&gt;Boxing Day&lt;/li&gt;
+&lt;li&gt;New Year's day&lt;/li&gt;
+&lt;li&gt;Good Friday&lt;/li&gt;
+&lt;li&gt;Easter Monday&lt;/li&gt;
+&lt;li&gt;Early May bank holiday&lt;/li&gt;
+&lt;li&gt;Spring bank holiday&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;
+If any of the above fall on a Saturday of Sunday, a substitute bank
+holiday day is applied on the next non-holiday week day. It's
+usually the next Monday, except when Boxing Day or Christmas day
+falls on a Sunday, in which case the substitute falls on a
+Tuesday. In this case Monday is already a holiday, or substitute
+holiday.
+&lt;/p&gt;
+
+&lt;p&gt;
+Below are two functions &lt;code&gt;find-next-weekday&lt;/code&gt; and &lt;code&gt;set-double-holiday&lt;/code&gt;
+that deal with finding the final date for a bank holiday,
+substituting to the next non-holiday weekday if required:
+&lt;/p&gt;
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-emacs-lisp"&gt;(&lt;span class="org-keyword"&gt;defun&lt;/span&gt; &lt;span class="org-function-name"&gt;is-weekend&lt;/span&gt; (date)
+  &lt;span class="org-doc"&gt;"Evaluates to t or nil whether of not DATE falls in a weekend.&lt;/span&gt;
+&lt;span class="org-doc"&gt;DATE is a list of the form (MONTH DAY YEAR)"&lt;/span&gt;
+  (&lt;span class="org-keyword"&gt;or&lt;/span&gt; (equal (calendar-day-of-week date) 6)
+      (equal (calendar-day-of-week date) 0)))
+
+(&lt;span class="org-keyword"&gt;defun&lt;/span&gt; &lt;span class="org-function-name"&gt;add-one-day&lt;/span&gt; (date)
+  &lt;span class="org-doc"&gt;"Evaluates to (MONTH DAY YEAR) for the day following DATE. DATE should also &lt;/span&gt;
+&lt;span class="org-doc"&gt;be provided in the (MONTH DAY YEAR) format"&lt;/span&gt;
+  (calendar-gregorian-from-absolute
+   (+ (calendar-absolute-from-gregorian date) 1)))
+
+(&lt;span class="org-keyword"&gt;defun&lt;/span&gt; &lt;span class="org-function-name"&gt;find-next-weekday&lt;/span&gt; (date)
+  &lt;span class="org-doc"&gt;"Evaluate to (MONTH DAY YEAR) for the first next weekday after or including DATE.&lt;/span&gt;
+
+&lt;span class="org-doc"&gt;If DATE corresponds to a Saturday or Sunday, then evaluates to&lt;/span&gt;
+&lt;span class="org-doc"&gt;following Monday.  If DATE is a weekday, then evaluates to DATE.&lt;/span&gt;
+
+&lt;span class="org-doc"&gt;This function is useful to compute bank holidays in the United&lt;/span&gt;
+&lt;span class="org-doc"&gt;Kingdom, which are pushed to first following non-bank holiday&lt;/span&gt;
+&lt;span class="org-doc"&gt;weekday (ususally Monday) if the bank holiday falls inside a&lt;/span&gt;
+&lt;span class="org-doc"&gt;weekend. Caveat: do not use function to compute the substitute&lt;/span&gt;
+&lt;span class="org-doc"&gt;day for a Sunday bank holiday that follows a Saturday bank&lt;/span&gt;
+&lt;span class="org-doc"&gt;holiday (e.g. boxing day on a Sunday) or the substitute day for a&lt;/span&gt;
+&lt;span class="org-doc"&gt;Saturday bank holiday t hat precedes a Monday bank&lt;/span&gt;
+&lt;span class="org-doc"&gt;holiday (e.g. Christmas day on a Saturday). See functions&lt;/span&gt;
+&lt;span class="org-doc"&gt;`set-boxing-day` and `set-christmas-day` for dealing with these&lt;/span&gt;
+&lt;span class="org-doc"&gt;special cases."&lt;/span&gt;
+  (&lt;span class="org-keyword"&gt;let&lt;/span&gt; ((next-day-date
+         (add-one-day date)))
+    (&lt;span class="org-keyword"&gt;if&lt;/span&gt; (is-weekend date)
+        (find-next-weekday next-day-date)
+      date)))
+
+(&lt;span class="org-keyword"&gt;defun&lt;/span&gt; &lt;span class="org-function-name"&gt;set-double-holiday&lt;/span&gt; (date)
+  &lt;span class="org-doc"&gt;"Evaluates to the (potentially substitute) date for a holiday&lt;/span&gt;
+&lt;span class="org-doc"&gt;inside a holiday pair (e.g. Christmas Day followed by Boxing&lt;/span&gt;
+&lt;span class="org-doc"&gt;Day). &lt;/span&gt;
+
+&lt;span class="org-doc"&gt;If DATE is a Saturday, then substitute day is next Monday as&lt;/span&gt;
+&lt;span class="org-doc"&gt;usual.  If DATE is a Sunday, then substitute day is next Tuesday,&lt;/span&gt;
+&lt;span class="org-doc"&gt;because next Monday is already a bank holiday (Boxing Day) or&lt;/span&gt;
+&lt;span class="org-doc"&gt;substitute day (Christmas)."&lt;/span&gt;
+  (&lt;span class="org-keyword"&gt;cond&lt;/span&gt; ((equal (calendar-day-of-week date) 6) (find-next-weekday date))
+        ((equal (calendar-day-of-week date) 0) (add-one-day (find-next-weekday date)))
+        (t                                     date)))
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Functions &lt;code&gt;find-next-weekday&lt;/code&gt; and &lt;code&gt;set-double-holiday&lt;/code&gt; are used in
+conjunction with &lt;code&gt;holiday-sexp&lt;/code&gt; like so:
+&lt;/p&gt;
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-emacs-lisp"&gt;(holiday-sexp '(set-double-holiday (list 12 25 year))
+              &lt;span class="org-string"&gt;"Christmas day bank holiday"&lt;/span&gt;)
+(holiday-sexp '(set-double-holiday (list 12 26 year))
+              &lt;span class="org-string"&gt;"Boxing day bank holiday"&lt;/span&gt;)
+(holiday-sexp '(find-next-weekday (list 01 01 year))
+              &lt;span class="org-string"&gt;"New Year's Day bank holiday"&lt;/span&gt;)
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+The Spring bank holiday is &lt;i&gt;almost always&lt;/i&gt; set on the last Monday of
+May.  But in the case of a royal Jubilee year this holiday in
+usually moved further in June to pair it with the Jubilee bank
+holiday.  A royal Jubilee occurs on the 10th and 25th anniversaries
+of the current British monarch's accession to the throne.  Not all
+the anniversaries are associated a bank holiday however, and it
+seems that this is left to the discretion of the government and/or
+royal family.  Even though she accessed the throne in February,
+Queen Elizabeth II's Jubilee are always celebrated in June at a date
+that seems to be confirmed only a year before.
+&lt;/p&gt;
+
+&lt;p&gt;
+That is to say that Jubilee dates and corresponding Spring bank
+holiday cannot be computed years in advance.  As a result, I simply
+do not set the Spring bank holiday if the current year is a Jubilee year.
+&lt;/p&gt;
+
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-emacs-lisp"&gt;(&lt;span class="org-keyword"&gt;defun&lt;/span&gt; &lt;span class="org-function-name"&gt;is-royal-jubilee&lt;/span&gt; (accession-year year)
+  &lt;span class="org-doc"&gt;"Evaluates to t or nil depending on whether or not year YEAR is&lt;/span&gt;
+&lt;span class="org-doc"&gt;a royal jubilee year for current British monarch who accessed the&lt;/span&gt;
+&lt;span class="org-doc"&gt;throne in year ACCESSION-YEAR. Jubilees occur on the 10th and&lt;/span&gt;
+&lt;span class="org-doc"&gt;25th anniversaries of the accession year. For instance Queen&lt;/span&gt;
+&lt;span class="org-doc"&gt;Elizabeth II's silver jubilee was held in 1977, 25 years after&lt;/span&gt;
+&lt;span class="org-doc"&gt;her accession in 1952. &lt;/span&gt;
+
+&lt;span class="org-doc"&gt;This function is useful to prevent the setting of the Spring bank&lt;/span&gt;
+&lt;span class="org-doc"&gt;holiday in case of a jubilee year.  In this case the Spring bank&lt;/span&gt;
+&lt;span class="org-doc"&gt;holiday is usually pushed from its usual date (last Monday of&lt;/span&gt;
+&lt;span class="org-doc"&gt;May) to later in June, to pair it with the jubilee bank&lt;/span&gt;
+&lt;span class="org-doc"&gt;holiday."&lt;/span&gt;
+    (&lt;span class="org-keyword"&gt;or&lt;/span&gt; (zerop (% (- displayed-year accession-year) 10))
+        (zerop (% (- displayed-year accession-year) 25))))
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+The current British monarch is Queen Elizabeth II who accessed the throne in 1952, so
+&lt;/p&gt;
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-emacs-lisp"&gt;(&lt;span class="org-keyword"&gt;if&lt;/span&gt; (not (is-royal-jubilee 1952 displayed-year))
+    (holiday-float 5 1 -1 &lt;span class="org-string"&gt;"Spring bank holiday"&lt;/span&gt;))
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Overall, we set the list of holiday forms for the UK:
+&lt;/p&gt;
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-emacs-lisp"&gt;(&lt;span class="org-keyword"&gt;setq&lt;/span&gt; tl/holiday-uk-holidays '((holiday-float 8 1 -1 &lt;span class="org-string"&gt;"Summer bank holiday"&lt;/span&gt;)
+                               (holiday-sexp '(set-double-holiday (list 12 25 year))
+                                             &lt;span class="org-string"&gt;"Christmas day bank holiday"&lt;/span&gt;)
+                               (holiday-sexp '(set-double-holiday (list 12 26 year))
+                                             &lt;span class="org-string"&gt;"Boxing day bank holiday"&lt;/span&gt;)
+                               (holiday-sexp '(find-next-weekday (list 01 01 year))
+                                             &lt;span class="org-string"&gt;"New Year's Day bank holiday"&lt;/span&gt;)
+                               (holiday-easter-etc -2 &lt;span class="org-string"&gt;"Good Friday"&lt;/span&gt;)
+                               (holiday-easter-etc 0 &lt;span class="org-string"&gt;"Easter Monday"&lt;/span&gt;)
+                               (holiday-float 5 1 1 &lt;span class="org-string"&gt;"Early May bank holiday"&lt;/span&gt;)
+                               (&lt;span class="org-keyword"&gt;if&lt;/span&gt; (not (is-royal-jubilee 1952 displayed-year))
+                                   (holiday-float 5 1 -1 &lt;span class="org-string"&gt;"Spring bank holiday"&lt;/span&gt;))))
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Lastly, we set the upcoming Platinum Jubilee bank holiday and
+corresponding Spring bank holiday is a special list of holiday forms
+&lt;/p&gt;
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-emacs-lisp"&gt;(&lt;span class="org-keyword"&gt;setq&lt;/span&gt; tl/holiday-exceptional-uk-holidays '((&lt;span class="org-keyword"&gt;if&lt;/span&gt; (equal displayed-year 2022)
+                                               (holiday-fixed 6 2 &lt;span class="org-string"&gt;"Spring bank holiday"&lt;/span&gt;))
+                                           (&lt;span class="org-keyword"&gt;if&lt;/span&gt; (equal displayed-year 2022)
+                                               (holiday-fixed 6 3 &lt;span class="org-string"&gt;"Platinum Jubilee bank holiday"&lt;/span&gt;))))
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Finally, we set the value of the &lt;code&gt;holiday-local-holidays&lt;/code&gt; variable
+for the holidays to appear in the calendar.
+&lt;/p&gt;
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-emacs-lisp"&gt;(&lt;span class="org-keyword"&gt;setq&lt;/span&gt; holiday-local-holidays (append
+                              tl/holiday-uk-holidays
+                              tl/holiday-exceptional-uk-holidays))
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga5bbeca" class="outline-2"&gt;
+&lt;h2 id="orga5bbeca"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Fête des Mères et Fête des Pères&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
+I want to add a shorter example of customizing the calendar, to
+illustrate how the built-in functions &lt;code&gt;holiday-float&lt;/code&gt;,
+&lt;code&gt;holiday-sexp&lt;/code&gt; and similar can be used to compare holiday dates for
+a given year.
+&lt;/p&gt;
+
+&lt;p&gt;
+I'd like to have the French Mothers' Day and Fathers' Day appear in
+my calendar. In France, Mother's Day is planned for the last
+Sunday of May, unless this conflicts with Pentecost (Whitsunday) in
+which case it is pushed to the first Sunday of June.
+&lt;/p&gt;
+
+&lt;p&gt;
+The date for Pentecost can be computed using the built-in function
+&lt;code&gt;holiday-easter-etc&lt;/code&gt;.  The following decides on the date for
+Mothers' Day based on whether or not the last Sunday of May is the
+Pentecost day.
+&lt;/p&gt;
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-emacs-lisp"&gt;(&lt;span class="org-keyword"&gt;if&lt;/span&gt; (equal (holiday-easter-etc 49 &lt;span class="org-string"&gt;"string"&lt;/span&gt;)
+           (holiday-float 5 0 -1 &lt;span class="org-string"&gt;"string"&lt;/span&gt;))
+    (holiday-float 6 0 1
+                   &lt;span class="org-string"&gt;"F&amp;#234;te des M&amp;#232;res (repouss&amp;#233; apr&amp;#232;s Pentec&amp;#244;te)"&lt;/span&gt;)
+  (holiday-float 5 0 -1 &lt;span class="org-string"&gt;"F&amp;#234;te des M&amp;#232;res"&lt;/span&gt;))
+&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;
+Because this function is supposed to be &lt;code&gt;eval&lt;/code&gt;'d when building the
+holiday list, it expects an argument &lt;code&gt;string&lt;/code&gt; for a description.
+When comparing dates we just set it to an arbitrary string &lt;code&gt;"string"&lt;/code&gt;.
+&lt;/p&gt;
+
+&lt;p&gt;
+In France, Fathers' Day is the third Sunday of June. Combining this
+with Mothers' Day above, we set the variable &lt;code&gt;holiday-other-holidays&lt;/code&gt;.
+&lt;/p&gt;
+&lt;div class="org-src-container"&gt;
+&lt;pre class="src src-emacs-lisp"&gt;(&lt;span class="org-keyword"&gt;setq&lt;/span&gt; holiday-other-holidays '((&lt;span class="org-keyword"&gt;if&lt;/span&gt; (equal (holiday-easter-etc 49 &lt;span class="org-string"&gt;"string"&lt;/span&gt;)
+                                          (holiday-float 5 0 -1 &lt;span class="org-string"&gt;"string"&lt;/span&gt;))
+                                   (holiday-float 6 0 1
+                                                  &lt;span class="org-string"&gt;"F&amp;#234;te des M&amp;#232;res (repouss&amp;#233; apr&amp;#232;s Pentec&amp;#244;te)"&lt;/span&gt;)
+                                 (holiday-float 5 0 -1 &lt;span class="org-string"&gt;"F&amp;#234;te des M&amp;#232;res"&lt;/span&gt;))
+                               (holiday-float 6 0 3 &lt;span class="org-string"&gt;"F&amp;#234;te des P&amp;#232;res"&lt;/span&gt;)))
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="blog"></category><category term="Emacs"></category></entry><entry><title>Code reviews in academia</title><link href="/blog/code-review.html" rel="alternate"></link><published>2021-02-04T00:00:00+00:00</published><updated>2021-02-04T00:00:00+00:00</updated><author><name>thibault</name></author><id>tag:None,2021-02-04:/blog/code-review.html</id><summary type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgb00202f"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga9d73b3"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org13b350a"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org8900562"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb00202f" class="outline-2"&gt;
+&lt;h2 id="orgb00202f"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+Code reviewing is a standard practice among professional software
+developers. Generally, this means code is subject to human feedback,
+complementary to machine …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="#orgb00202f"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orga9d73b3"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org13b350a"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org8900562"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orgb00202f" class="outline-2"&gt;
+&lt;h2 id="orgb00202f"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-1"&gt;
+&lt;p&gt;
+Code reviewing is a standard practice among professional software
+developers. Generally, this means code is subject to human feedback,
+complementary to machine feedback such as output from compilers,
+automatic linters and test runners. Code reviews are most useful to
+look at aspects of software quality for which feedback cannot be
+automated, such as software design or code readability.  In these
+cases, human feedback is crucial to ensure that the code is written in
+a way that facilitates its study and reuse by other developers. In a
+commercial context, this could mean ensuring that the software remains
+easy to maintain, update and extend.  Therefore, code reviewing
+is ultimately about software sustainability.
+&lt;/p&gt;
+
+&lt;p&gt;
+Code reviews also are a key component of open source software
+development.  Organised around platforms such as GitHub or GitLab,
+contributors to open source projects propose and discuss their
+contributions publicly. At the core of this development model is the
+simple idea that contributed code isn't set in stone, and that
+several rounds of feedback from other project contributors will be
+necessary for it the be ready to be integrated into the project's
+codebase.
+&lt;/p&gt;
+
+&lt;p&gt;
+Meanwhile, in academia, research code is almost never reviewed.
+Despite the ever-increasing reliance of modern research on software,
+software quality remains a widely overlooked topic, if not completely
+ignored.  This is because research software is rarely the end product,
+as opposed to the scientific results (e.g figures and tables) that it
+generates.  On top of that, the highly competitive, publication
+rate-based funding model is not particularly rewarding to researchers
+ready to dedicate time to writing good software.  In fact, spending
+too much effort into software development is often considered harmful
+to a researcher's career development, as it is detrimental to their
+publication rate.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga9d73b3" class="outline-2"&gt;
+&lt;h2 id="orga9d73b3"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-2"&gt;
+&lt;p&gt;
+In 2021, the situation is slowly evolving, and has been so over the
+past few years.  The "reproducibility crisis" opened many people's
+eyes (and continues to do so) to the fact that a significant number of
+research findings, in a wide range of disciplines, cannot be
+reproduced by an independent team of researchers.  A common cause of
+non-reproducibility is software issues, for instance the code being
+unavailable, or left in an unusable state after the main paper was
+published. Although some journals and funding bodies nowadays require
+associated code(s) to be made available at the time of publication,
+the large majority of research software is still written by temporary
+staff (graduate students or post-doctoral researchers), without formal
+training in software engineering, often operating under high
+pressure. As a result, an increasing number of researchers experience
+the deep frustration of having to build upon poorly written,
+undocumented, and untested software. 
+&lt;/p&gt;
+
+&lt;p&gt;
+One upshot is that this results to an increasing awareness that
+cutting corners regarding software quality is counter productive, as
+this actually &lt;i&gt;slows down&lt;/i&gt; research in the long run&amp;#x2026; as well as in
+the short run.  In most cases, unfortunately, the gap in software
+engineering knowledge is simply too big to fill for researchers,
+especially for those isolated and/or working in research groups where
+a suitable software engineering culture isn't established, and where
+mentors cannot be found and where feedback isn't available.
+&lt;/p&gt;
+
+&lt;p&gt;
+As &lt;a href="https://www.rse.ox.ac.uk/rse_post/survey_results/"&gt;survey&lt;/a&gt; conducted at the University of Oxford in 2018 shows that,
+among 375 scientists, 75% declared they could do with expert software
+engineering help.  The first training course organised by the Oxford
+Research Software Engineering group for researchers at Oxford,
+focusing on version control, was fully booked in about 20 minutes (~
+30 seats), despite very limited advertising.  This illustrates that a
+large majority of researchers are not happy with the way research
+software is developed, and there is often a consensus on the fact
+that "there must be a better way of doing this".  Training courses are
+part of the solution, but cannot be the whole of it. The research
+community must seize software development as part and parcel of the
+research effort, as opposed to view it as a foreign activity that
+researchers can only be amateurs in.  Researchers &lt;i&gt;are&lt;/i&gt; software
+developers.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org13b350a" class="outline-2"&gt;
+&lt;h2 id="org13b350a"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Code reviewing is not bug-hunting&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-3"&gt;
+&lt;p&gt;
+Consequently, it should be common practice for researchers to "talk
+code". Currently, the opposite is true, as most research software is
+written in isolation, almost hidden from others' gaze, in fear that
+the author's (self-assessed) low programming skills will be exposed.
+On the one hand, and to put it mildly, it is true that a large
+portion of research software could be written in a better way.  On the
+other hand, researchers tend to be too harsh on themselves, by
+forgetting (or not being aware of the fact that) writing quality code
+is an iterative process that greatly benefits from other people's
+input &amp;#x2013; especially when the original author has limited software
+engineering experience themselves.
+&lt;/p&gt;
+
+&lt;p&gt;
+This is a call for code reviewing in academia.  Instead of hiding
+analysis scripts, hoping nobody will notice they are unreadable for
+anyone outside the project, these should be reviewed by other
+researchers on a regular basis all along their development.  Done
+regularly, code reviewing doesn't come with a large overhead: an hour
+every week, for instance spent sitting with a colleague to review the
+latest modifications.  In this way, participating in code reviews
+should join the list of the many activities that make up the day of
+academics.  There is a lot to be gained in reviewing a colleague'
+code: new ways of writing software, programming tricks or elegant
+designs, but also a refresher on things to avoid, such as bad naming
+or monster functions.
+&lt;/p&gt;
+
+&lt;p&gt;
+It is worth stressing that beginner programmers can make very good
+reviewers, and therefore reviewing isn't limited to researchers with
+substantial programming experience.  Generally, the purpose of code
+reviewing &amp;#x2013; at least in academia &amp;#x2013; is not to catch bugs or
+programming mistakes. To some extent, machines can already help with
+this.  Rather, the purpose of a code review is to flag up those things
+that make the code difficult to read, debug, reuse and extend. From a
+software sustainability and research reproducibility point of view, it
+is crucial that even researchers with limited experience in software,
+or simply limited experience in that specific programming language,
+are able to understand the program.  Beginner programmers are
+therefore well placed to review research software and should
+feel encouraged to do so.  And of course, reviewing "real-life"
+research code makes for a fantastic learning opportunity for them.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org8900562" class="outline-2"&gt;
+&lt;h2 id="org8900562"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Distributing knowledge and experience&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-4"&gt;
+&lt;p&gt;
+In academia, programming and software engineering skills are both
+scarce and unevenly distributed.  This is true at the level of both
+individuals and academic disciplines.  In this context, another
+purpose of code reviewing is knowledge transfer.  At the scale of a
+research group, regular code reviews between all members will ensure
+that members with the least software experience benefit from the
+knowledge of more seasoned members of the group, learn from them, and
+in turn become mentors for others.  If several members are involved in
+a common project, regular code reviews spread knowledge of the
+codebase across the team.  This means more independent teammates, as
+well as more efficient and fruitful teamwork. But above all, it
+prevents the codebase from falling apart as some members of the team move
+on to work on other projects.  With regular code reviews, there will
+always be someone in the group who is able to mentor new recruits.
+&lt;/p&gt;
+
+&lt;p&gt;
+Going beyond research groups, code reviewing has the potential to
+spread software engineering practices across disciplines.  As many
+computational approaches are common to several fields, a biologist may
+be well suited to provide insightful feedback on the readability and
+modularity of a code written by a physicist, and &lt;i&gt;vice versa&lt;/i&gt;.
+Interdisciplinary code reviews enable knowledge transfer at
+a larger scale, enriching different research communities from one
+another's experience and practices.  This is one of the core
+motivations behind the &lt;a href="https://github.com/OxfordCodeReviewNet/forum"&gt;Oxford Code Review Network&lt;/a&gt;, an initiative at the University of Oxford
+that promotes and facilitates code reviews between researchers across
+the university. Code reviews involving researchers from different
+fields are particularly important since few communities boast the greatest
+concentration of programming and software engineering skills (for instance
+particle physics), and democratising interdisciplinary code reviews
+would make the rest of the research community benefit from that
+expertise.
+&lt;/p&gt;
+
+&lt;p&gt;
+In a world where research software is recognised as a key component of
+research, code reviews would certainly be a widespread practice among
+academics, just like it is for commercial software developers.
+At the same time, democratising code reviewing in academia would help
+driving the culture change required for software development to be
+considered a key part of a researcher's activities, as well as making
+software sustainability a core concern of quality research.  Short,
+regular code reviews provide an opportunity for researchers to "talk
+code", both teaching or learning from colleagues. Although these
+meetings can go relatively unnoticed in researcher's daily schedule,
+they greatly impact the readability, debugability and reusability of
+research software.  
+&lt;/p&gt;
+
+&lt;p&gt;
+Why is that important? Because poor software quality cripples
+research, in both the short and long term.  By contrast, quality
+software accelerates research: it makes it more efficient,
+more open, more collaborative and more reproducible.  Code reviews
+also spread programming and software engineering experience,
+contributing to the education of future generations of researchers and
+making research teams more resilient to change.  And with an
+increasing number of research fields heavily relying on software
+development, code reviews enable knowledge transfer across
+disciplines.  This can lead to the adoption of new practices inspired
+from other fields of research, but also to transdisciplinary research
+collaborations&amp;#x2026; what's not to like about this?
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</content><category term="blog"></category></entry></feed>

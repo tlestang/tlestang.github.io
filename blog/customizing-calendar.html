@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  	<title>Thibault Lestang - Custom UK holidays in the Emacs calendar</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="/theme/css/rdark.css"/>
+	<link rel="stylesheet" type="text/css" href="/theme/css/main.css"/>
+	<link rel="stylesheet" type="text/css" href="/theme/css/org-htmlize.css"/>
+	<link rel="stylesheet" type="text/css" href="/theme/css/code-blocks.css"/>
+
+
+
+
+    <meta name="tags" content="Emacs" />
+
+    </head>
+    <body id="index" class="home">
+	<header id="banner" class="body">
+            <a href="/">
+		Thibault Lestang
+	    </a>
+	    <nav id="menu"><ul>
+		<li>
+		    <a href="/">About</a>
+		</li>
+		<li>
+		    <a href="/pages/projects.html">Projects</a>
+		</li>
+		<li>
+		    <a href="/blog">Blog</a>
+		</li>
+            </ul></nav><!-- /#menu -->
+	</header><!-- /#banner -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/blog/customizing-calendar.html" rel="bookmark"
+         title="Permalink to Custom UK holidays in the Emacs calendar">Custom UK holidays in the Emacs calendar</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2021-06-13T00:00:00+01:00">
+      Sun 13 June 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/thibault-lestang.html">Thibault Lestang</a>
+    </address>
+    <div class="category">
+        Category: <a href="/category/blog.html">blog</a>
+    </div>
+    <div class="tags">
+        Tags:
+            <a href="/tag/emacs.html">Emacs</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>
+I've always used org-mode for managing and displaying my calendar, but
+it's worth noting that Emacs comes with a built-in calendar that
+already offers a lot of functionalities and customizations.  Its
+documentation sits within the Emacs manual (<code>C-h i m Emacs RET g
+Calendar/Diary RET</code>).
+</p>
+
+<p>
+Among other things, the Emacs calendar comes with <i>a lot</i> of
+predefined holidays that can be displayed in the calendar buffer (by
+pressing <code>x</code>) or listed using e.g. <code>calendar-holidays</code>.  Dates of
+holidays are computed based on the value of several lists such as
+<code>holiday-general-holidays</code>, <code>holiday-islamic-holidays</code> or
+<code>holiday-christian-holidays</code>. It is possible to customize these, but
+the calendar offer two variables <code>holiday-local-holidays</code> and
+<code>holiday-other-holidays</code> that are meant to be customized.
+</p>
+
+<p>
+Let's see how we can customize the calendar to display the dates for
+public holidays in the United Kingdom. One potential difficulty is
+that, in the UK, public holidays that fall inside a weekend are pushed
+back to the first next non-holiday week day. But with the power of
+Lisp in our hands, I'm not to worried..
+</p>
+
+<div id="outline-container-orgd325c5d" class="outline-2">
+<h2 id="orgd325c5d"><span class="section-number-2">1</span> Setting UK bank holidays</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Disable the default holidays. I'm not interested in most of them,
+and the few Christian holidays relevant when living in the UK are
+computed further below.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> holiday-general-holidays nil
+      holiday-bahai-holidays nil
+      holiday-hebrew-holidays nil
+      holiday-christian-holidays nil
+      holiday-islamic-holidays nil
+      holiday-oriental-holidays nil)
+</pre>
+</div>
+
+<p>
+Next we define the holiday list for the UK bank holidays:
+</p>
+<ul class="org-ul">
+<li>Christmas</li>
+<li>Boxing Day</li>
+<li>New Year's day</li>
+<li>Good Friday</li>
+<li>Easter Monday</li>
+<li>Early May bank holiday</li>
+<li>Spring bank holiday</li>
+</ul>
+
+<p>
+If any of the above fall on a Saturday of Sunday, a substitute bank
+holiday day is applied on the next non-holiday week day. It's
+usually the next Monday, except when Boxing Day or Christmas day
+falls on a Sunday, in which case the substitute falls on a
+Tuesday. In this case Monday is already a holiday, or substitute
+holiday.
+</p>
+
+<p>
+Below are two functions <code>find-next-weekday</code> and <code>set-double-holiday</code>
+that deal with finding the final date for a bank holiday,
+substituting to the next non-holiday weekday if required:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">is-weekend</span> (date)
+  <span class="org-doc">"Evaluates to t or nil whether of not DATE falls in a weekend.</span>
+<span class="org-doc">DATE is a list of the form (MONTH DAY YEAR)"</span>
+  (<span class="org-keyword">or</span> (equal (calendar-day-of-week date) 6)
+      (equal (calendar-day-of-week date) 0)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">add-one-day</span> (date)
+  <span class="org-doc">"Evaluates to (MONTH DAY YEAR) for the day following DATE. DATE should also </span>
+<span class="org-doc">be provided in the (MONTH DAY YEAR) format"</span>
+  (calendar-gregorian-from-absolute
+   (+ (calendar-absolute-from-gregorian date) 1)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">find-next-weekday</span> (date)
+  <span class="org-doc">"Evaluate to (MONTH DAY YEAR) for the first next weekday after or including DATE.</span>
+
+<span class="org-doc">If DATE corresponds to a Saturday or Sunday, then evaluates to</span>
+<span class="org-doc">following Monday.  If DATE is a weekday, then evaluates to DATE.</span>
+
+<span class="org-doc">This function is useful to compute bank holidays in the United</span>
+<span class="org-doc">Kingdom, which are pushed to first following non-bank holiday</span>
+<span class="org-doc">weekday (ususally Monday) if the bank holiday falls inside a</span>
+<span class="org-doc">weekend. Caveat: do not use function to compute the substitute</span>
+<span class="org-doc">day for a Sunday bank holiday that follows a Saturday bank</span>
+<span class="org-doc">holiday (e.g. boxing day on a Sunday) or the substitute day for a</span>
+<span class="org-doc">Saturday bank holiday t hat precedes a Monday bank</span>
+<span class="org-doc">holiday (e.g. Christmas day on a Saturday). See functions</span>
+<span class="org-doc">`set-boxing-day` and `set-christmas-day` for dealing with these</span>
+<span class="org-doc">special cases."</span>
+  (<span class="org-keyword">let</span> ((next-day-date
+         (add-one-day date)))
+    (<span class="org-keyword">if</span> (is-weekend date)
+        (find-next-weekday next-day-date)
+      date)))
+
+(<span class="org-keyword">defun</span> <span class="org-function-name">set-double-holiday</span> (date)
+  <span class="org-doc">"Evaluates to the (potentially substitute) date for a holiday</span>
+<span class="org-doc">inside a holiday pair (e.g. Christmas Day followed by Boxing</span>
+<span class="org-doc">Day). </span>
+
+<span class="org-doc">If DATE is a Saturday, then substitute day is next Monday as</span>
+<span class="org-doc">usual.  If DATE is a Sunday, then substitute day is next Tuesday,</span>
+<span class="org-doc">because next Monday is already a bank holiday (Boxing Day) or</span>
+<span class="org-doc">substitute day (Christmas)."</span>
+  (<span class="org-keyword">cond</span> ((equal (calendar-day-of-week date) 6) (find-next-weekday date))
+        ((equal (calendar-day-of-week date) 0) (add-one-day (find-next-weekday date)))
+        (t                                     date)))
+</pre>
+</div>
+
+<p>
+Functions <code>find-next-weekday</code> and <code>set-double-holiday</code> are used in
+conjunction with <code>holiday-sexp</code> like so:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(holiday-sexp '(set-double-holiday (list 12 25 year))
+              <span class="org-string">"Christmas day bank holiday"</span>)
+(holiday-sexp '(set-double-holiday (list 12 26 year))
+              <span class="org-string">"Boxing day bank holiday"</span>)
+(holiday-sexp '(find-next-weekday (list 01 01 year))
+              <span class="org-string">"New Year's Day bank holiday"</span>)
+</pre>
+</div>
+
+<p>
+The Spring bank holiday is <i>almost always</i> set on the last Monday of
+May.  But in the case of a royal Jubilee year this holiday in
+usually moved further in June to pair it with the Jubilee bank
+holiday.  A royal Jubilee occurs on the 10th and 25th anniversaries
+of the current British monarch's accession to the throne.  Not all
+the anniversaries are associated a bank holiday however, and it
+seems that this is left to the discretion of the government and/or
+royal family.  Even though she accessed the throne in February,
+Queen Elizabeth II's Jubilee are always celebrated in June at a date
+that seems to be confirmed only a year before.
+</p>
+
+<p>
+That is to say that Jubilee dates and corresponding Spring bank
+holiday cannot be computed years in advance.  As a result, I simply
+do not set the Spring bank holiday if the current year is a Jubilee year.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">defun</span> <span class="org-function-name">is-royal-jubilee</span> (accession-year year)
+  <span class="org-doc">"Evaluates to t or nil depending on whether or not year YEAR is</span>
+<span class="org-doc">a royal jubilee year for current British monarch who accessed the</span>
+<span class="org-doc">throne in year ACCESSION-YEAR. Jubilees occur on the 10th and</span>
+<span class="org-doc">25th anniversaries of the accession year. For instance Queen</span>
+<span class="org-doc">Elizabeth II's silver jubilee was held in 1977, 25 years after</span>
+<span class="org-doc">her accession in 1952. </span>
+
+<span class="org-doc">This function is useful to prevent the setting of the Spring bank</span>
+<span class="org-doc">holiday in case of a jubilee year.  In this case the Spring bank</span>
+<span class="org-doc">holiday is usually pushed from its usual date (last Monday of</span>
+<span class="org-doc">May) to later in June, to pair it with the jubilee bank</span>
+<span class="org-doc">holiday."</span>
+    (<span class="org-keyword">or</span> (zerop (% (- displayed-year accession-year) 10))
+        (zerop (% (- displayed-year accession-year) 25))))
+</pre>
+</div>
+
+<p>
+The current British monarch is Queen Elizabeth II who accessed the throne in 1952, so
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">if</span> (not (is-royal-jubilee 1952 displayed-year))
+    (holiday-float 5 1 -1 <span class="org-string">"Spring bank holiday"</span>))
+</pre>
+</div>
+
+<p>
+Overall, we set the list of holiday forms for the UK:
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> tl/holiday-uk-holidays '((holiday-float 8 1 -1 <span class="org-string">"Summer bank holiday"</span>)
+                               (holiday-sexp '(set-double-holiday (list 12 25 year))
+                                             <span class="org-string">"Christmas day bank holiday"</span>)
+                               (holiday-sexp '(set-double-holiday (list 12 26 year))
+                                             <span class="org-string">"Boxing day bank holiday"</span>)
+                               (holiday-sexp '(find-next-weekday (list 01 01 year))
+                                             <span class="org-string">"New Year's Day bank holiday"</span>)
+                               (holiday-easter-etc -2 <span class="org-string">"Good Friday"</span>)
+                               (holiday-easter-etc 0 <span class="org-string">"Easter Monday"</span>)
+                               (holiday-float 5 1 1 <span class="org-string">"Early May bank holiday"</span>)
+                               (<span class="org-keyword">if</span> (not (is-royal-jubilee 1952 displayed-year))
+                                   (holiday-float 5 1 -1 <span class="org-string">"Spring bank holiday"</span>))))
+</pre>
+</div>
+
+<p>
+Lastly, we set the upcoming Platinum Jubilee bank holiday and
+corresponding Spring bank holiday is a special list of holiday forms
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> tl/holiday-exceptional-uk-holidays '((<span class="org-keyword">if</span> (equal displayed-year 2022)
+                                               (holiday-fixed 6 2 <span class="org-string">"Spring bank holiday"</span>))
+                                           (<span class="org-keyword">if</span> (equal displayed-year 2022)
+                                               (holiday-fixed 6 3 <span class="org-string">"Platinum Jubilee bank holiday"</span>))))
+</pre>
+</div>
+
+<p>
+Finally, we set the value of the <code>holiday-local-holidays</code> variable
+for the holidays to appear in the calendar.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> holiday-local-holidays (append
+                              tl/holiday-uk-holidays
+                              tl/holiday-exceptional-uk-holidays))
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga5bbeca" class="outline-2">
+<h2 id="orga5bbeca"><span class="section-number-2">2</span> Fête des Mères et Fête des Pères</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+I want to add a shorter example of customizing the calendar, to
+illustrate how the built-in functions <code>holiday-float</code>,
+<code>holiday-sexp</code> and similar can be used to compare holiday dates for
+a given year.
+</p>
+
+<p>
+I'd like to have the French Mothers' Day and Fathers' Day appear in
+my calendar. In France, Mother's Day is planned for the last
+Sunday of May, unless this conflicts with Pentecost (Whitsunday) in
+which case it is pushed to the first Sunday of June.
+</p>
+
+<p>
+The date for Pentecost can be computed using the built-in function
+<code>holiday-easter-etc</code>.  The following decides on the date for
+Mothers' Day based on whether or not the last Sunday of May is the
+Pentecost day.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">if</span> (equal (holiday-easter-etc 49 <span class="org-string">"string"</span>)
+           (holiday-float 5 0 -1 <span class="org-string">"string"</span>))
+    (holiday-float 6 0 1
+                   <span class="org-string">"F&#234;te des M&#232;res (repouss&#233; apr&#232;s Pentec&#244;te)"</span>)
+  (holiday-float 5 0 -1 <span class="org-string">"F&#234;te des M&#232;res"</span>))
+</pre>
+</div>
+
+<p>
+Because this function is supposed to be <code>eval</code>'d when building the
+holiday list, it expects an argument <code>string</code> for a description.
+When comparing dates we just set it to an arbitrary string <code>"string"</code>.
+</p>
+
+<p>
+In France, Fathers' Day is the third Sunday of June. Combining this
+with Mothers' Day above, we set the variable <code>holiday-other-holidays</code>.
+</p>
+<div class="org-src-container">
+<pre class="src src-emacs-lisp">(<span class="org-keyword">setq</span> holiday-other-holidays '((<span class="org-keyword">if</span> (equal (holiday-easter-etc 49 <span class="org-string">"string"</span>)
+                                          (holiday-float 5 0 -1 <span class="org-string">"string"</span>))
+                                   (holiday-float 6 0 1
+                                                  <span class="org-string">"F&#234;te des M&#232;res (repouss&#233; apr&#232;s Pentec&#244;te)"</span>)
+                                 (holiday-float 5 0 -1 <span class="org-string">"F&#234;te des M&#232;res"</span>))
+                               (holiday-float 6 0 3 <span class="org-string">"F&#234;te des P&#232;res"</span>)))
+</pre>
+</div>
+</div>
+</div>
+
+  </div><!-- /.entry-content -->
+</section>
+    </body>
+</html>
