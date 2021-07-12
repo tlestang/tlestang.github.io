@@ -1,0 +1,231 @@
+#+TITLE: Custom UK holidays in the Emacs calendar
+#+DATE: <2021-06-13 Sun>
+#+AUTHOR: Thibault Lestang
+#+PROPERTY: LANGUAGE en
+#+PROPERTY: STATUS published
+#+PROPERTY: TAGS Emacs
+#+OPTIONS: toc:nil
+
+I've always used org-mode for managing and displaying my calendar, but
+it's worth noting that Emacs comes with a built-in calendar that
+already offers a lot of functionalities and customizations.  Its
+documentation sits within the Emacs manual (=C-h i m Emacs RET g
+Calendar/Diary RET=).
+
+Among other things, the Emacs calendar comes with /a lot/ of
+predefined holidays that can be displayed in the calendar buffer (by
+pressing =x=) or listed using e.g. =calendar-holidays=.  Dates of
+holidays are computed based on the value of several lists such as
+=holiday-general-holidays=, =holiday-islamic-holidays= or
+=holiday-christian-holidays=. It is possible to customize these, but
+the calendar offer two variables =holiday-local-holidays= and
+=holiday-other-holidays= that are meant to be customized.
+
+Let's see how we can customize the calendar to display the dates for
+public holidays in the United Kingdom. One potential difficulty is
+that, in the UK, public holidays that fall inside a weekend are pushed
+back to the first next non-holiday week day. But with the power of
+Lisp in our hands, I'm not to worried..
+
+** Setting UK bank holidays
+
+  Disable the default holidays. I'm not interested in most of them,
+  and the few Christian holidays relevant when living in the UK are
+  computed further below.
+  #+BEGIN_SRC emacs-lisp
+    (setq holiday-general-holidays nil
+	  holiday-bahai-holidays nil
+	  holiday-hebrew-holidays nil
+	  holiday-christian-holidays nil
+	  holiday-islamic-holidays nil
+	  holiday-oriental-holidays nil)
+  #+END_SRC
+
+  Next we define the holiday list for the UK bank holidays:
+  - Christmas
+  - Boxing Day
+  - New Year's day
+  - Good Friday
+  - Easter Monday
+  - Early May bank holiday
+  - Spring bank holiday
+
+  If any of the above fall on a Saturday of Sunday, a substitute bank
+  holiday day is applied on the next non-holiday week day. It's
+  usually the next Monday, except when Boxing Day or Christmas day
+  falls on a Sunday, in which case the substitute falls on a
+  Tuesday. In this case Monday is already a holiday, or substitute
+  holiday.
+
+  Below are two functions =find-next-weekday= and =set-double-holiday=
+  that deal with finding the final date for a bank holiday,
+  substituting to the next non-holiday weekday if required:
+  #+BEGIN_SRC emacs-lisp
+    (defun is-weekend (date)
+      "Evaluates to t or nil whether of not DATE falls in a weekend.
+    DATE is a list of the form (MONTH DAY YEAR)"
+      (or (equal (calendar-day-of-week date) 6)
+	  (equal (calendar-day-of-week date) 0)))
+
+    (defun add-one-day (date)
+      "Evaluates to (MONTH DAY YEAR) for the day following DATE. DATE should also 
+    be provided in the (MONTH DAY YEAR) format"
+      (calendar-gregorian-from-absolute
+       (+ (calendar-absolute-from-gregorian date) 1)))
+
+    (defun find-next-weekday (date)
+      "Evaluate to (MONTH DAY YEAR) for the first next weekday after or including DATE.
+
+    If DATE corresponds to a Saturday or Sunday, then evaluates to
+    following Monday.  If DATE is a weekday, then evaluates to DATE.
+
+    This function is useful to compute bank holidays in the United
+    Kingdom, which are pushed to first following non-bank holiday
+    weekday (ususally Monday) if the bank holiday falls inside a
+    weekend. Caveat: do not use function to compute the substitute
+    day for a Sunday bank holiday that follows a Saturday bank
+    holiday (e.g. boxing day on a Sunday) or the substitute day for a
+    Saturday bank holiday t hat precedes a Monday bank
+    holiday (e.g. Christmas day on a Saturday). See functions
+    `set-boxing-day` and `set-christmas-day` for dealing with these
+    special cases."
+      (let ((next-day-date
+	     (add-one-day date)))
+	(if (is-weekend date)
+	    (find-next-weekday next-day-date)
+	  date)))
+
+    (defun set-double-holiday (date)
+      "Evaluates to the (potentially substitute) date for a holiday
+    inside a holiday pair (e.g. Christmas Day followed by Boxing
+    Day). 
+
+    If DATE is a Saturday, then substitute day is next Monday as
+    usual.  If DATE is a Sunday, then substitute day is next Tuesday,
+    because next Monday is already a bank holiday (Boxing Day) or
+    substitute day (Christmas)."
+      (cond ((equal (calendar-day-of-week date) 6) (find-next-weekday date))
+	    ((equal (calendar-day-of-week date) 0) (add-one-day (find-next-weekday date)))
+	    (t                                     date)))
+  #+END_SRC
+
+  Functions =find-next-weekday= and =set-double-holiday= are used in
+  conjunction with =holiday-sexp= like so:
+  #+BEGIN_SRC emacs-lisp :tangle no
+    (holiday-sexp '(set-double-holiday (list 12 25 year))
+		  "Christmas day bank holiday")
+    (holiday-sexp '(set-double-holiday (list 12 26 year))
+		  "Boxing day bank holiday")
+    (holiday-sexp '(find-next-weekday (list 01 01 year))
+		  "New Year's Day bank holiday")
+  #+END_SRC
+
+  The Spring bank holiday is /almost always/ set on the last Monday of
+  May.  But in the case of a royal Jubilee year this holiday in
+  usually moved further in June to pair it with the Jubilee bank
+  holiday.  A royal Jubilee occurs on the 10th and 25th anniversaries
+  of the current British monarch's accession to the throne.  Not all
+  the anniversaries are associated a bank holiday however, and it
+  seems that this is left to the discretion of the government and/or
+  royal family.  Even though she accessed the throne in February,
+  Queen Elizabeth II's Jubilee are always celebrated in June at a date
+  that seems to be confirmed only a year before.
+
+  That is to say that Jubilee dates and corresponding Spring bank
+  holiday cannot be computed years in advance.  As a result, I simply
+  do not set the Spring bank holiday if the current year is a Jubilee year.
+
+  #+BEGIN_SRC emacs-lisp
+    (defun is-royal-jubilee (accession-year year)
+      "Evaluates to t or nil depending on whether or not year YEAR is
+    a royal jubilee year for current British monarch who accessed the
+    throne in year ACCESSION-YEAR. Jubilees occur on the 10th and
+    25th anniversaries of the accession year. For instance Queen
+    Elizabeth II's silver jubilee was held in 1977, 25 years after
+    her accession in 1952. 
+
+    This function is useful to prevent the setting of the Spring bank
+    holiday in case of a jubilee year.  In this case the Spring bank
+    holiday is usually pushed from its usual date (last Monday of
+    May) to later in June, to pair it with the jubilee bank
+    holiday."
+	(or (zerop (% (- displayed-year accession-year) 10))
+	    (zerop (% (- displayed-year accession-year) 25))))
+  #+END_SRC
+
+  The current British monarch is Queen Elizabeth II who accessed the throne in 1952, so
+  #+BEGIN_SRC emacs-lisp :tangle no
+    (if (not (is-royal-jubilee 1952 displayed-year))
+	(holiday-float 5 1 -1 "Spring bank holiday"))
+  #+END_SRC
+
+  Overall, we set the list of holiday forms for the UK:
+  #+BEGIN_SRC emacs-lisp
+    (setq tl/holiday-uk-holidays '((holiday-float 8 1 -1 "Summer bank holiday")
+				   (holiday-sexp '(set-double-holiday (list 12 25 year))
+						 "Christmas day bank holiday")
+				   (holiday-sexp '(set-double-holiday (list 12 26 year))
+						 "Boxing day bank holiday")
+				   (holiday-sexp '(find-next-weekday (list 01 01 year))
+						 "New Year's Day bank holiday")
+				   (holiday-easter-etc -2 "Good Friday")
+				   (holiday-easter-etc 0 "Easter Monday")
+				   (holiday-float 5 1 1 "Early May bank holiday")
+				   (if (not (is-royal-jubilee 1952 displayed-year))
+				       (holiday-float 5 1 -1 "Spring bank holiday"))))
+  #+END_SRC
+
+  Lastly, we set the upcoming Platinum Jubilee bank holiday and
+  corresponding Spring bank holiday is a special list of holiday forms
+  #+BEGIN_SRC emacs-lisp
+    (setq tl/holiday-exceptional-uk-holidays '((if (equal displayed-year 2022)
+						   (holiday-fixed 6 2 "Spring bank holiday"))
+					       (if (equal displayed-year 2022)
+						   (holiday-fixed 6 3 "Platinum Jubilee bank holiday"))))
+  #+END_SRC
+
+  Finally, we set the value of the =holiday-local-holidays= variable
+  for the holidays to appear in the calendar.
+  #+BEGIN_SRC emacs-lisp
+    (setq holiday-local-holidays (append
+				  tl/holiday-uk-holidays
+				  tl/holiday-exceptional-uk-holidays))
+  #+END_SRC
+
+** Fête des Mères et Fête des Pères
+   I want to add a shorter example of customizing the calendar, to
+   illustrate how the built-in functions =holiday-float=,
+   =holiday-sexp= and similar can be used to compare holiday dates for
+   a given year.
+
+   I'd like to have the French Mothers' Day and Fathers' Day appear in
+   my calendar. In France, Mother's Day is planned for the last
+   Sunday of May, unless this conflicts with Pentecost (Whitsunday) in
+   which case it is pushed to the first Sunday of June.
+
+   The date for Pentecost can be computed using the built-in function
+   =holiday-easter-etc=.  The following decides on the date for
+   Mothers' Day based on whether or not the last Sunday of May is the
+   Pentecost day.
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (if (equal (holiday-easter-etc 49 "string")
+		(holiday-float 5 0 -1 "string"))
+	 (holiday-float 6 0 1
+			"Fête des Mères (repoussé après Pentecôte)")
+       (holiday-float 5 0 -1 "Fête des Mères"))
+   #+END_SRC
+
+   Because this function is supposed to be =eval='d when building the
+   holiday list, it expects an argument =string= for a description.
+   When comparing dates we just set it to an arbitrary string ="string"=.
+
+   In France, Fathers' Day is the third Sunday of June. Combining this
+   with Mothers' Day above, we set the variable =holiday-other-holidays=.
+   #+BEGIN_SRC emacs-lisp
+     (setq holiday-other-holidays '((if (equal (holiday-easter-etc 49 "string")
+					       (holiday-float 5 0 -1 "string"))
+					(holiday-float 6 0 1
+						       "Fête des Mères (repoussé après Pentecôte)")
+				      (holiday-float 5 0 -1 "Fête des Mères"))
+				    (holiday-float 6 0 3 "Fête des Pères")))
+   #+END_SRC
