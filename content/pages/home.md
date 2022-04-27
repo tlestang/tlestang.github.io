@@ -3,16 +3,31 @@ URL:
 Template: homepage
 save_as: index.html
 
-Hi there, I'm a Research Software Engineer at the University Of Oxford, UK.
-I collaborate on various scientific software projects with researchers across Oxford, bringing software engineering expertise to academic research projects.
+I am a Senior Research Software Engineer in the Department of
+Aeronautics at Imperial College London. I work hand in hand with
+researchers in the department to maintain and develop open source flow
+solvers like [Nektar++](https://www.nektar.info/),
+[PyFR](https://www.pyfr.org/) and
+[xcompact3d](https://github.com/xcompact3d). At the same time, I am active across
+the department to support and train researchers in research software
+engineering, and promote/enable efficient and sustainable software
+development practices.
 
-I'm working to raise the profile of research software in academia, both locally at Oxford and globally.
-I'm not alone!
-I'm surrounded by great colleagues at the [Oxford Research Software Engineering group](https://www.rse.ox.ac.uk), and an amazing [RSE community](https://researchsoftware.org) both at the national and international levels.
-If you're in Oxford, check out our (free) regular [training courses](https://www.rse.ox.ac.uk/training), where we teach research staff and graduate students the software engineering required to make their research more reproducible, efficient and open.
+I was previously a Research Software Engineer in the [Oxford Research
+Software Engineering group](https://www.rse.ox.ac.uk), and a Junior
+Research Fellow at Kellogg College, University of Oxford. I
+collaborated on various scientific software projects, from battery
+mathematical modelling to screening visual impairment in patients
+after stroke. I hold a PhD in Physics from Ecole Normale Supérieure de
+Lyon (2018), during which I investigated the application of rare event
+sampling algorithms to the simulation of extreme events in turbulent
+flows around objects.
 
-I am a Junior Research Fellow of [Kellogg College Oxford](https://www.kellogg.ox.ac.uk) and a 2021-2022 fellow of the [Software Sustainability Institute](https://www.software.ac.uk/about/fellows). I initiated the [Oxford Code Review Network](https://github.com/OxfordCodeReviewNet/forum), that makes it easy for local researchers to get in touch with colleagues across the University to carry out code reviews.
-I'm also involved with the [Reproducible Research Oxford](https://ox.ukrn.org) network.
+I'm generally interested in raising the profile of research software
+- and the people who write it - whether it is at Imperial College
+London, in the UK, or worldwide. I am 2021 [Software Sustainability
+Institute](https://www.software.ac.uk/) fellow.
 
-I hold a PhD in Physics from Ecole Normale Superieure de Lyon (2018), during which I investigated the application of rare event sampling algorithms to the simulation of extreme events in turbulent flows around objects. You can learn more about that research [here](https://www.cambridge.org/core/journals/journal-of-fluid-mechanics/article/numerical-study-of-extreme-mechanical-force-exerted-by-a-turbulent-flow-on-a-bluff-body-by-direct-and-rareevent-sampling-techniques/AF7125593B78B17A8CA9958E0985D55B).
+Topics I am particularly interested in include
 
+reproducible research;code review;refactoring;GNU Emacs;org-mode;Python packaging;parallel programming;computational fluid dynamics
