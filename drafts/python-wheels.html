@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+  	<title>Thibault Lestang - What's the deal with Python wheels?</title>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="/theme/css/rdark.css"/>
+	<link rel="stylesheet" type="text/css" href="/theme/css/main.css"/>
+	<link rel="stylesheet" type="text/css" href="/theme/css/org-htmlize.css"/>
+	<link rel="stylesheet" type="text/css" href="/theme/css/code-blocks.css"/>
+
+
+
+
+    <meta name="tags" content="Python Packaging Wheel" />
+
+    </head>
+    <body id="index" class="home">
+	<header id="banner" class="body">
+            <a href="/">
+		Thibault Lestang
+	    </a>
+	    <nav id="menu"><ul>
+		<li>
+		    <a href="/">About</a>
+		</li>
+		<li>
+		    <a href="/pages/projects.html">Projects</a>
+		</li>
+		<li>
+		    <a href="/blog">Blog</a>
+		</li>
+            </ul></nav><!-- /#menu -->
+	</header><!-- /#banner -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="/drafts/python-wheels.html" rel="bookmark"
+         title="Permalink to What's the deal with Python wheels?">What's the deal with Python wheels?</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2021-09-06T00:00:00+01:00">
+      Mon 06 September 2021
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="/author/thibault-lestang.html">Thibault Lestang</a>
+    </address>
+    <div class="category">
+        Category: <a href="/category/blog.html">blog</a>
+    </div>
+    <div class="tags">
+        Tags:
+            <a href="/tag/python-packaging-wheel.html">Python Packaging Wheel</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <p>
+Python wheels are at the heart of Python packaging. If you've ever
+installed a package with <code>pip</code> from the Python Packaging Index, there
+is a high chance that it downloaded a wheel file.
+</p>
+
+<pre class="example" id="orgd1c91f0">
+$ pip install numpy
+Collecting numpy
+  Downloading numpy-1.21.2-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (15.8 MB)
+     |████████████████████████████████| 15.8 MB 65 kB/s
+Installing collected packages: numpy
+Successfully installed numpy-1.21.2
+</pre>
+
+<p>
+In the example above the file
+<code>numpy-1.21.2-cp39-cp39-manylinux_2_12_x86_64.manylinux2010_x86_64.whl</code>
+is a Python wheel. It contains everything needed to install NumPy 1.21
+on my GNU/Linux 64 bits system install my current Python 3.9
+environment. In Python, wheels play the role of what we would call a
+package in some other contexts (e.g. <code>.rpm</code> or <code>.deb</code> package
+installation on GNU/Linux). But in Python parlance the word package is
+already taken. In Python we say that wheels are <i>distribution
+packages</i>.
+</p>
+
+<p>
+This walktrhough is divided into two main sections
+</p>
+
+<ol class="org-ol">
+<li>Building a wheel for an example package. This is relevant to
+GNU/Linux, MacOS and Windows.</li>
+<li>Building wheels for GNU/Linux. In these case a bit more work is
+required in order to ensure wheels are portable across <i>manylinux</i>
+distributions.</li>
+</ol>
+
+<div id="outline-container-org06ba0f4" class="outline-2">
+<h2 id="org06ba0f4"><span class="section-number-2">1.</span> Example package</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Let's consider an example package with the following layout.
+</p>
+
+
+
+<p>
+The example package consists of two main files:
+</p>
+<ul class="org-ul">
+<li>A C++ extension module <code>src/cpp/ddot.cpp</code> named <code>example</code>. This
+extension relies on the <code>cblas_ddot</code> function from an (external)
+CBLAS library. This module turns into a Python module
+<code>ddot.cpython-39-x86_64-linux-gnu.so</code> with a runtime (dynamic)
+dependency on a CBLAS library (<i>e.g.</i> OpenBLAS).</li>
+<li>A Python file <code>dot_product.py</code> that imports the <code>ddot</code> extension module.</li>
+</ul>
+
+<p>
+Package build and installation:
+</p>
+<ul class="org-ul">
+<li>The extension module is written using <code>pybind11</code> which a C++
+library that makes it easy interface Python and C++.</li>
+<li>I used CMake to manage the build simply because CMake works well
+with pybind11 (and this case is well documented).</li>
+<li>Overall, the Python package is built with <code>scikit-build</code> which is
+a extension of <code>setuptools</code> that makes it easy to use CMake as
+part of the setup process.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0398516" class="outline-2">
+<h2 id="org0398516"><span class="section-number-2">2.</span> Source distributions</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Let's pretend that we want to share this package with a friend.
+</p>
+
+<p>
+A first option is to put everything in an archive:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">tar -cf septembrse-0.0.0.tar.gz <span class="org-sh-escaped-newline">\</span>
+    pyproject.toml <span class="org-sh-escaped-newline">\</span>
+    setup.py <span class="org-sh-escaped-newline">\</span>
+    CMakeLists.txt <span class="org-sh-escaped-newline">\</span>
+    pybind11 <span class="org-sh-escaped-newline">\</span>
+    src
+</pre>
+</div>
+
+<p>
+This is actualy better done automatically using the <code>setuptools</code> package.
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">python setup.py sdist
+</pre>
+</div>
+
+<p>
+This creates a <code>source distribution</code>, that contains all the files
+necessary to build and install the package. It also embarks some
+metadata (<code>PKG-INFO</code>). Lots of formats available:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">python setup.py sdist --help-formats
+</pre>
+</div>
+
+
+<p>
+Easy enough. We bundled our package's sources into a archive and now
+we can share it with our friend so they can install with <code>pip</code> in the
+same way.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">pip install dist/septembrse-0.0.0.tar.gz
+</pre>
+</div>
+
+<p>
+This unpack the archive and runs the <code>setup.py</code> script. It
+</p>
+<ol class="org-ol">
+<li>Installs the build tools (<code>setuptools</code>, <code>cmake</code>, <code>scikit-build</code>)</li>
+<li>Writes metadata</li>
+<li>Compiles the extension module</li>
+<li>Bundles everything together and copies it to the right
+install location (likely the local <i>site-packages</i> directory).</li>
+</ol>
+
+<p>
+Let's see what happens on our friend's machine:
+</p>
+
+<pre class="example" id="org01dbbc5">
+friend@machine:~$ pip install dist/septembrse-0.0.0.tar.gz
+Processing ./dist/septembrse-0.0.0.tar.gz
+  ERROR: Command errored out with exit status 1:
+  ...
+  Complete output (127 lines):
+  ... 
+  -- Could NOT find BLAS (missing: BLAS_LIBRARIES)
+  -- Configuring done
+  CMake Error: The following variables are used in this project, but they are set to NOTFOUND.
+</pre>
+
+<p>
+The package cannot be installed since our freind don't have a BLAS
+library installed! After some time looking things up, they firgure
+out that they can
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">apt install libopenblas-dev
+</pre>
+</div>
+
+<p>
+and things run fine.
+</p>
+
+
+<p>
+A <code>sdist</code> is an archive containing the sources of your package. If
+you give an <code>sdist</code> to someone, you expect them to be able to
+<i>build</i> the package from scratch. This means meeting all the
+requirements to run the <code>setup.py</code> script and compiling any
+extension modules.
+</p>
+
+<p>
+In some cases (like the one above), users may get get away with
+installing a package from their system's package manager. Fine. But
+in general, this is a real problem:
+</p>
+
+<ul class="org-ul">
+<li>If there are many dependencies, users have to install them all. Tedious.</li>
+<li>This is assuming that all these dependencies their is a package
+ready in the system's package repository. Otherwise they will have
+to build the dependency themselves. Tedious, potentially
+technically challenging, and time consuming.</li>
+<li>This is also assuming that the <i>right version</i> of the dependency
+is packaged. This is especially a problem on GNU/Linux, since
+different distributions package different versions of software. If
+the extension module for our package with linked against version
+<code>x</code> of a dependency, it's not garanteed to work with version
+<code>y</code>. Frustrating.</li>
+</ul>
+
+
+
+<p>
+On top of this, remember that when installing a package from a
+<code>sdist</code>, the <code>setup.py</code> script is executed. This script can actually
+contain any valid Python in addition to the call to
+<code>setuptools.setup()</code>. This means anyone installing a source
+distribution with superuser privileges should feel a bit
+uncomfortable.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc040e42" class="outline-2">
+<h2 id="orgc040e42"><span class="section-number-2">3.</span> Building a wheel distribution</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+What if we gave our friend an archive, but containing an <i>built</i>
+version of our package? In this case <code>pip</code>'s only job would be to
+extract the files and copy them in the right place on out friend's computer.
+</p>
+
+<p>
+That's precisely the idea behind Python wheels, and more generally
+behing <i>built distributions</i> (as opposed to <i>source distributions</i>).
+</p>
+
+<p>
+A wheel is built using <code>setuptools</code> with the <code>wheel</code> package.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">python setup.py bdist_wheel
+</pre>
+</div>
+
+<p>
+Let's look at what is happening under the hood.
+</p>
+
+<ol class="org-ol">
+<li><p>
+We start with some CMake output. The C++ extension module
+<code>example</code> is compiled.
+</p>
+
+<pre class="example" id="orge6393d2">
+-- Build files have been written to: /home/thibault/repos/septembrse_example/_skbuild/linux-x86_64-3.9/cmake-build
+[ 50%] Building CXX object CMakeFiles/example.dir/src/cpp/ddot.cpp.o
+[100%] Linking CXX shared module example.cpython-39-x86_64-linux-gnu.so
+[100%] Built target example
+</pre>
+
+<ol class="org-ol">
+<li>Then there is a succesion of creating temporary directories and
+copying files around. Ultimately, both the the Python source
+files and the compiled extension are copied into the <code>wheel/</code>
+directory.</li>
+
+<li>The third step is writing some metadata about the package itself
+and its build. So far this is exactly what happens when you
+install a Python package. Except this time it is install into
+this temporary <code>wheel/</code> directory instead of your local package
+directory.</li>
+
+<li>The final step is taking the content of that <code>wheel</code> direcotry
+and putting its content into a zip archive. The <code>wheel</code>
+directory is removed.</li>
+</ol></li>
+</ol>
+
+<p>
+What we learn from this is that a wheel distribution is a zip
+archive that contains the installed form of a Python package.
+</p>
+<pre class="example" id="org8f5a8eb">
+unzip -l dist/septembrse-0.0.0-cp39-cp39-linux_x86_64.whl
+Archive:  dist/septembrse-0.0.0-cp39-cp39-linux_x86_64.whl
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+       15  2021-09-04 09:02   example_pkg/__init__.py
+    93400  2021-09-04 09:02   example_pkg/example.cpython-39-x86_64-linux-gnu.so
+      241  2021-09-04 09:02   septembrse-0.0.0.dist-info/METADATA
+       97  2021-09-04 09:02   septembrse-0.0.0.dist-info/WHEEL
+       12  2021-09-04 09:02   septembrse-0.0.0.dist-info/top_level.txt
+      495  2021-09-04 09:02   septembrse-0.0.0.dist-info/RECORD
+---------                     -------
+    94260                     6 files
+
+</pre>
+
+<p>
+Now when you install this wheel, all <code>pip</code> has to do is copy the
+files into your local package directory. It doesn't have to run the
+<code>setup.py</code> script - all the hard work is already done. Notice that
+the <code>setup.py</code> script isn't even contained inside the wheel.
+</p>
+
+<p>
+The immediate benefit of this is that I can now share my package
+with my friends, and they don't have to worry about building it.
+They don't have to worry about setuptools, scikit-build, CMake,
+OpenBLAS. They just <code>pip install</code> and use the package. Its also a
+smaller file to share.
+</p>
+
+
+<p>
+The downside is that - if my wheel contains compiled code - it is
+platform and python version specific. If its purely Python, I can
+share it with the world and don't worry about portability. If it's
+not, then I'm going to have to build the wheel for each plaftform,
+for each python version I want to support.
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgaa44ef8" class="outline-2">
+<h2 id="orgaa44ef8"><span class="section-number-2">4.</span> manylinux</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Now let's focus on the case of GNU/Linux, for which there is an
+added complication.  On GNU/Linux, virtually every executable or
+shared library has a dynamic dependency on the GNU standard c
+library (<i>glibc</i>). This library is responsible for interfacing with
+the Linux kernel. When you run code from a compiled Python
+extension, this extension is expecting to be able to find some
+symbols (constants, functions) in glibc shared library.
+</p>
+
+<p>
+Now, newer glibc versions are not garanteed to work with older ones.
+This is a problem because different GNU/Linux distros come with the
+different versions of <i>glibc</i>. If you build your wheel the latest
+Ubuntu, it's unlikely to work on an older distribution with an older
+glibc.
+</p>
+
+<p>
+The opposite, however, is true. It is garanteed that code linked
+against an older version of glibc wilkl work with a newer one.  So
+in order to build portable wheels, that work on <i>manylinux</i>
+distributions, we want to be doing so on older systems that ship
+with older versions of glibc.
+</p>
+
+<p>
+All of this is irrelevant if your package is purely Python code.
+But if you do have one or more extension modules, you need to think
+about that.
+</p>
+
+<p>
+As a Python packager, you don't have to find and install an old
+CentOS 5 image in order to build your wheels. There is a group of
+people named the <a href="https://www.pypa.io/en/latest/">Python Packaging Authority</a> who maintains a set of
+docker images you can use to build your wheels inside.
+</p>
+
+<p>
+We don't have to it ourselves. They're is a group of people named
+]] that take care of maintaining
+projects used in Python packaging (e.g. PyPI). They maintain <a href="https://github.com/pypa/manylinux#docker-images">a set
+of Docker images</a> you can use to buiold your wheels in.
+</p>
+
+<p>
+For instance the <code>manylinux2014</code> image is based on CentOS 7:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">docker run -i -t -v <span class="org-sh-quoted-exec">`pwd`</span>:/io quay.io/pypa/manylinux2014_x86_64 /bin/bash
+</pre>
+</div>
+
+<p>
+Manylinux images contain all currently supported Python versions:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">root@221b30d4d160:/# ls /opt/python
+cp310-cp310  cp36-cp36m  cp37-cp37m  cp38-cp38  cp39-cp39  pp37-pypy37_pp73
+</pre>
+</div>
+
+<p>
+Let's build our wheel for, say, Python 3.8. First we install
+OpenBLAS (required to build the C++ extension module).
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">apt update &amp;&amp; apt install libopenblas-dev
+</pre>
+</div>
+
+<p>
+We then build the wheel
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">root@221b30d4d160:/# cd /io/
+root@221b30d4d160:/io# /opt/python/cp38-cp38/bin/pip wheel .
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-shell">root@221b30d4d160:/io# ls -l | grep .whl$
+-rw-r--r-- 1 root root   42127 Sep  3 09:58 septembrse-0.0.0-cp38-cp38-linux_x86_64.whl
+</pre>
+</div>
+
+<p>
+Are we good yet? Not exactly. Our wheel's platform tag is still
+<code>linux_x86_64</code> as opposed to something based on <code>manylinux</code>. The
+platform tag is important because when <code>pip</code> goes to look for wheels
+to install, the platform tag is what is helping it choose the right
+version to download and install.
+</p>
+
+<p>
+The attribution of the <code>manylinux</code> platform tag is not the job of
+<code>pip</code>, but it is <code>auditwheel</code>'s. This utility scans the wheel and
+decides whether or not it can be attributed a <code>manylinux</code> tag. If
+yes, it creates a new wheel with the correct name tag.
+</p>
+
+<p>
+Let's first inspect out wheel - this only prints info, doest not
+create a new wheel yet.
+</p>
+
+<pre class="example" id="org04b5892">
+[root@e42ba33f35c4 io]# auditwheel show septembrse-0.0.0-cp38-cp38-linux_x86_64.whl
+
+septembrse-0.0.0-cp38-cp38-linux_x86_64.whl is consistent with the
+following platform tag: "linux_x86_64".
+
+The wheel references external versioned symbols in these
+system-provided shared libraries: libgcc_s.so.1 with versions
+{'GCC_3.0', 'GCC_3.3', 'GCC_4.2.0', 'GCC_4.3.0', 'GCC_3.3.1'},
+libc.so.6 with versions {'GLIBC_2.3', 'GLIBC_2.3.4', 'GLIBC_2.10',
+'GLIBC_2.14', 'GLIBC_2.4', 'GLIBC_2.2.5', 'GLIBC_2.17'},
+libstdc++.so.6 with versions {'CXXABI_1.3.3', 'GLIBCXX_3.4.18',
+'CXXABI_1.3', 'GLIBCXX_3.4', 'CXXABI_1.3.2', 'CXXABI_1.3.5'},
+libgfortran.so.3 with versions {'GFORTRAN_1.0'}, libm.so.6 with
+versions {'GLIBC_2.2.5'}, libquadmath.so.0 with versions
+{'QUADMATH_1.0'}
+
+This constrains the platform tag to "manylinux_2_17_x86_64". In order
+to achieve a more compatible tag, you would need to recompile a new
+wheel from source on a system with earlier versions of these
+libraries, such as a recent manylinux image.
+</pre>
+
+<p>
+The important information is that our wheel is valid for the
+platform tag <code>manylinux_2_17_x86_64</code>. This means it is expected to
+work on any GNU/Linux system with a version of glibc equal or above
+2.17. That's expected because the version of glibc in this Docker
+image is 2.17.
+</p>
+
+<p>
+To actually produce the manylinux wheel, we use the  <code>auditwheel repair</code> command:
+</p>
+<div class="org-src-container">
+<pre class="src src-shell">auditwheel repair septembrse-0.0.0-cp38-cp38-linux_x86_64.whl
+</pre>
+</div>
+
+<p>
+A new direcoty <code>wheelhouse</code> was created with out manylinux wheel in it.
+</p>
+</div>
+
+<div id="outline-container-orgb39a401" class="outline-3">
+<h3 id="orgb39a401"><span class="section-number-3">4.1.</span> Runtime dependency on OpenBLAS</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+There's is one detail I glossed over.
+</p>
+
+<p>
+Our C extension module has dynamics dependencies to various shared
+libraries.
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">root@221b30d4d160:/io# ldd example_pkg/example.cpython-38-x86_64-linux-gnu.so
+        linux-vdso.so.1 (0x00007ffd2dfed000)
+        libopenblas.so.0 =&gt; /usr/lib/libopenblas.so.0 (0x00007ff591260000)
+        libstdc++.so.6 =&gt; /usr/lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007ff590ede000)
+        libm.so.6 =&gt; /lib/x86_64-linux-gnu/libm.so.6 (0x00007ff590bda000)
+        libgcc_s.so.1 =&gt; /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007ff5909c3000)
+        libc.so.6 =&gt; /lib/x86_64-linux-gnu/libc.so.6 (0x00007ff590624000)
+        libpthread.so.0 =&gt; /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007ff590407000)
+        libgfortran.so.3 =&gt; /usr/lib/x86_64-linux-gnu/libgfortran.so.3 (0x00007ff5900e1000)
+        /lib64/ld-linux-x86-64.so.2 (0x00007ff5935d1000)
+        libquadmath.so.0 =&gt; /usr/lib/x86_64-linux-gnu/libquadmath.so.0 (0x00007ff58fea2000)
+</pre>
+</div>
+
+<p>
+Most of these dependencies are libraries that we would expect to be
+present on most GNU/Linux systems out there. But this is not the
+case of <code>libopenblas</code> - which we installed manually as a build-time
+dependency inside the <i>manylinux</i> Docker image. In the current
+state of things, a user could install the wheel fine, but at the
+moment they would import the package it would break: <code>libopenblas
+   not found</code>!
+</p>
+
+<p>
+The solution to this is simple: let's add <code>libopenblas</code> to the
+wheel (remember, a wheel is nothing else than an archive). This is,
+however, not enough. We also need to make sure that, at runtime,
+the system knows where to look to find this shared library. This
+can be done by modyfing the <code>DT_RUNPATH</code> list of directories in the
+extension module shared library. This is rather technical and
+error-prone, but <code>auditwheel repair</code> does the work for us. Prior to
+creating the new <i>manylinux</i> wheel, this command
+</p>
+<ol class="org-ol">
+<li>Scans the dynamics dependencies for the wheel's extension
+module(s)s and identifies those that are outside of a very
+restricited set of shared libraries usually distributed by most
+GNU/Linux distributions.</li>
+<li>Copies the corresponding shared libraries (<code>.so</code> file) into the
+wheel.</li>
+<li>Modifies the <code>DT_RUNPATH</code> (or <code>DT_RPATH</code>) entry for the compiled
+extension module(s) so that the dynamic linker finds these
+shares libraries at runtime.</li>
+</ol>
+
+<p>
+If use <code>ldd</code> on the <code>example</code> extension inside the manylinux wheel
+this time, we see that a few shared libraries are now found inside
+the wheel itself.
+</p>
+
+<p>
+We now have a self-contained wheel that is usable across many linux
+distributions.
+</p>
+
+<p>
+I want to point out that this runtime dependency issue isn't
+restricted to building wheels on GNU/Linux systems. On MacOS,
+<a href="https://github.com/matthew-brett/delocate">delocate</a> does a job similar to <code>auditwheel</code>. On Windows, I haven't
+found a way to embed dynamic dependecnies (<code>dll</code> files) inside
+<code>win32</code> or <code>win64</code> wheels. An alternative is to link these
+dependencies statically.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8569e67" class="outline-2">
+<h2 id="org8569e67"><span class="section-number-2">5.</span> Conclusion</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+That's all I wanted to show you today. If you're currently working
+on a Python project or plan to do so, then I really encourage you to
+dig a bit deeper into the topic. The material for this walthrough is
+available online, along with a list of references for further
+reading. I also encourage you distribute wheels for your projects,
+it will make it much easier to use your package. Building wheels is
+a relatively complex process for computers, but for us packagers not
+so much. That is thanks to the work of the PyPA who maintain
+manylinux and auditwheel, the contributors behing delocate and
+cibuildwheel. So let's thank them and happy wheel building!
+</p>
+</div>
+</div>
+
+  </div><!-- /.entry-content -->
+</section>
+    </body>
+</html>

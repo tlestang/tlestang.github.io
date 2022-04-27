@@ -35,8 +35,8 @@ back to the first next non-holiday week day. But with the power of
 Lisp in our hands, I'm not to worried..
 &lt;/p&gt;
 
-&lt;div id="outline-container-orgd325c5d" class="outline-2"&gt;
-&lt;h2 id="orgd325c5d"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Setting UK bank holidays&lt;/h2&gt;
+&lt;div id="outline-container-org4b5a99d" class="outline-2"&gt;
+&lt;h2 id="org4b5a99d"&gt;&lt;span class="section-number-2"&gt;1.&lt;/span&gt; Setting UK bank holidays&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-1"&gt;
 &lt;p&gt;
 Disable the default holidays. I'm not interested in most of them,
@@ -235,8 +235,8 @@ for the holidays to appear in the calendar.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga5bbeca" class="outline-2"&gt;
-&lt;h2 id="orga5bbeca"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Fête des Mères et Fête des Pères&lt;/h2&gt;
+&lt;div id="outline-container-org0b9f9cf" class="outline-2"&gt;
+&lt;h2 id="org0b9f9cf"&gt;&lt;span class="section-number-2"&gt;2.&lt;/span&gt; Fête des Mères et Fête des Pères&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-2"&gt;
 &lt;p&gt;
 I want to add a shorter example of customizing the calendar, to
@@ -288,38 +288,38 @@ with Mothers' Day above, we set the variable &lt;code&gt;holiday-other-holidays&
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-</content><category term="blog"></category><category term="Emacs"></category></entry><entry><title>Code reviews in academia</title><link href="/blog/code-review.html" rel="alternate"></link><published>2021-02-04T00:00:00+00:00</published><updated>2021-02-04T00:00:00+00:00</updated><author><name>thibault</name></author><id>tag:None,2021-02-04:/blog/code-review.html</id><summary type="html">&lt;div id="table-of-contents"&gt;
+</content><category term="blog"></category><category term="Emacs"></category></entry><entry><title>Code reviews in academia</title><link href="/blog/code-review.html" rel="alternate"></link><published>2021-02-04T00:00:00+00:00</published><updated>2021-02-04T00:00:00+00:00</updated><author><name>Thibault Lestang</name></author><id>tag:None,2021-02-04:/blog/code-review.html</id><summary type="html">&lt;div id="table-of-contents" role="doc-toc"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
-&lt;div id="text-table-of-contents"&gt;
+&lt;div id="text-table-of-contents" role="doc-toc"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#orgb00202f"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orga9d73b3"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org13b350a"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org8900562"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org4461989"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org8159739"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb4a1af2"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org98058fe"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb00202f" class="outline-2"&gt;
-&lt;h2 id="orgb00202f"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
+&lt;div id="outline-container-org4461989" class="outline-2"&gt;
+&lt;h2 id="org4461989"&gt;&lt;span class="section-number-2"&gt;1.&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-1"&gt;
 &lt;p&gt;
 Code reviewing is a standard practice among professional software
 developers. Generally, this means code is subject to human feedback,
-complementary to machine …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="table-of-contents"&gt;
+complementary to machine …&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</summary><content type="html">&lt;div id="table-of-contents" role="doc-toc"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
-&lt;div id="text-table-of-contents"&gt;
+&lt;div id="text-table-of-contents" role="doc-toc"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="#orgb00202f"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#orga9d73b3"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org13b350a"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="#org8900562"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org4461989"&gt;1. Research software isn't reviewed&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org8159739"&gt;2. Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#orgb4a1af2"&gt;3. Code reviewing is not bug-hunting&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="#org98058fe"&gt;4. Distributing knowledge and experience&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb00202f" class="outline-2"&gt;
-&lt;h2 id="orgb00202f"&gt;&lt;span class="section-number-2"&gt;1&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
+&lt;div id="outline-container-org4461989" class="outline-2"&gt;
+&lt;h2 id="org4461989"&gt;&lt;span class="section-number-2"&gt;1.&lt;/span&gt; Research software isn't reviewed&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-1"&gt;
 &lt;p&gt;
 Code reviewing is a standard practice among professional software
@@ -362,8 +362,8 @@ publication rate.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orga9d73b3" class="outline-2"&gt;
-&lt;h2 id="orga9d73b3"&gt;&lt;span class="section-number-2"&gt;2&lt;/span&gt; Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/h2&gt;
+&lt;div id="outline-container-org8159739" class="outline-2"&gt;
+&lt;h2 id="org8159739"&gt;&lt;span class="section-number-2"&gt;2.&lt;/span&gt; Researchers &lt;i&gt;are&lt;/i&gt; developers&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-2"&gt;
 &lt;p&gt;
 In 2021, the situation is slowly evolving, and has been so over the
@@ -413,8 +413,8 @@ developers.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org13b350a" class="outline-2"&gt;
-&lt;h2 id="org13b350a"&gt;&lt;span class="section-number-2"&gt;3&lt;/span&gt; Code reviewing is not bug-hunting&lt;/h2&gt;
+&lt;div id="outline-container-orgb4a1af2" class="outline-2"&gt;
+&lt;h2 id="orgb4a1af2"&gt;&lt;span class="section-number-2"&gt;3.&lt;/span&gt; Code reviewing is not bug-hunting&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-3"&gt;
 &lt;p&gt;
 Consequently, it should be common practice for researchers to "talk
@@ -464,8 +464,8 @@ research code makes for a fantastic learning opportunity for them.
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org8900562" class="outline-2"&gt;
-&lt;h2 id="org8900562"&gt;&lt;span class="section-number-2"&gt;4&lt;/span&gt; Distributing knowledge and experience&lt;/h2&gt;
+&lt;div id="outline-container-org98058fe" class="outline-2"&gt;
+&lt;h2 id="org98058fe"&gt;&lt;span class="section-number-2"&gt;4.&lt;/span&gt; Distributing knowledge and experience&lt;/h2&gt;
 &lt;div class="outline-text-2" id="text-4"&gt;
 &lt;p&gt;
 In academia, programming and software engineering skills are both
